@@ -1,0 +1,12 @@
+.env
+.env.*
+node_modules/
+dist/
+.astro/
+.git/
+.gitignore
+.vscode/
+.claude/
+*.md
+*.csv
+*.html

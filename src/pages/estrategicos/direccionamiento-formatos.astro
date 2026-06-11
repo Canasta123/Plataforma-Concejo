@@ -1,0 +1,78 @@
+---
+import FormatosLayout from '../../layouts/FormatosLayout.astro';
+import ExplorerCard from '../../components/ExplorerCard.astro';
+---
+
+<FormatosLayout
+  title="Formatos e Instrumentos - Direccionamiento Estratégico"
+  numero="01"
+  tituloHeader="Formatos e Instrumentos"
+  subtituloHeader="Direccionamiento Estratégico y Comunicaciones"
+  tipo="estrategico"
+  badge="Listado Maestro"
+  badgeIcon="fas fa-file-alt"
+  rutaActual="/estrategicos/direccionamiento-formatos"
+>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 h-full overflow-y-auto custom-scroll pr-2 pb-8">
+    <!-- Card: Empalme -->
+    <div class="h-[420px]">
+      <ExplorerCard
+        titulo="Empalme"
+        icono="fas fa-people-arrows"
+        rutaExplorador="Formatos/1. Direccionamiento Estratégico y Comunicaciones/Empalme"
+        borderColor="blue"
+        bgIcon="fas fa-handshake"
+      />
+    </div>
+
+    <!-- Card: Rendición de Cuentas -->
+    <div class="h-[420px]">
+      <ExplorerCard
+        titulo="Rendición de Cuentas"
+        icono="fas fa-microphone-alt"
+        rutaExplorador="Formatos/1. Direccionamiento Estratégico y Comunicaciones/Rendición de Cuentas"
+        borderColor="blue"
+        bgIcon="fas fa-bullhorn"
+      />
+    </div>
+
+    <!-- Card: Seguimiento Plan de Acción -->
+    <div class="h-[420px]">
+      <ExplorerCard
+        titulo="Seguimiento Plan de Acción"
+        icono="fas fa-tasks"
+        rutaExplorador="Formatos/1. Direccionamiento Estratégico y Comunicaciones/Seguimiento Plan de Acción"
+        borderColor="blue"
+      />
+    </div>
+
+    <!-- Card: Comunicaciones -->
+    <div class="h-[420px]">
+      <ExplorerCard
+        titulo="Comunicaciones"
+        icono="fas fa-broadcast-tower"
+        rutaExplorador="Formatos/1. Direccionamiento Estratégico y Comunicaciones/Comunicaciones"
+        borderColor="gold"
+        bgIcon="fas fa-satellite-dish"
+      />
+    </div>
+  </div>
+</FormatosLayout>
+
+<style>
+  .custom-scroll::-webkit-scrollbar {
+    width: 6px;
+  }
+  .custom-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scroll::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+  }
+  .custom-scroll::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+</style>
+
+

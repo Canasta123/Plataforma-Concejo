@@ -1,0 +1,88 @@
+---
+import { getNavContext, getBreadcrumb } from '../../lib/navigation';
+
+interface Props {
+  rutaActual: string;
+}
+
+const { rutaActual } = Astro.props;
+const { prev, next, current, index, total } = getNavContext(rutaActual);
+const breadcrumb = getBreadcrumb(rutaActual);
+---
+
+<nav class="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-200 shadow-lg">
+  <div class="flex items-center justify-between px-4 md:px-8 h-14 max-w-screen-2xl mx-auto gap-4">
+
+    <!-- Botón Anterior -->
+    <div class="flex-1 flex justify-start">
+      {prev ? (
+        <a
+          href={prev.ruta}
+          data-nav="prev"
+          class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold text-gray-600 hover:text-white hover:bg-brand-blue transition-all duration-200 group max-w-[160px] md:max-w-xs"
+          title={prev.titulo}
+        >
+          <i class="fas fa-chevron-left text-xs shrink-0"></i>
+          <span class="truncate hidden sm:block">{prev.titulo}</span>
+          <span class="sm:hidden">Anterior</span>
+        </a>
+      ) : (
+        <div class="w-24"></div>
+      )}
+    </div>
+
+    <!-- Centro: Breadcrumb + Progreso -->
+    <div class="flex flex-col items-center gap-0.5 min-w-0">
+      <!-- Breadcrumb -->
+      <div class="hidden md:flex items-center gap-1 text-xs text-gray-400">
+        {breadcrumb.map((crumb, i) => (
+          <>
+            {i > 0 && <i class="fas fa-chevron-right text-[9px] text-gray-300"></i>}
+            {i < breadcrumb.length - 1 ? (
+              <a href={crumb.href} class="hover:text-brand-blue transition-colors truncate max-w-[80px]">
+                {crumb.label}
+              </a>
+            ) : (
+              <span class="text-gray-600 font-semibold truncate max-w-[120px]">{crumb.label}</span>
+            )}
+          </>
+        ))}
+      </div>
+
+      <!-- Indicador de progreso -->
+      {index >= 0 && (
+        <div class="flex items-center gap-2">
+          <span class="text-xs text-gray-400">{index + 1} / {total}</span>
+          <div class="w-20 md:w-32 h-1 bg-gray-200 rounded-full overflow-hidden">
+            <div
+              class="h-full rounded-full transition-all"
+              style={`width: ${((index + 1) / total) * 100}%; background-color: #3359A4`}
+            ></div>
+          </div>
+        </div>
+      )}
+    </div>
+
+    <!-- Botón Siguiente -->
+    <div class="flex-1 flex justify-end">
+      {next ? (
+        <a
+          href={next.ruta}
+          data-nav="next"
+          class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold text-gray-600 hover:text-white hover:bg-brand-blue transition-all duration-200 group max-w-[160px] md:max-w-xs"
+          title={next.titulo}
+        >
+          <span class="truncate hidden sm:block">{next.titulo}</span>
+          <span class="sm:hidden">Siguiente</span>
+          <i class="fas fa-chevron-right text-xs shrink-0"></i>
+        </a>
+      ) : (
+        <div class="w-24"></div>
+      )}
+    </div>
+
+  </div>
+</nav>
+
+<!-- Spacer para que el contenido no quede detrás del nav fijo -->
+<div class="h-14"></div>

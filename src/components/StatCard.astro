@@ -1,0 +1,20 @@
+---
+interface Props {
+  titulo: string;
+  valor: string | number;
+  icono: string;
+  color?: string;
+}
+
+const { titulo, valor, icono, color = '#3359A4' } = Astro.props;
+---
+
+<div class="stat-card animate-on-scroll" style={`border-color: ${color}`}>
+  <div>
+    <p class="text-xs text-gray-500 font-bold uppercase mb-1">{titulo}</p>
+    <h3 class="text-3xl font-bold leading-none" style={`color: ${color}`}>{valor}</h3>
+  </div>
+  <div class="h-12 w-12 rounded-full flex items-center justify-center text-xl" style={`background-color: ${color}15; color: ${color}`}>
+    <i class={icono}></i>
+  </div>
+</div>

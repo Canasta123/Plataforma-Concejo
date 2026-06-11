@@ -1,0 +1,120 @@
+---
+import ProcesoLayout from '../../layouts/ProcesoLayout.astro';
+import DownloadButton from '../../components/DownloadButton.astro';
+---
+
+<ProcesoLayout
+  title="Gestión de Calidad - Estratégicos"
+  numero="02"
+  tituloHeader="Gestión de Calidad"
+  subtituloHeader="Caracterización del Proceso"
+  tipo="estrategico"
+  badge="Macroproceso Estratégico"
+  badgeIcon="fas fa-sitemap"
+  rutaActual="/estrategicos/calidad"
+>
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+    <!-- Left Column: Meta Information (4/12) -->
+    <div class="lg:col-span-4 flex flex-col gap-6">
+      
+      <!-- Process Type Card -->
+      <div class="bg-white rounded-xl p-6 card-shadow border-l-8 category-strategic relative overflow-hidden group animate-on-scroll">
+        <div class="absolute right-0 top-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+          <i class="fas fa-clipboard-check text-8xl text-brand-blue"></i>
+        </div>
+        <div class="relative z-10">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-brand-blue">
+              <i class="fas fa-layer-group"></i>
+            </div>
+            <h3 class="text-gray-500 font-bold text-xs uppercase tracking-wider">Tipo de Proceso</h3>
+          </div>
+          <p class="text-xl font-bold text-brand-blue">Estratégico / Calidad</p>
+          <div class="mt-4 text-sm text-gray-600 leading-snug">
+            <p>Procesos orientados a la mejora continua, la satisfacción del cliente y el cumplimiento de estándares normativos.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Responsible / Encargados Card -->
+      <div class="bg-white rounded-xl p-6 card-shadow border-l-8 border-gray-300 flex-1 relative overflow-hidden flex flex-col animate-on-scroll" style="animation-delay: 0.1s;">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600">
+            <i class="fas fa-user-tie"></i>
+          </div>
+          <h3 class="text-gray-500 font-bold text-xs uppercase tracking-wider">Responsables / Encargados</h3>
+        </div>
+        <div class="space-y-4 flex-1">
+          <div class="flex items-start gap-3 p-4 rounded-lg bg-gray-50 border border-gray-100 h-full">
+            <div class="mt-1 text-brand-blue"><i class="fas fa-briefcase"></i></div>
+            <div>
+              <p class="font-bold text-gray-800 text-base">Dirección Administrativa y Financiera</p>
+              <p class="text-xs text-gray-500 mt-1">Liderazgo del Sistema de Gestión de Calidad</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- Right Column: Core Information (8/12) -->
+    <div class="lg:col-span-8 flex flex-col gap-6">
+      
+      <!-- Objective Section -->
+      <div class="bg-white rounded-xl p-8 card-shadow relative animate-on-scroll">
+        <div class="absolute -top-3 left-8 bg-brand-gold text-white px-4 py-1 rounded shadow-sm text-xs font-bold uppercase tracking-widest border border-black z-10">
+          <i class="fas fa-bullseye mr-2"></i>Objetivo del Proceso
+        </div>
+        <div class="mt-2 flex flex-col md:flex-row gap-6 items-start">
+          <div class="flex-1">
+            <p class="text-lg text-gray-700 leading-relaxed font-medium">
+              Ejecutar con altos estándares de calidad los planes y procesos del Concejo Municipal, evaluando mediante auditorías internas del SGC.
+            </p>
+            <div class="mt-4 pt-4 border-t border-gray-100 flex items-start text-brand-blue">
+              <i class="fas fa-certificate mr-3 mt-1 text-brand-gold"></i>
+              <p class="text-sm font-semibold text-gray-600">Garantizar que todas las actividades de la Corporación se ejecuten en estricto cumplimiento de la norma <span class="text-brand-blue font-bold">ISO 9001:2015</span> y demás regulaciones nacionales.</p>
+            </div>
+          </div>
+          <div class="hidden md:flex w-1/4 justify-center items-center opacity-80">
+            <i class="fas fa-check-double text-6xl text-gray-200"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scope / Alcance Section -->
+      <div class="bg-white rounded-xl p-8 card-shadow flex-1 relative animate-on-scroll" style="animation-delay: 0.1s;">
+        <div class="absolute -top-3 left-8 bg-brand-blue text-white px-4 py-1 rounded shadow-sm text-xs font-bold uppercase tracking-widest border border-black z-10">
+          <i class="fas fa-map-signs mr-2"></i>Alcance
+        </div>
+        <div class="mt-4 relative h-full flex flex-col justify-center py-4">
+          <!-- Start Point -->
+          <div class="relative pl-8 pb-8 border-l-2 border-green-300 ml-4">
+            <div class="absolute w-4 h-4 rounded-full bg-green-500 border-4 border-white shadow -left-[9px] top-0"></div>
+            <h4 class="text-sm font-bold text-green-700 uppercase mb-2 mt-[-4px]">Inicio</h4>
+            <div class="text-gray-600 bg-green-50 p-4 rounded-lg border border-green-100 text-base shadow-sm">
+              <p>Identificación de los requisitos de la norma <span class="font-bold text-gray-800">ISO 9001:2015</span> y su implementación en la Corporación.</p>
+            </div>
+          </div>
+          <!-- End Point -->
+          <div class="relative pl-8 ml-4">
+            <div class="absolute w-4 h-4 rounded-full bg-red-500 border-4 border-white shadow -left-[9px] top-0"></div>
+            <h4 class="text-sm font-bold text-red-700 uppercase mb-2 mt-[-4px]">Fin</h4>
+            <div class="text-gray-600 bg-red-50 p-4 rounded-lg border border-red-100 text-base shadow-sm">
+              <p>Seguimiento y evaluación mediante <span class="font-bold text-gray-800">auditorías internas y externas</span>, culminando con las acciones correctivas necesarias.</p>
+            </div>
+          </div>
+          
+          <!-- Connector visual -->
+          <div class="absolute right-8 top-1/2 transform -translate-y-1/2 opacity-5 hidden lg:block">
+            <i class="fas fa-project-diagram text-9xl text-brand-blue"></i>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+  <div class="mt-6 flex justify-end">
+    <DownloadButton href="/C-Procesos/GC.pdf" tipo="estrategico" texto="Descargar Caracterización" />
+  </div>
+</ProcesoLayout>

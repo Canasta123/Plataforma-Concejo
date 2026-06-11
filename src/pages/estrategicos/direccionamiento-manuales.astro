@@ -1,0 +1,303 @@
+---
+import FormatosLayout from '../../layouts/FormatosLayout.astro';
+import ExplorerCard from '../../components/ExplorerCard.astro';
+
+const dofaAreas = [
+  {
+    nombre: 'Control Interno',
+    file: '/4.1 Guias y DOFAS Direccionamiento/DOFAS 2026/1. MATRIZ DOFA CONTROL INTERNO 2026.xlsx'
+  },
+  {
+    nombre: 'Direccionamiento',
+    file: '/4.1 Guias y DOFAS Direccionamiento/DOFAS 2026/2. MATRIZ DOFA DIRECCIONAMIENRO ESTRATEGICO .xlsx'
+  },
+  {
+    nombre: 'Gestión de Calidad',
+    file: '/4.1 Guias y DOFAS Direccionamiento/DOFAS 2026/3. MATRIZ DOFA GESTIÓN DE CALIDAD.xlsx'
+  },
+  {
+    nombre: 'Control Político',
+    file: '/4.1 Guias y DOFAS Direccionamiento/DOFAS 2026/MATRIZ DOFA CONTROL POLÍTICO.xlsx'
+  },
+  {
+    nombre: 'Proyectos de Acuerdo',
+    file: '/4.1 Guias y DOFAS Direccionamiento/DOFAS 2026/5. MATRIZ DOFA TRAMITE A PROYECTOS DE ACUERDO.xlsx'
+  },
+  {
+    nombre: 'Relacionamiento',
+    file: '/4.1 Guias y DOFAS Direccionamiento/DOFAS 2026/6. MATRIZ DOFA RELACIONAMIENTO CON EL CIUDADANO.xlsx'
+  },
+  {
+    nombre: 'Gestión Admin.',
+    file: '/4.1 Guias y DOFAS Direccionamiento/DOFAS 2026/7. MATRIZ DOFA GESTIÓN ADMINISTRATIVA.xlsx'
+  },
+  {
+    nombre: 'Jurídica',
+    file: '/4.1 Guias y DOFAS Direccionamiento/DOFAS 2026/8. MATRIZ DOFA JURÍDICA Y CONTRATACIÓN.xlsx'
+  },
+  {
+    nombre: 'Gestión Documental',
+    file: '/4.1 Guias y DOFAS Direccionamiento/DOFAS 2026/MATRIZ DOFA GESTIÓN DOCUMENTAL.xlsx'
+  },
+  {
+    nombre: 'Comunicaciones',
+    file: '/4.1 Guias y DOFAS Direccionamiento/DOFAS 2026/Matriz DOFA Comunicaciones.xlsx'
+  }
+];
+---
+
+<FormatosLayout
+  title="Formatos - Direccionamiento Estratégico"
+  numero="01"
+  tituloHeader="Manuales, Guías y DOFAS"
+  subtituloHeader="Direccionamiento Estratégico y Comunicaciones"
+  tipo="estrategico"
+  badge="Documentación Normativa"
+  badgeIcon="fas fa-book"
+  rutaActual="/estrategicos/direccionamiento-manuales"
+>
+  <div class="flex flex-col lg:flex-row gap-8 overflow-y-auto custom-scroll pr-2 pb-8 h-full">
+    
+    <!-- Left Column: Strategic & General (40%) -->
+    <div class="w-full lg:w-2/5 flex flex-col gap-6">
+      
+      <!-- Section Header -->
+      <div class="flex items-center gap-2 pb-2 border-b-2 border-brand-blue">
+        <i class="fas fa-chess-rook text-brand-blue"></i>
+        <h3 class="text-lg font-bold text-brand-blue uppercase">Direccionamiento Estratégico</h3>
+      </div>
+
+      <!-- Main Card: Matrices DOFA 2026 -->
+      <div class="bg-white rounded-xl card-shadow p-6 relative border-l-4 border-brand-blue flex flex-col animate-on-scroll">
+        <div class="flex items-start justify-between mb-4">
+          <div class="flex gap-4">
+            <div class="w-12 h-12 bg-blue-100 text-brand-blue flex items-center justify-center rounded-lg shadow-sm flex-shrink-0">
+              <i class="fas fa-swatchbook text-2xl"></i>
+            </div>
+            <div>
+              <span class="inline-block px-2 py-1 bg-blue-50 text-blue-700 text-[10px] font-bold uppercase tracking-wider rounded-md border border-blue-100 mb-1">Diagnóstico Estratégico</span>
+              <h3 class="text-xl font-bold text-gray-800 leading-tight">Matrices DOFA 2026</h3>
+              <p class="text-xs text-gray-500 mt-1">Análisis de Debilidades, Oportunidades, Fortalezas y Amenazas</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-gray-50 rounded-lg p-4 flex-1 border border-gray-100">
+          <p class="text-xs font-bold text-gray-400 uppercase mb-3">Descargar Matrices DOFA 2026 (Excel):</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            {dofaAreas.map(area => (
+              <a 
+                href={encodeURI(area.file)} 
+                download 
+                class="flex items-center justify-between gap-2 text-xs text-gray-700 bg-white p-2.5 rounded shadow-sm hover:shadow hover:bg-blue-50 border border-gray-100 hover:border-blue-200 transition-all group"
+              >
+                <div class="flex items-center gap-2">
+                  <i class="fas fa-check-circle text-green-500 text-[10px]"></i> 
+                  <span class="font-medium">{area.nombre}</span>
+                </div>
+                <i class="fas fa-download text-gray-400 group-hover:text-brand-blue group-hover:translate-y-[1px] transition-all text-[10px]"></i>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Secondary Manuals Row -->
+      <div class="flex flex-col gap-4 animate-on-scroll" style="animation-delay: 0.1s;">
+        <!-- Manual Operativo de Rendicion de Cuentas -->
+        <a href="/4.1%20Guias%20y%20DOFAS%20Direccionamiento/2024-10-29_Manual_Operativo_Rendici%C3%B3n_de_Cuentas_publicado.pdf" target="_blank" class="bg-white rounded-lg card-shadow p-4 border-l-4 border-gray-400 flex items-center gap-4 hover:border-brand-blue transition-colors group">
+          <div class="w-10 h-10 bg-gray-100 text-gray-600 flex items-center justify-center rounded-lg group-hover:bg-blue-50 group-hover:text-brand-blue transition-colors flex-shrink-0">
+            <i class="fas fa-cogs text-xl"></i>
+          </div>
+          <div>
+            <span class="inline-block px-2 py-1 bg-blue-50 text-blue-700 text-[10px] font-bold uppercase tracking-wider rounded-md border border-blue-100 mb-1">Procedimental</span>
+            <h4 class="font-bold text-gray-800 text-sm group-hover:text-brand-blue transition-colors leading-tight">Manual Operativo de Rendición de Cuentas</h4>
+            <p class="text-[10px] text-gray-500 mt-0.5">Versión publicada de octubre de 2024</p>
+          </div>
+        </a>
+        
+        <!-- Manual Único de Rendición de Cuentas -->
+        <a href="/4.1%20Guias%20y%20DOFAS%20Direccionamiento/Manual%20%C3%9Anico%20de%20Rendici%C3%B3n%20de%20Cuentas%20-%20Versi%C3%B3n%202.%20Introducci%C3%B3n%20-%20Febrero%20de%202019.pdf" target="_blank" class="bg-white rounded-lg card-shadow p-4 border-l-4 border-gray-400 flex items-center gap-4 hover:border-brand-blue transition-colors group">
+          <div class="w-10 h-10 bg-gray-100 text-gray-600 flex items-center justify-center rounded-lg group-hover:bg-blue-50 group-hover:text-brand-blue transition-colors flex-shrink-0">
+            <i class="fas fa-users-viewfinder text-xl"></i>
+          </div>
+          <div>
+            <span class="inline-block px-2 py-1 bg-blue-50 text-blue-700 text-[10px] font-bold uppercase tracking-wider rounded-md border border-blue-100 mb-1">Participación</span>
+            <h4 class="font-bold text-gray-800 text-sm group-hover:text-brand-blue transition-colors leading-tight">Manual Único de Rendición de Cuentas</h4>
+            <p class="text-[10px] text-gray-500 mt-0.5">Versión 2 (Introducción - Febrero 2019)</p>
+          </div>
+        </a>
+
+        <!-- Presentacion Rendicion de Cuentas -->
+        <a href="/4.1%20Guias%20y%20DOFAS%20Direccionamiento/PRESENTACION%20RENDICION%20DE%20CUENTAS%20DEFINITIVA.pdf" target="_blank" class="bg-white rounded-lg card-shadow p-4 border-l-4 border-gray-400 flex items-center gap-4 hover:border-brand-blue transition-colors group">
+          <div class="w-10 h-10 bg-gray-100 text-gray-600 flex items-center justify-center rounded-lg group-hover:bg-blue-50 group-hover:text-brand-blue transition-colors flex-shrink-0">
+            <i class="fas fa-file-powerpoint text-xl"></i>
+          </div>
+          <div>
+            <span class="inline-block px-2 py-1 bg-blue-50 text-blue-700 text-[10px] font-bold uppercase tracking-wider rounded-md border border-blue-100 mb-1">Presentación</span>
+            <h4 class="font-bold text-gray-800 text-sm group-hover:text-brand-blue transition-colors leading-tight">Presentación Rendición de Cuentas</h4>
+            <p class="text-[10px] text-gray-500 mt-0.5">Versión Definitiva</p>
+          </div>
+        </a>
+
+        <!-- Manual de Rendición de Cuentas (adicional) -->
+        <a href="/4.1%20Guias%20y%20DOFAS%20Direccionamiento/manual_rencicion_cuentas.pdf" target="_blank" class="bg-white rounded-lg card-shadow p-4 border-l-4 border-gray-400 flex items-center gap-4 hover:border-brand-blue transition-colors group">
+          <div class="w-10 h-10 bg-gray-100 text-gray-600 flex items-center justify-center rounded-lg group-hover:bg-blue-50 group-hover:text-brand-blue transition-colors flex-shrink-0">
+            <i class="fas fa-book-open text-xl"></i>
+          </div>
+          <div>
+            <span class="inline-block px-2 py-1 bg-blue-50 text-blue-700 text-[10px] font-bold uppercase tracking-wider rounded-md border border-blue-100 mb-1">Guía</span>
+            <h4 class="font-bold text-gray-800 text-sm group-hover:text-brand-blue transition-colors leading-tight">Manual de Rendición de Cuentas</h4>
+            <p class="text-[10px] text-gray-500 mt-0.5">Documento de apoyo institucional</p>
+          </div>
+        </a>
+      </div>
+      
+    </div>
+
+    <!-- Right Column: Communications (60%) -->
+    <div class="w-full lg:w-3/5 flex flex-col gap-6">
+      
+      <!-- Section Header -->
+      <div class="flex items-center gap-2 pb-2 border-b-2 border-brand-gold">
+        <i class="fas fa-bullhorn text-brand-gold"></i>
+        <h3 class="text-lg font-bold text-brand-gold uppercase">Guías de Comunicaciones</h3>
+      </div>
+
+      <!-- Grid of Docs -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 h-full content-start pb-8">
+        
+        <!-- Doc 1: Plan Estratégico de Comunicaciones -->
+        <a href="/4.2%20Guias%20Comunicaciones/Plan%20Estrategico%20Comunicaciones%202026.%20Aprobado.pdf" target="_blank" class="md:col-span-2 bg-white rounded-xl card-shadow p-5 border-t-4 border-brand-gold relative overflow-hidden flex items-center gap-5 hover:border-brand-blue group transition-all animate-on-scroll">
+          <div class="absolute right-0 top-0 p-4 opacity-5">
+            <i class="fas fa-network-wired text-6xl text-brand-gold"></i>
+          </div>
+          <div class="w-16 h-16 bg-yellow-50 text-brand-gold flex items-center justify-center rounded-lg text-2xl z-10 group-hover:bg-brand-gold group-hover:text-white transition-colors">
+            <i class="fas fa-project-diagram"></i>
+          </div>
+          <div class="flex-1 z-10">
+            <span class="inline-block px-2 py-1 bg-yellow-50 text-yellow-700 text-[10px] font-bold uppercase tracking-wider rounded-md border border-yellow-100 mb-1">Estratégico</span>
+            <h3 class="text-lg font-bold text-brand-blue group-hover:text-brand-gold transition-colors leading-tight">Plan Estratégico de Comunicaciones</h3>
+            <p class="text-xs text-gray-500 mt-1">Hoja de ruta para la gestión de la comunicación institucional (Aprobado 2026).</p>
+          </div>
+          <i class="fas fa-external-link-alt text-gray-400 group-hover:text-brand-gold transition-colors pr-2"></i>
+        </a>
+
+        <!-- Card 2: Manual de Comunicación -->
+        <a href="/4.2%20Guias%20Comunicaciones/MANUAL%20DE%20COMUNICACIONES%20INTERNAS%20Y%20EXTERNAS.docx" target="_blank" class="bg-white rounded-xl card-shadow p-5 border-l-4 border-brand-gold flex flex-col gap-3 group hover:border-yellow-400 transition-colors animate-on-scroll" style="animation-delay: 0.1s;">
+          <div class="flex items-start justify-between">
+            <div class="w-10 h-10 bg-yellow-50 text-brand-gold flex items-center justify-center rounded-lg group-hover:bg-brand-gold group-hover:text-white transition-colors">
+              <i class="fas fa-comments text-lg"></i>
+            </div>
+            <span class="inline-block px-2 py-1 bg-yellow-50 text-yellow-700 text-[10px] font-bold uppercase tracking-wider rounded-md border border-yellow-100">Manual</span>
+          </div>
+          <div>
+            <h4 class="font-bold text-gray-800 text-sm group-hover:text-brand-blue transition-colors leading-tight">Manual de Comunicación Interna y Externa</h4>
+            <p class="text-xs text-gray-500 mt-2">Lineamientos para flujo de información (Documento descargable Word).</p>
+          </div>
+        </a>
+
+        <!-- Card 3: Manual de Crisis -->
+        <a href="/4.2%20Guias%20Comunicaciones/Manual%20de%20Crisis.docx" target="_blank" class="bg-white rounded-xl card-shadow p-5 border-l-4 border-brand-gold flex flex-col gap-3 group hover:border-yellow-400 transition-colors animate-on-scroll" style="animation-delay: 0.2s;">
+          <div class="flex items-start justify-between">
+            <div class="w-10 h-10 bg-yellow-50 text-brand-gold flex items-center justify-center rounded-lg group-hover:bg-brand-gold group-hover:text-white transition-colors">
+              <i class="fas fa-exclamation-triangle text-lg"></i>
+            </div>
+            <span class="inline-block px-2 py-1 bg-yellow-50 text-yellow-700 text-[10px] font-bold uppercase tracking-wider rounded-md border border-yellow-100">Protocolo</span>
+          </div>
+          <div>
+            <h4 class="font-bold text-gray-800 text-sm group-hover:text-brand-blue transition-colors leading-tight">Manual de Crisis</h4>
+            <p class="text-xs text-gray-500 mt-2">Protocolos de actuación ante contingencias comunicativas (Word).</p>
+          </div>
+        </a>
+
+        <!-- Card 4: Matriz de Comunicación -->
+        <a href="/4.2%20Guias%20Comunicaciones/Matriz%20de%20comunicaciones%20..xls" target="_blank" class="bg-white rounded-xl card-shadow p-5 border-l-4 border-brand-gold flex flex-col gap-3 group hover:border-yellow-400 transition-colors animate-on-scroll" style="animation-delay: 0.3s;">
+          <div class="flex items-start justify-between">
+            <div class="w-10 h-10 bg-yellow-50 text-brand-gold flex items-center justify-center rounded-lg group-hover:bg-brand-gold group-hover:text-white transition-colors">
+              <i class="fas fa-border-all text-lg"></i>
+            </div>
+            <span class="inline-block px-2 py-1 bg-yellow-50 text-yellow-700 text-[10px] font-bold uppercase tracking-wider rounded-md border border-yellow-100">Herramienta</span>
+          </div>
+          <div>
+            <h4 class="font-bold text-gray-800 text-sm group-hover:text-brand-blue transition-colors leading-tight">Matriz de Comunicación</h4>
+            <p class="text-xs text-gray-500 mt-2">Planificación de medios y mensajes (Excel).</p>
+          </div>
+        </a>
+
+        <!-- Card 5: Esquema de Publicación -->
+        <a href="/4.2%20Guias%20Comunicaciones/Esquema%20Publicaci%C3%B3n%20de%20Informaci%C3%B3n/1.%20Esquema%20de%20Publicaci%C3%B3n.%20Ley%20de%20Transparencia%20y%20Acceso%20a%20la%20Informaci%C3%B3n%20P%C3%BAblica.%20Concejo%20Municipal%20de%20Ch%C3%ADa%202024%20(1).xlsx" target="_blank" class="bg-white rounded-xl card-shadow p-5 border-l-4 border-brand-gold flex flex-col gap-3 group hover:border-yellow-400 transition-colors animate-on-scroll" style="animation-delay: 0.4s;">
+          <div class="flex items-start justify-between">
+            <div class="w-10 h-10 bg-yellow-50 text-brand-gold flex items-center justify-center rounded-lg group-hover:bg-brand-gold group-hover:text-white transition-colors">
+              <i class="fas fa-file-contract text-lg"></i>
+            </div>
+            <span class="inline-block px-2 py-1 bg-yellow-50 text-yellow-700 text-[10px] font-bold uppercase tracking-wider rounded-md border border-yellow-100">Transparencia</span>
+          </div>
+          <div>
+            <h4 class="font-bold text-gray-800 text-sm group-hover:text-brand-blue transition-colors leading-tight">Esquema de Publicación</h4>
+            <p class="text-xs text-gray-500 mt-2">Ley de Transparencia y Acceso a la Información (Excel).</p>
+          </div>
+        </a>
+
+        <!-- Card 6: Manual de Identidad Visual -->
+        <a href="/4.2%20Guias%20Comunicaciones/MANUAL%20DE%20IDENTIDAD%20VISUAL%20CONCEJO%20MUNICIPAL%20DE%20CHIA.%20VERSION%20ACTUALIZADA.pdf" target="_blank" class="bg-white rounded-xl card-shadow p-5 border-l-4 border-brand-gold flex flex-col gap-3 group hover:border-yellow-400 transition-colors animate-on-scroll" style="animation-delay: 0.5s;">
+          <div class="flex items-start justify-between">
+            <div class="w-10 h-10 bg-yellow-50 text-brand-gold flex items-center justify-center rounded-lg group-hover:bg-brand-gold group-hover:text-white transition-colors">
+              <i class="fas fa-palette text-lg"></i>
+            </div>
+            <span class="inline-block px-2 py-1 bg-yellow-50 text-yellow-700 text-[10px] font-bold uppercase tracking-wider rounded-md border border-yellow-100">Identidad</span>
+          </div>
+          <div>
+            <h4 class="font-bold text-gray-800 text-sm group-hover:text-brand-blue transition-colors leading-tight">Manual de Identidad Visual</h4>
+            <p class="text-xs text-gray-500 mt-2">Logotipos, colores y tipografías (PDF - Versión Actualizada).</p>
+          </div>
+        </a>
+
+        <!-- Card 7: Resolución 021 de 2026 -->
+        <a href="/4.2%20Guias%20Comunicaciones/Resolucion%20021%20de%202026.%20Adopci%C3%B3n%20Manual.pdf" target="_blank" class="bg-white rounded-xl card-shadow p-5 border-l-4 border-brand-gold flex flex-col gap-3 group hover:border-yellow-400 transition-colors animate-on-scroll" style="animation-delay: 0.6s;">
+          <div class="flex items-start justify-between">
+            <div class="w-10 h-10 bg-yellow-50 text-brand-gold flex items-center justify-center rounded-lg group-hover:bg-brand-gold group-hover:text-white transition-colors">
+              <i class="fas fa-file-signature text-lg"></i>
+            </div>
+            <span class="inline-block px-2 py-1 bg-yellow-50 text-yellow-700 text-[10px] font-bold uppercase tracking-wider rounded-md border border-yellow-100">Resolución</span>
+          </div>
+          <div>
+            <h4 class="font-bold text-gray-800 text-sm group-hover:text-brand-blue transition-colors leading-tight">Resolución 021 de 2026</h4>
+            <p class="text-xs text-gray-500 mt-2">Acto administrativo de adopción del manual (PDF).</p>
+          </div>
+        </a>
+
+        <!-- Card 8: Resolución 113 de 2024 -->
+        <a href="/4.2%20Guias%20Comunicaciones/RESOLUCION%20113%202024.pdf" target="_blank" class="bg-white rounded-xl card-shadow p-5 border-l-4 border-brand-gold flex flex-col gap-3 group hover:border-yellow-400 transition-colors animate-on-scroll" style="animation-delay: 0.7s;">
+          <div class="flex items-start justify-between">
+            <div class="w-10 h-10 bg-yellow-50 text-brand-gold flex items-center justify-center rounded-lg group-hover:bg-brand-gold group-hover:text-white transition-colors">
+              <i class="fas fa-file-invoice text-lg"></i>
+            </div>
+            <span class="inline-block px-2 py-1 bg-yellow-50 text-yellow-700 text-[10px] font-bold uppercase tracking-wider rounded-md border border-yellow-100">Norma</span>
+          </div>
+          <div>
+            <h4 class="font-bold text-gray-800 text-sm group-hover:text-brand-blue transition-colors leading-tight">Resolución 113 de 2024</h4>
+            <p class="text-xs text-gray-500 mt-2">Soporte reglamentario de comunicaciones (PDF).</p>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </div>
+</FormatosLayout>
+
+<style>
+  .custom-scroll::-webkit-scrollbar {
+    width: 6px;
+  }
+  .custom-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scroll::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+  }
+  .custom-scroll::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+</style>

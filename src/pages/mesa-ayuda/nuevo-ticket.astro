@@ -1,0 +1,41 @@
+---
+import MesaAyudaLayout from '../../layouts/MesaAyudaLayout.astro';
+import TicketForm from '../../components/mesa-ayuda/interactive/TicketForm.svelte';
+import { getSession } from '../../lib/auth';
+import { supabase } from '../../lib/supabase';
+
+const session = await getSession(Astro.cookies);
+if (!session) return Astro.redirect('/mesa-ayuda/login');
+if (session.rol !== 'solicitante') return Astro.redirect('/mesa-ayuda');
+
+const { data: categorias } = await supabase
+  .from('categorias_ticket')
+  .select('nombre, sla_horas_alta, sla_horas_media, sla_horas_baja')
+  .order('nombre');
+
+const categoriasData = categorias ?? [
+  { nombre: 'Hardware', sla_horas_alta: 4, sla_horas_media: 24, sla_horas_baja: 72 },
+  { nombre: 'Software', sla_horas_alta: 4, sla_horas_media: 24, sla_horas_baja: 72 },
+  { nombre: 'Redes',    sla_horas_alta: 4, sla_horas_media: 24, sla_horas_baja: 72 },
+  { nombre: 'Otro',     sla_horas_alta: 4, sla_horas_media: 24, sla_horas_baja: 72 },
+];
+---
+<MesaAyudaLayout title="Nueva Solicitud" session={session}>
+  <div class="max-w-2xl mx-auto px-4 py-8">
+
+    <div class="flex items-center gap-3 mb-8">
+      <a href="/mesa-ayuda/dashboard" class="text-gray-400 hover:text-gray-600 transition-colors">
+        <i class="fas fa-arrow-left"></i>
+      </a>
+      <div>
+        <h1 class="text-2xl font-bold text-gray-900">Nueva Solicitud</h1>
+        <p class="text-sm text-gray-500 mt-0.5">Completa el formulario para radicar tu ticket</p>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+      <TicketForm client:load categorias={categoriasData} />
+    </div>
+
+  </div>
+</MesaAyudaLayout>

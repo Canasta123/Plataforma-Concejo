@@ -1,0 +1,76 @@
+---
+import MesaAyudaLayout from '../../../layouts/MesaAyudaLayout.astro';
+import TicketBoard from '../../../components/mesa-ayuda/interactive/TicketBoard.svelte';
+import ExportExcelModal from '../../../components/mesa-ayuda/interactive/ExportExcelModal.svelte';
+import { getSession } from '../../../lib/auth';
+import { supabase } from '../../../lib/supabase';
+
+const session = await getSession(Astro.cookies);
+if (!session) return Astro.redirect('/mesa-ayuda/login');
+if (session.rol !== 'agente') return Astro.redirect('/mesa-ayuda');
+
+const { data: tickets } = await supabase
+  .from('tickets')
+  .select('*')
+  .order('fecha_creacion', { ascending: false });
+
+const { data: agentes } = await supabase
+  .from('usuarios')
+  .select('id, nombre')
+  .eq('rol', 'agente')
+  .eq('activo', true)
+  .order('nombre');
+
+const total      = (tickets ?? []).length;
+const abiertos   = (tickets ?? []).filter(t => t.estado === 'abierto').length;
+const enProgreso = (tickets ?? []).filter(t => t.estado === 'en_progreso').length;
+const vencidos   = (tickets ?? []).filter(t => {
+  if (t.estado === 'resuelto' || t.estado === 'cerrado') return false;
+  return Date.now() > new Date(t.fecha_limite).getTime();
+}).length;
+---
+<MesaAyudaLayout title="Consola del Agente" session={session}>
+  <div class="max-w-5xl mx-auto px-4 py-8">
+
+    <div class="flex items-center justify-between mb-8">
+      <div>
+        <h1 class="text-2xl font-bold text-gray-900">Consola del Agente</h1>
+        <p class="text-sm text-gray-500 mt-0.5">Todos los tickets del sistema</p>
+      </div>
+      <button
+        onclick="document.getElementById('exportModalAgente').classList.toggle('hidden')"
+        class="flex items-center gap-2 px-4 py-2.5 rounded-xl font-bold text-sm text-gray-700 border border-gray-200 hover:border-gray-300 bg-white transition-all"
+      >
+        <i class="fas fa-file-excel text-green-600"></i> Exportar Excel
+      </button>
+    </div>
+    <!-- Export modal -->
+    <div id="exportModalAgente" class="hidden mb-6">
+      <ExportExcelModal client:load rol="agente" agentes={agentes ?? []} />
+    </div>
+
+    <!-- Stats -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+      {[
+        { label: 'Total',       count: total,      icon: 'fa-ticket-alt',  cls: 'text-gray-600',   bg: 'bg-gray-50' },
+        { label: 'Abiertos',   count: abiertos,   icon: 'fa-folder-open', cls: 'text-blue-600',   bg: 'bg-blue-50' },
+        { label: 'En Progreso', count: enProgreso, icon: 'fa-spinner',     cls: 'text-yellow-600', bg: 'bg-yellow-50' },
+        { label: 'Vencidos',   count: vencidos,   icon: 'fa-exclamation-triangle', cls: 'text-red-600', bg: 'bg-red-50' },
+      ].map(s => (
+        <div class={`rounded-xl p-4 ${s.bg} border border-gray-100`}>
+          <div class="flex items-center gap-2 mb-1">
+            <i class={`fas ${s.icon} ${s.cls} text-sm`}></i>
+            <span class="text-xs font-semibold text-gray-500">{s.label}</span>
+          </div>
+          <p class={`text-2xl font-bold ${s.cls}`}>{s.count}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Board -->
+    <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+      <TicketBoard client:load tickets={tickets ?? []} isAgent={true} />
+    </div>
+
+  </div>
+</MesaAyudaLayout>

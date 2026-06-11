@@ -1,0 +1,121 @@
+---
+import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
+
+import FloatingButton from '../components/interactive/FloatingButton.svelte';
+import UploadModal from '../components/interactive/UploadModal.svelte';
+import DownloadModal from '../components/interactive/DownloadModal.svelte';
+import SearchModal from '../components/interactive/SearchModal.svelte';
+import PdfViewerModal from '../components/interactive/PdfViewerModal.svelte';
+import SupportModal from '../components/interactive/SupportModal.svelte';
+import QuickNav from '../components/navigation/QuickNav.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = 'Sistema de Gestión de Calidad — Concejo Municipal de Chía',
+} = Astro.props;
+const isHome = Astro.url.pathname === '/';
+---
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title} | SGC — Concejo de Chía</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Lato:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <ClientRouter />
+  </head>
+  <body>
+    <div id="main-content">
+      <slot />
+    </div>
+    
+    <!-- Global UI Stack -->
+    <div id="floating-btn-container" transition:persist="floating-btn">
+      <FloatingButton client:load />
+    </div>
+    <UploadModal client:load />
+    <DownloadModal client:load />
+    <SearchModal client:load />
+    <PdfViewerModal client:load />
+    <SupportModal client:load />
+    {!isHome && <QuickNav />}
+
+    <script>
+      import gsap from 'gsap';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      function initAnimations() {
+        // Kill previous ScrollTriggers on page transition
+        ScrollTrigger.getAll().forEach(t => t.kill());
+
+        // Animate .animate-on-scroll elements:
+        // - Elements already in viewport: animate immediately
+        // - Elements below fold: animate on scroll
+        const els = document.querySelectorAll('.animate-on-scroll');
+
+        // Force them all visible first as a safety net
+        // GSAP will override opacity back to 0 before animating
+        els.forEach((el, i) => {
+          const rect = el.getBoundingClientRect();
+          const inView = rect.top < window.innerHeight && rect.bottom > 0;
+
+          if (inView) {
+            // Animate in right away with a small stagger
+            gsap.fromTo(el,
+              { opacity: 0, y: 18 },
+              { opacity: 1, y: 0, duration: 0.5, delay: i * 0.05, ease: 'power3.out', clearProps: 'all' }
+            );
+          } else {
+            // Below fold: scroll-triggered
+            ScrollTrigger.create({
+              trigger: el,
+              start: 'top 90%',
+              once: true,
+              onEnter: () => gsap.fromTo(el,
+                { opacity: 0, y: 22 },
+                { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out', clearProps: 'all' }
+              ),
+            });
+          }
+        });
+
+        // Hide floating button on home
+        const floatBtn = document.getElementById('floating-btn-container');
+        if (floatBtn) {
+          const isHome = window.location.pathname === '/' || window.location.pathname === '/index.html';
+          floatBtn.style.display = isHome ? 'none' : 'block';
+        }
+      }
+
+      document.addEventListener('astro:page-load', initAnimations);
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+          (document.querySelector('[data-nav="prev"]') as HTMLAnchorElement | null)?.click();
+        }
+        if (e.key === 'ArrowRight') {
+          (document.querySelector('[data-nav="next"]') as HTMLAnchorElement | null)?.click();
+        }
+      });
+    </script>
+  </body>
+</html>

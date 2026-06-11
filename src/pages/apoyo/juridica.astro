@@ -1,0 +1,157 @@
+---
+import ProcesoLayout from '../../layouts/ProcesoLayout.astro';
+import DownloadButton from '../../components/DownloadButton.astro';
+---
+
+<ProcesoLayout
+  title="Gestión Jurídica y Contractual - Apoyo"
+  numero="06"
+  tituloHeader="Gestión Jurídica y Contractual"
+  subtituloHeader="Caracterización del Proceso"
+  tipo="apoyo"
+  badge="Macroproceso de Apoyo"
+  badgeIcon="fas fa-hands-helping"
+  rutaActual="/apoyo/juridica"
+>
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+    <!-- Left Column: Meta Information (4/12) -->
+    <div class="lg:col-span-4 flex flex-col gap-6">
+      
+      <!-- Process Type Card -->
+      <div class="bg-white rounded-xl p-6 card-shadow border-l-8 category-support relative overflow-hidden group animate-on-scroll">
+        <div class="absolute right-0 top-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+          <i class="fas fa-file-signature text-8xl text-brand-gold"></i>
+        </div>
+        <div class="relative z-10">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 rounded-full bg-yellow-50 flex items-center justify-center text-brand-gold">
+              <i class="fas fa-layer-group"></i>
+            </div>
+            <h3 class="text-gray-500 font-bold text-xs uppercase tracking-wider">Tipo de Proceso</h3>
+          </div>
+          <p class="text-2xl font-bold text-brand-gold">De Apoyo</p>
+          <div class="mt-4 text-sm text-gray-600 leading-snug">
+            Procesos que proveen los recursos necesarios para el funcionamiento de los procesos estratégicos y misionales.
+          </div>
+        </div>
+      </div>
+
+      <!-- Responsible / Encargados Card -->
+      <div class="bg-white rounded-xl p-6 card-shadow border-l-8 border-gray-300 flex-1 relative overflow-hidden flex flex-col animate-on-scroll" style="animation-delay: 0.1s;">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600">
+            <i class="fas fa-user-tie"></i>
+          </div>
+          <h3 class="text-gray-500 font-bold text-xs uppercase tracking-wider">Responsables / Encargados</h3>
+        </div>
+        <div class="space-y-4">
+          <div class="flex items-start gap-3 p-3 rounded-lg bg-gray-50 border border-gray-100">
+            <div class="mt-1 text-brand-blue"><i class="fas fa-gavel"></i></div>
+            <div>
+              <p class="font-bold text-gray-800 text-sm">Profesional Universitario</p>
+              <p class="text-xs text-gray-500">Líder de Contratación</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3 p-3 rounded-lg bg-gray-50 border border-gray-100">
+            <div class="mt-1 text-brand-gold"><i class="fas fa-coins"></i></div>
+            <div>
+              <p class="font-bold text-gray-800 text-sm">Dirección Administrativa</p>
+              <p class="text-xs text-gray-500">y Financiera</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3 p-3 rounded-lg bg-gray-50 border border-gray-100">
+            <div class="mt-1 text-brand-gold"><i class="fas fa-building"></i></div>
+            <div>
+              <p class="font-bold text-gray-800 text-sm">Secretaría General</p>
+              <p class="text-xs text-gray-500">Concejo Municipal</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- Right Column: Core Information (8/12) -->
+    <div class="lg:col-span-8 flex flex-col gap-6">
+      
+      <!-- Objective Section -->
+      <div class="bg-white rounded-xl p-6 card-shadow relative animate-on-scroll">
+        <div class="absolute -top-3 left-8 bg-brand-gold text-white px-4 py-1 rounded shadow-sm text-xs font-bold uppercase tracking-widest border border-black z-10">
+          <i class="fas fa-bullseye mr-2"></i>Objetivo del Proceso
+        </div>
+        <div class="mt-3 flex flex-col md:flex-row gap-6 items-start">
+          <div class="flex-1">
+            <p class="text-base text-gray-700 leading-relaxed font-medium">
+              Asesorar jurídicamente a la Corporación en los procesos judiciales, administrativos y consultas internas y externas, y ejecutar las diferentes etapas de contratación.
+            </p>
+            <div class="mt-4 pt-4 border-t border-gray-100 flex items-center text-brand-blue">
+              <i class="fas fa-check-circle mr-2 text-brand-gold"></i>
+              <p class="text-sm font-semibold">Garantizar la adquisición de bienes y servicios cumpliendo el marco legal vigente.</p>
+            </div>
+          </div>
+          <div class="hidden md:flex w-1/4 justify-center items-center opacity-80">
+            <i class="fas fa-balance-scale text-6xl text-gray-200"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scope / Alcance Dual Section -->
+      <div class="bg-white rounded-xl p-8 card-shadow flex-1 relative animate-on-scroll" style="animation-delay: 0.1s;">
+        <div class="absolute -top-3 left-8 bg-brand-blue text-white px-4 py-1 rounded shadow-sm text-xs font-bold uppercase tracking-widest border border-black z-10">
+          <i class="fas fa-bullseye mr-2"></i>Alcance Dual
+        </div>
+        
+        <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-8 h-full">
+          <!-- Juridical Scope -->
+          <div class="relative pl-2">
+            <h4 class="text-sm font-bold text-brand-blue uppercase mb-4 border-b pb-2"><i class="fas fa-scale-balanced mr-2"></i>Componente Jurídico</h4>
+            <div class="relative h-full pb-8 border-l-2 border-gray-200 ml-3">
+              <!-- Start -->
+              <div class="relative pl-6 pb-6">
+                <div class="absolute w-3 h-3 rounded-full bg-green-500 border-2 border-white shadow -left-[7px] top-1"></div>
+                <h5 class="text-xs font-bold text-green-700 uppercase mb-1">Inicio</h5>
+                <p class="text-gray-600 bg-green-50 p-2 rounded border border-green-100 text-xs">Recepción, asignación y trámite de solicitudes.</p>
+              </div>
+              <!-- End -->
+              <div class="relative pl-6">
+                <div class="absolute w-3 h-3 rounded-full bg-red-500 border-2 border-white shadow -left-[7px] top-1"></div>
+                <h5 class="text-xs font-bold text-red-700 uppercase mb-1">Fin</h5>
+                <p class="text-gray-600 bg-red-50 p-2 rounded border border-red-100 text-xs">Respuesta correspondiente a la solicitud o proceso.</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Contractual Scope -->
+          <div class="relative pl-2">
+            <h4 class="text-sm font-bold text-brand-gold uppercase mb-4 border-b pb-2"><i class="fas fa-file-contract mr-2"></i>Componente Contractual</h4>
+            <div class="relative h-full pb-8 border-l-2 border-gray-200 ml-3">
+              <!-- Start -->
+              <div class="relative pl-6 pb-6">
+                <div class="absolute w-3 h-3 rounded-full bg-green-500 border-2 border-white shadow -left-[7px] top-1"></div>
+                <h5 class="text-xs font-bold text-green-700 uppercase mb-1">Inicio</h5>
+                <p class="text-gray-600 bg-green-50 p-2 rounded border border-green-100 text-xs">Formulación del Plan Anual de Adquisiciones (PAA).</p>
+              </div>
+              <!-- Middle -->
+              <div class="relative pl-6 pb-6">
+                <div class="absolute w-3 h-3 rounded-full bg-brand-support border-2 border-white shadow -left-[7px] top-1"></div>
+                <h5 class="text-xs font-bold text-brand-gold uppercase mb-1">Ejecución</h5>
+                <p class="text-gray-600 bg-orange-50 p-2 rounded border border-orange-100 text-xs">Etapas precontractual y contractual.</p>
+              </div>
+              <!-- End -->
+              <div class="relative pl-6">
+                <div class="absolute w-3 h-3 rounded-full bg-red-500 border-2 border-white shadow -left-[7px] top-1"></div>
+                <h5 class="text-xs font-bold text-red-700 uppercase mb-1">Fin</h5>
+                <p class="text-gray-600 bg-red-50 p-2 rounded border border-red-100 text-xs">Terminación y liquidación de los procesos.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+  <div class="mt-6 flex justify-end">
+    <DownloadButton href="/C-Procesos/GJyC.pdf" tipo="apoyo" texto="Descargar Caracterización" />
+  </div>
+</ProcesoLayout>

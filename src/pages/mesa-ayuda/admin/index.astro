@@ -1,0 +1,53 @@
+---
+import MesaAyudaLayout from '../../../layouts/MesaAyudaLayout.astro';
+import AdminPanel from '../../../components/mesa-ayuda/interactive/admin/AdminPanel.svelte';
+import ExportExcelModal from '../../../components/mesa-ayuda/interactive/ExportExcelModal.svelte';
+import { getSession } from '../../../lib/auth';
+import { supabase } from '../../../lib/supabase';
+
+const session = await getSession(Astro.cookies);
+if (!session || session.rol !== 'admin') return Astro.redirect('/mesa-ayuda');
+
+const { data: usuarios } = await supabase
+  .from('usuarios')
+  .select('id, nombre, correo, rol, cargo, activo, correo_notificacion, created_at, induccion_completada, induccion_habilitada, induccion_valoracion_sgc, induccion_valoracion_mesa')
+  .order('created_at', { ascending: false });
+
+const { data: agentes } = await supabase
+  .from('usuarios')
+  .select('id, nombre')
+  .eq('rol', 'agente')
+  .eq('activo', true)
+  .order('nombre');
+---
+
+<MesaAyudaLayout title="Gestión de Usuarios" rolRequerido="admin">
+  <div class="flex items-center justify-between mb-6">
+    <div>
+      <h1 class="text-xl font-bold text-gray-900" style="font-family: 'Montserrat', sans-serif;">
+        Gestión de Usuarios
+      </h1>
+      <p class="text-sm text-gray-500 mt-1">Crea, edita y administra las cuentas de acceso a la Mesa de Ayuda.</p>
+    </div>
+    <div class="flex items-center gap-2">
+      <a
+        href="/api/mesa-ayuda/usuarios/exportar-excel"
+        class="flex items-center gap-2 px-4 py-2.5 rounded-xl font-bold text-sm text-gray-700 border border-gray-200 hover:border-gray-300 bg-white transition-all hover:bg-gray-50"
+      >
+        <i class="fas fa-file-excel text-green-600"></i> Reporte Inducción
+      </a>
+      <button
+        onclick="document.getElementById('exportModalAdmin').classList.toggle('hidden')"
+        class="flex items-center gap-2 px-4 py-2.5 rounded-xl font-bold text-sm text-gray-700 border border-gray-200 hover:border-gray-300 bg-white transition-all"
+      >
+        <i class="fas fa-file-excel text-green-600"></i> Exportar Tickets
+      </button>
+    </div>
+  </div>
+  <!-- Export modal -->
+  <div id="exportModalAdmin" class="hidden mb-6">
+    <ExportExcelModal client:load rol="admin" agentes={agentes ?? []} />
+  </div>
+
+  <AdminPanel client:load usuarios={usuarios ?? []} adminId={session.id} />
+</MesaAyudaLayout>

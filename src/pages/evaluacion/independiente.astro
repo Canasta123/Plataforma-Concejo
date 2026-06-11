@@ -1,0 +1,148 @@
+---
+import ProcesoLayout from '../../layouts/ProcesoLayout.astro';
+import DownloadButton from '../../components/DownloadButton.astro';
+---
+
+<ProcesoLayout
+  title="Evaluación Independiente"
+  numero="09"
+  tituloHeader="Evaluación Independiente"
+  subtituloHeader="Caracterización del Proceso"
+  tipo="evaluacion"
+  badge="Evaluación y Control"
+  badgeIcon="fas fa-balance-scale"
+  rutaActual="/evaluacion/independiente"
+>
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+    <!-- Left Column: Meta Information (4/12) -->
+    <div class="lg:col-span-4 flex flex-col gap-6">
+      
+      <!-- Process Type Card -->
+      <div class="bg-white rounded-xl p-6 card-shadow border-l-8 border-red-700 relative overflow-hidden group animate-on-scroll">
+        <div class="absolute right-0 top-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+          <i class="fas fa-search-dollar text-8xl text-red-700"></i>
+        </div>
+        <div class="relative z-10">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center text-red-700">
+              <i class="fas fa-microscope"></i>
+            </div>
+            <h3 class="text-gray-500 font-bold text-xs uppercase tracking-wider">Tipo de Proceso</h3>
+          </div>
+          <p class="text-2xl font-bold text-red-700">Evaluación Independiente</p>
+          <div class="mt-4 text-sm text-gray-600 leading-snug">
+            Procesos transversales de medición, análisis y mejora continua del Sistema de Gestión.
+          </div>
+        </div>
+      </div>
+
+      <!-- Responsible / Encargados Card -->
+      <div class="bg-white rounded-xl p-6 card-shadow border-l-8 border-gray-300 relative overflow-hidden flex flex-col animate-on-scroll" style="animation-delay: 0.1s;">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600">
+            <i class="fas fa-user-shield"></i>
+          </div>
+          <h3 class="text-gray-500 font-bold text-xs uppercase tracking-wider">Responsable</h3>
+        </div>
+        <div class="space-y-4">
+          <div class="flex items-start gap-3 p-3 rounded-lg bg-gray-50 border border-gray-100">
+            <div class="mt-1 text-red-700"><i class="fas fa-user-check text-xl"></i></div>
+            <div>
+              <p class="font-bold text-gray-800 text-sm">Jefe de Control Interno</p>
+              <p class="text-xs text-gray-500">Líder del Proceso</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Procedures Card -->
+      <div class="bg-white rounded-xl p-6 card-shadow border-l-8 border-red-700 relative overflow-hidden flex flex-col animate-on-scroll" style="animation-delay: 0.2s;">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center text-red-700">
+            <i class="fas fa-tasks"></i>
+          </div>
+          <h3 class="text-gray-500 font-bold text-xs uppercase tracking-wider">Procedimientos Principales</h3>
+        </div>
+        <div class="space-y-4">
+          <div class="flex items-start gap-3">
+            <i class="fas fa-check-square text-red-700 mt-1 text-sm"></i>
+            <div>
+              <span class="block font-bold text-red-700 text-sm mb-1">Evaluación a la Administración del Riesgo</span>
+              <p class="text-xs text-gray-600 leading-snug">Mapas de riesgo y PAAC.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <i class="fas fa-check-square text-red-700 mt-1 text-sm"></i>
+            <div>
+              <span class="block font-bold text-red-700 text-sm mb-1">Auditoría Interna de Gestión</span>
+              <p class="text-xs text-gray-600 leading-snug">Programa anual, ejecución y seguimiento.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- Right Column: Core Information (8/12) -->
+    <div class="lg:col-span-8 flex flex-col gap-6">
+      
+      <!-- Objective Section -->
+      <div class="bg-white rounded-xl p-8 card-shadow relative animate-on-scroll">
+        <div class="absolute -top-3 left-8 bg-red-700 text-white px-4 py-1 rounded shadow-sm text-xs font-bold uppercase tracking-widest border border-black z-10">
+          <i class="fas fa-bullseye mr-2"></i>Objetivo del Proceso
+        </div>
+        <div class="mt-2 flex flex-col md:flex-row gap-6 items-start relative z-10">
+          <div class="flex-1">
+            <p class="text-lg text-gray-700 leading-relaxed font-medium">
+              Mejorar y proteger el valor de la organización a través de la ejecución del programa de auditorías, de manera independiente y objetiva en el marco del sistema de control interno.
+            </p>
+            <div class="mt-4 pt-4 border-t border-gray-100 flex items-start text-red-700">
+              <i class="fas fa-shield-alt mt-1 mr-3 text-red-700 text-xl shrink-0"></i>
+              <p class="text-sm font-semibold leading-relaxed">
+                Ofrecer una seguridad razonable respecto al logro de los objetivos institucionales.
+              </p>
+            </div>
+          </div>
+          <div class="hidden md:flex w-1/4 justify-center items-center opacity-80">
+            <i class="fas fa-file-contract text-7xl text-gray-200"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scope / Alcance Section -->
+      <div class="bg-white rounded-xl p-8 card-shadow flex-1 relative animate-on-scroll" style="animation-delay: 0.1s;">
+        <div class="absolute -top-3 left-8 bg-brand-blue text-white px-4 py-1 rounded shadow-sm text-xs font-bold uppercase tracking-widest border border-black z-10">
+          <i class="fas fa-map-signs mr-2"></i>Alcance
+        </div>
+        <div class="mt-4 relative h-full flex flex-col justify-center py-4">
+          <!-- Start Point -->
+          <div class="relative pl-8 pb-8 border-l-2 border-green-300 ml-4">
+            <div class="absolute w-4 h-4 rounded-full bg-green-500 border-4 border-white shadow -left-[9px] top-0"></div>
+            <h4 class="text-sm font-bold text-green-700 uppercase mb-2 mt-[-4px]">Inicio</h4>
+            <div class="text-gray-600 bg-green-50 p-4 rounded-lg border border-green-100 text-sm shadow-sm">
+              <p>Inicia desde la <span class="font-bold text-gray-800">definición de la estrategia y métodos</span> para evaluar la gestión institucional con enfoque preventivo.</p>
+            </div>
+          </div>
+          <!-- End Point -->
+          <div class="relative pl-8 ml-4">
+            <div class="absolute w-4 h-4 rounded-full bg-red-500 border-4 border-white shadow -left-[9px] top-0"></div>
+            <h4 class="text-sm font-bold text-red-700 uppercase mb-2 mt-[-4px]">Fin</h4>
+            <div class="text-gray-600 bg-red-50 p-4 rounded-lg border border-red-100 text-sm shadow-sm">
+              <p>Finaliza con la <span class="font-bold text-gray-800">revisión de la estrategia y metodología</span> para la evaluación de la gestión institucional.</p>
+            </div>
+          </div>
+          
+          <!-- Connector visual -->
+          <div class="absolute right-8 top-1/2 transform -translate-y-1/2 opacity-5 hidden lg:block">
+            <i class="fas fa-clipboard-check text-9xl text-red-700"></i>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+  <div class="mt-6 flex justify-end">
+    <DownloadButton href="/C-Procesos/EI.pdf" tipo="evaluacion" texto="Descargar Caracterización" />
+  </div>
+</ProcesoLayout>

@@ -1,0 +1,32 @@
+---
+import FileExplorer from './interactive/FileExplorer.svelte';
+
+interface Props {
+  titulo: string;
+  icono: string;
+  rutaExplorador: string;
+  borderColor?: 'blue' | 'gold';
+  subtitulo?: string;
+  bgIcon?: string;
+}
+
+const { titulo, icono, rutaExplorador, borderColor = 'blue', subtitulo, bgIcon } = Astro.props;
+
+const borderCls = borderColor === 'gold' ? 'border-brand-gold' : 'border-brand-blue';
+---
+
+<div
+  class={`bg-white rounded-xl card-shadow p-5 relative overflow-hidden group border-t-4 ${borderCls} flex flex-col h-full w-full`}
+>
+  <div class="absolute top-0 right-0 p-3 opacity-5 group-hover:opacity-10 transition-opacity pointer-events-none">
+    <i class={`${bgIcon || icono} ${borderColor === 'gold' ? 'text-brand-gold' : 'text-brand-blue'} text-6xl lg:text-8xl`}></i>
+  </div>
+  <h3 class="font-bold text-brand-blue text-lg mb-4 flex items-center shrink-0 section-title relative z-10">
+    <i class={`${icono} mr-2`} style="color: #FFD402"></i>
+    {titulo}
+  </h3>
+  {subtitulo && <p class="text-xs text-gray-400 mb-2 relative z-10">{subtitulo}</p>}
+  <div class="explorador-contenido flex-1 relative z-10 min-h-24 overflow-y-auto custom-scroll">
+    <FileExplorer client:load rutaBase={rutaExplorador} />
+  </div>
+</div>

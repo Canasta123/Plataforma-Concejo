@@ -1,0 +1,75 @@
+---
+interface Props {
+  titulo: string;
+  subtitulo?: string;
+  numero: string;
+  tipo: 'estrategico' | 'misional' | 'apoyo' | 'evaluacion';
+  badge?: string;
+  badgeIcon?: string;
+}
+
+const { titulo, subtitulo, numero, tipo, badge, badgeIcon = 'fas fa-sitemap' } = Astro.props;
+
+const colorMap = {
+  estrategico: {
+    primary: '#1e3a8a',
+    gradient: 'from-[#1e3a8a] to-[#3359A4]',
+    badgeCls: 'bg-blue-50 text-blue-900 border-blue-200',
+    bar: 'from-blue-900 via-brand-blue to-blue-400',
+  },
+  misional: {
+    primary: '#166534',
+    gradient: 'from-[#166534] to-[#16a34a]',
+    badgeCls: 'bg-green-50 text-green-800 border-green-200',
+    bar: 'from-green-800 via-green-600 to-green-400',
+  },
+  apoyo: {
+    primary: '#D4A500',
+    gradient: 'from-[#FFD402] to-[#FFA500]',
+    badgeCls: 'bg-yellow-50 text-yellow-800 border-yellow-200',
+    bar: 'from-yellow-400 via-yellow-300 to-brand-gold',
+  },
+  evaluacion: {
+    primary: '#991b1b',
+    gradient: 'from-[#991b1b] to-[#dc2626]',
+    badgeCls: 'bg-red-50 text-red-800 border-red-200',
+    bar: 'from-red-900 via-red-600 to-red-400',
+  },
+};
+
+const { primary, gradient, badgeCls, bar } = colorMap[tipo];
+---
+
+<header class="bg-white shadow-sm flex flex-col shrink-0 relative z-20">
+  <!-- Color accent bar at the very top -->
+  <div class={`h-1 w-full bg-gradient-to-r ${bar}`}></div>
+
+  <div class="flex items-center justify-between px-5 md:px-10 h-[72px]">
+    <!-- Left: Number badge + titles -->
+    <div class="flex items-center gap-4 min-w-0">
+      <!-- Number box with gradient -->
+      <div
+        class={`w-12 h-12 rounded-xl flex items-center justify-center text-white text-lg font-bold shadow-md shrink-0 bg-gradient-to-br ${gradient}`}
+      >
+        {numero}
+      </div>
+      <!-- Titles -->
+      <div class="min-w-0">
+        {subtitulo && (
+          <p class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-0.5 truncate">{subtitulo}</p>
+        )}
+        <h1 class="text-lg md:text-xl font-bold uppercase leading-tight truncate" style={`color: ${primary}; font-family: 'Montserrat', sans-serif;`}>
+          {titulo}
+        </h1>
+      </div>
+    </div>
+
+    <!-- Right: Badge -->
+    {badge && (
+      <div class={`hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-bold shrink-0 ml-4 ${badgeCls}`}>
+        <i class={`${badgeIcon} text-[11px]`}></i>
+        <span>{badge}</span>
+      </div>
+    )}
+  </div>
+</header>

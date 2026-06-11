@@ -1,0 +1,84 @@
+---
+interface Props {
+  id: string;
+  title: string;
+  icon: string;
+  description: string;
+  listItems: string[];
+  downloadUrl: string;
+  actionUrl?: string;
+  actionText?: string;
+  actionIcon?: string;
+}
+
+const { id, title, icon, description, listItems, downloadUrl, actionUrl, actionText, actionIcon } = Astro.props;
+---
+
+<div id={id} class="fixed inset-0 z-50 hidden items-center justify-center bg-gray-900/50 backdrop-blur-sm transition-opacity">
+  <div class="bg-white rounded-2xl shadow-xl w-full max-w-lg overflow-hidden transform transition-all animate-on-scroll" style="animation: fadeInUp 0.3s ease-out forwards;">
+    <!-- Header -->
+    <div class="bg-brand-blue p-6 text-white flex justify-between items-start relative overflow-hidden">
+      <div class="absolute right-[-20px] top-[-20px] text-white/10 text-8xl pointer-events-none">
+        <i class={icon}></i>
+      </div>
+      <div class="flex items-center gap-3 relative z-10">
+        <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center text-xl shrink-0 backdrop-blur-sm border border-white/30">
+          <i class={icon}></i>
+        </div>
+        <div>
+          <h3 class="font-bold text-xl leading-tight">{title}</h3>
+          <p class="text-blue-100 text-xs font-semibold tracking-wider uppercase mt-1">Procedimiento TI</p>
+        </div>
+      </div>
+      <button onclick={`document.getElementById('${id}').classList.add('hidden')`} class="text-white/70 hover:text-white transition-colors relative z-10">
+        <i class="fas fa-times text-xl"></i>
+      </button>
+    </div>
+
+    <!-- Content -->
+    <div class="p-6">
+      <p class="text-gray-600 text-sm leading-relaxed mb-6">
+        {description}
+      </p>
+
+      <h4 class="font-bold text-gray-800 text-sm uppercase tracking-wider mb-3 flex items-center gap-2">
+        <i class="fas fa-clipboard-check text-brand-gold"></i> Actividades Principales
+      </h4>
+      <ul class="space-y-2 mb-6">
+        {listItems.map((item) => (
+          <li class="flex items-start gap-2 text-sm text-gray-600">
+            <i class="fas fa-check text-green-500 mt-1 shrink-0"></i>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- Footer -->
+    <div class="bg-gray-50 p-4 border-t border-gray-100 flex justify-end gap-3 flex-wrap">
+      <button onclick={`document.getElementById('${id}').classList.add('hidden')`} class="px-4 py-2 text-sm font-semibold text-gray-600 hover:text-gray-800 transition-colors">
+        Cerrar
+      </button>
+      {actionUrl && actionText && (
+        <a href={actionUrl} class="px-5 py-2 text-sm font-semibold text-brand-blue bg-blue-50 border border-blue-200 rounded-lg hover:bg-blue-100 shadow-sm transition-colors flex items-center gap-2">
+          {actionIcon && <i class={actionIcon}></i>}
+          {actionText}
+        </a>
+      )}
+      <a href={downloadUrl} target="_blank" download class="px-5 py-2 text-sm font-semibold text-white bg-brand-blue rounded-lg hover:bg-blue-800 shadow-sm transition-colors flex items-center gap-2">
+        <i class="fas fa-download"></i>
+        Descargar Documento
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Close modals when clicking outside
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+    if (target.matches('.fixed.inset-0.bg-gray-900\\/50')) {
+      target.classList.add('hidden');
+    }
+  });
+</script>

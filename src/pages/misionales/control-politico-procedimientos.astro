@@ -1,0 +1,94 @@
+---
+import ProcesoLayout from '../../layouts/ProcesoLayout.astro';
+import DownloadButton from '../../components/DownloadButton.astro';
+---
+
+<ProcesoLayout
+  title="Procedimiento - Control Político"
+  numero="04"
+  tituloHeader="Control Político"
+  subtituloHeader="Procedimiento"
+  tipo="misional"
+  badge="Procedimiento"
+  badgeIcon="fas fa-landmark"
+  rutaActual="/misionales/control-politico-procedimientos"
+>
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+    
+    <!-- COLUMNA IZQUIERDA (4/12) -->
+    <div class="lg:col-span-4 flex flex-col gap-6">
+      <!-- Descripción -->
+      <div class="bg-white rounded-xl p-6 card-shadow border-l-8 category-missional animate-on-scroll">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center text-green-600">
+            <i class="fas fa-info-circle"></i>
+          </div>
+          <h3 class="text-gray-500 font-bold text-xs uppercase tracking-wider">Descripción</h3>
+        </div>
+        <p class="text-sm text-gray-600 leading-relaxed">
+          El procedimiento de Control Político establece las actividades mediante las cuales el Concejo Municipal ejerce vigilancia y seguimiento a la administración municipal mediante citaciones, debates y análisis de la gestión pública.
+        </p>
+      </div>
+
+      <!-- Responsables -->
+      <div class="bg-white rounded-xl p-6 card-shadow border-l-8 border-gray-300 animate-on-scroll" style="animation-delay: 0.1s;">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600">
+            <i class="fas fa-users"></i>
+          </div>
+          <h3 class="text-gray-500 font-bold text-xs uppercase tracking-wider">Responsables</h3>
+        </div>
+        <div class="space-y-3">
+          <div class="flex items-center gap-3 p-3 rounded-lg bg-gray-50 border border-gray-100">
+            <i class="fas fa-user-friends text-blue-700"></i>
+            <p class="text-sm font-semibold text-gray-700">Concejales</p>
+          </div>
+          <div class="flex items-center gap-3 p-3 rounded-lg bg-gray-50 border border-gray-100">
+            <i class="fas fa-file-signature text-gray-600"></i>
+            <p class="text-sm font-semibold text-gray-700">Secretaría General</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COLUMNA DERECHA (8/12) -->
+    <div class="lg:col-span-8 flex flex-col gap-6">
+      <div class="bg-white rounded-xl p-8 card-shadow animate-on-scroll" style="animation-delay: 0.2s;">
+        <h3 class="text-lg font-bold text-gray-700 mb-6 flex items-center">
+          <i class="fas fa-diagram-project text-gray-400 mr-3"></i> Etapas del Procedimiento       
+        </h3>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div class="bg-gray-50 p-5 rounded-lg border border-gray-100 hover:border-brand-blue hover:bg-blue-50 transition-colors">
+            <h4 class="font-bold text-gray-800 mb-1">1. Proposición</h4>
+            <p class="text-sm text-gray-600">Presentación y aprobación de proposiciones en sesión plenaria o de comisión.</p>
+          </div>
+          <div class="bg-gray-50 p-5 rounded-lg border border-gray-100 hover:border-brand-blue hover:bg-blue-50 transition-colors">
+            <h4 class="font-bold text-gray-800 mb-1">2. Citación</h4>
+            <p class="text-sm text-gray-600">Se realiza citación oficial a funcionarios o entidades de la administración municipal.</p>
+          </div>
+          <div class="bg-gray-50 p-5 rounded-lg border border-gray-100 hover:border-brand-blue hover:bg-blue-50 transition-colors">
+            <h4 class="font-bold text-gray-800 mb-1">3. Cuestionario</h4>
+            <p class="text-sm text-gray-600">Se envía cuestionario que deberá ser respondido previamente al debate.</p>
+          </div>
+          <div class="bg-gray-50 p-5 rounded-lg border border-gray-100 hover:border-brand-blue hover:bg-blue-50 transition-colors">
+            <h4 class="font-bold text-gray-800 mb-1">4. Debate</h4>
+            <p class="text-sm text-gray-600">Desarrollo del debate de control político en sesión del Concejo.</p>
+          </div>
+          <div class="bg-gray-50 p-5 rounded-lg border border-gray-100 hover:border-brand-blue hover:bg-blue-50 transition-colors">
+            <h4 class="font-bold text-gray-800 mb-1">5. Análisis</h4>
+            <p class="text-sm text-gray-600">Evaluación de la información presentada por los funcionarios citados.</p>
+          </div>
+          <div class="bg-gray-50 p-5 rounded-lg border border-gray-100 hover:border-brand-blue hover:bg-blue-50 transition-colors">
+            <h4 class="font-bold text-gray-800 mb-1">6. Acciones</h4>
+            <p class="text-sm text-gray-600">Definición de acciones de mejora o seguimiento institucional.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-6 flex justify-end">
+    <DownloadButton href="/C-Procedimientos/Procedimiento de Control Politico.pdf" tipo="misional" texto="Descargar Procedimiento" />
+  </div>
+</ProcesoLayout>

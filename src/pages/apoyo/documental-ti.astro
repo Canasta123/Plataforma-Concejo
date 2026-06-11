@@ -1,0 +1,168 @@
+---
+import ProcesoLayout from '../../layouts/ProcesoLayout.astro';
+import DownloadButton from '../../components/DownloadButton.astro';
+---
+
+<ProcesoLayout
+  title="Gestión Documental y TI - Apoyo"
+  numero="07"
+  tituloHeader="Gestión Documental y Tecnologías de la Información"
+  subtituloHeader="Caracterización del Proceso"
+  tipo="apoyo"
+  badge="Macroproceso de Apoyo"
+  badgeIcon="fas fa-tools"
+  rutaActual="/apoyo/documental-ti"
+>
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+    <!-- Left Column: Meta Information (4/12) -->
+    <div class="lg:col-span-4 flex flex-col gap-6">
+      
+      <!-- Process Type Card -->
+      <div class="bg-white rounded-xl p-6 card-shadow border-l-8 category-support relative overflow-hidden group animate-on-scroll">
+        <div class="absolute right-0 top-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+          <i class="fas fa-cogs text-8xl text-brand-gold"></i>
+        </div>
+        <div class="relative z-10">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 rounded-full bg-yellow-50 flex items-center justify-center text-brand-gold">
+              <i class="fas fa-layer-group"></i>
+            </div>
+            <h3 class="text-gray-500 font-bold text-xs uppercase tracking-wider">Tipo de Proceso</h3>
+          </div>
+          <p class="text-2xl font-bold text-brand-gold">De Apoyo</p>
+          <div class="mt-4 text-sm text-gray-600 leading-snug">
+            Procesos que proveen los recursos necesarios para el funcionamiento de los procesos estratégicos y misionales.
+          </div>
+        </div>
+      </div>
+
+      <!-- Responsible / Encargados Card -->
+      <div class="bg-white rounded-xl p-6 card-shadow border-l-8 border-gray-300 flex-1 relative overflow-hidden flex flex-col animate-on-scroll" style="animation-delay: 0.1s;">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600">
+            <i class="fas fa-user-tie"></i>
+          </div>
+          <h3 class="text-gray-500 font-bold text-xs uppercase tracking-wider">Responsables / Encargados</h3>
+        </div>
+        <div class="space-y-4">
+          <div class="flex items-start gap-3 p-3 rounded-lg bg-gray-50 border border-gray-100">
+            <div class="mt-1 text-brand-gold"><i class="fas fa-file-alt"></i></div>
+            <div>
+              <p class="font-bold text-gray-800 text-sm">Técnico Administrativo</p>
+              <p class="text-xs text-gray-500">Gestión Documental</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3 p-3 rounded-lg bg-gray-50 border border-gray-100">
+            <div class="mt-1 text-brand-gold"><i class="fas fa-laptop-code"></i></div>
+            <div>
+              <p class="font-bold text-gray-800 text-sm">Líder TI</p>
+              <p class="text-xs text-gray-500">Tecnologías de la Información</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3 p-3 rounded-lg bg-gray-50 border border-gray-100">
+            <div class="mt-1 text-brand-gold"><i class="fas fa-users"></i></div>
+            <div>
+              <p class="font-bold text-gray-800 text-sm">Auxiliares Administrativos</p>
+              <p class="text-xs text-gray-500">Gestión Documental y Ventanilla Única</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- Right Column: Core Information (8/12) -->
+    <div class="lg:col-span-8 flex flex-col gap-6">
+      
+      <!-- Objective Section -->
+      <div class="bg-white rounded-xl p-8 card-shadow relative animate-on-scroll">
+        <div class="absolute -top-3 left-8 bg-brand-gold text-white px-4 py-1 rounded shadow-sm text-xs font-bold uppercase tracking-widest border border-black z-10">
+          <i class="fas fa-bullseye mr-2"></i>Objetivo del Proceso
+        </div>
+        <div class="mt-2 flex flex-col md:flex-row gap-6 items-start">
+          <div class="flex-1">
+            <p class="text-lg text-gray-700 leading-relaxed font-medium">
+              Administrar, planificar y evaluar la gestión integral de los documentos y los recursos tecnológicos del Concejo Municipal de Chía.
+            </p>
+            <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="flex items-start text-brand-gold bg-yellow-50 p-4 rounded-lg">
+                <i class="fas fa-check-circle mt-1 mr-3 text-brand-gold"></i>
+                <p class="text-xs font-semibold leading-relaxed">Garantizar disponibilidad, seguridad, conservación y consulta de la información.</p>
+              </div>
+              <div class="flex items-start text-brand-gold bg-yellow-50 p-4 rounded-lg">
+                <i class="fas fa-check-circle mt-1 mr-3 text-brand-gold"></i>
+                <p class="text-xs font-semibold leading-relaxed">Cumplimiento de Ley General de Archivo y lineamientos MINTIC.</p>
+              </div>
+            </div>
+          </div>
+          <div class="hidden md:flex w-1/4 justify-center items-center opacity-80 flex-col gap-4">
+            <i class="fas fa-server text-5xl text-gray-200"></i>
+            <i class="fas fa-folder-open text-3xl text-gray-200"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scope / Alcance Section -->
+      <div class="bg-white rounded-xl p-8 card-shadow flex-1 relative animate-on-scroll" style="animation-delay: 0.1s;">
+        <div class="absolute -top-3 left-8 bg-brand-gold text-white px-4 py-1 rounded shadow-sm text-xs font-bold uppercase tracking-widest border border-black z-10">
+          <i class="fas fa-map-signs mr-2"></i>Alcance y Cobertura
+        </div>
+        
+        <div class="mt-4 relative h-full flex flex-col justify-center">
+          <div class="flex flex-col md:flex-row gap-8 items-center">
+            <!-- Icon Visual -->
+            <div class="hidden md:flex flex-col items-center justify-center w-32 border-r border-gray-200 pr-6 relative z-10">
+              <div class="w-20 h-20 rounded-full bg-yellow-50 flex items-center justify-center text-brand-gold text-3xl mb-3 shadow-inner">
+                <i class="fas fa-network-wired"></i>
+              </div>
+              <span class="text-xs font-bold text-gray-500 uppercase tracking-widest">Transversal</span>
+            </div>
+            
+            <!-- Content -->
+            <div class="flex-1 relative z-10">
+              <p class="text-gray-700 text-lg mb-6 font-medium">
+                Este proceso aplica de manera transversal a <span class="text-brand-gold font-bold px-1 bg-yellow-50 rounded">todos los procesos, áreas y funcionarios</span> de la Corporación.
+              </p>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="bg-gray-50 p-4 rounded-lg border border-gray-100 flex items-center hover:border-brand-gold transition-colors">
+                  <div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center mr-3 shrink-0 text-brand-gold">
+                    <i class="fas fa-laptop"></i>
+                  </div>
+                  <p class="text-sm text-gray-700 font-medium leading-tight">Uso de herramientas tecnológicas</p>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-lg border border-gray-100 flex items-center hover:border-brand-gold transition-colors">
+                  <div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center mr-3 shrink-0 text-brand-gold">
+                    <i class="fas fa-archive"></i>
+                  </div>
+                  <p class="text-sm text-gray-700 font-medium leading-tight">Gestión documental</p>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-lg border border-gray-100 flex items-center hover:border-brand-gold transition-colors">
+                  <div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center mr-3 shrink-0 text-brand-gold">
+                    <i class="fas fa-comments"></i>
+                  </div>
+                  <p class="text-sm text-gray-700 font-medium leading-tight">Comunicación institucional</p>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-lg border border-gray-100 flex items-center hover:border-gray-400 transition-colors">
+                  <div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center mr-3 shrink-0 text-gray-500">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                  </div>
+                  <p class="text-sm text-gray-700 font-medium leading-tight">Servicios ciudadanos digitales</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Background Decor -->
+          <div class="absolute right-4 bottom-4 opacity-5 hidden lg:block">
+            <i class="fas fa-globe text-9xl text-brand-gold"></i>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+  <div class="mt-6 flex justify-end">
+    <DownloadButton href="/C-Procesos/GDTI.pdf" tipo="apoyo" texto="Descargar Caracterización" />
+  </div>
+</ProcesoLayout>

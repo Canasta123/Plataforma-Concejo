@@ -1,0 +1,51 @@
+---
+interface Props {
+  href: string;
+  tipo: 'estrategico' | 'misional' | 'apoyo' | 'evaluacion';
+  texto?: string;
+  icono?: string;
+  download?: boolean;
+}
+
+const { href, tipo, texto = 'Descargar Caracterización', icono = 'fas fa-download', download = true } = Astro.props;
+const isPdf = href.toLowerCase().endsWith('.pdf');
+---
+
+<div class="flex items-center gap-2">
+  <a
+    href={href}
+    class={`btn-descargar ${tipo}`}
+    target="_blank"
+    download={download || undefined}
+  >
+    <i class={icono}></i>
+    {texto}
+  </a>
+
+  {isPdf && (
+    <button
+      class={`btn-ver-pdf ${tipo}`}
+      data-pdf-url={href}
+      title="Ver PDF"
+      aria-label="Ver PDF en línea"
+    >
+      <i class="fas fa-eye"></i>
+      Ver PDF
+    </button>
+  )}
+</div>
+
+<script>
+  if (!(window as any).__pdfViewerListenerAdded) {
+    (window as any).__pdfViewerListenerAdded = true;
+    document.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement)?.closest<HTMLButtonElement>('.btn-ver-pdf[data-pdf-url]');
+      if (btn) {
+        const url = btn.dataset.pdfUrl;
+        if (url) {
+          window.dispatchEvent(new CustomEvent('open-pdf-viewer', { detail: { url } }));
+        }
+      }
+    });
+  }
+</script>

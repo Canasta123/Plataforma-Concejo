@@ -1,0 +1,120 @@
+---
+import ProcesoLayout from '../../layouts/ProcesoLayout.astro';
+import DownloadButton from '../../components/DownloadButton.astro';
+---
+
+<ProcesoLayout
+  title="Procedimientos - Proyectos de Acuerdo"
+  numero="05"
+  tituloHeader="Trámite de Proyectos de Acuerdo"
+  subtituloHeader="Procedimiento"
+  tipo="misional"
+  badge="Procedimiento Misional"
+  badgeIcon="fas fa-file-signature"
+  rutaActual="/misionales/proyectos-acuerdo-procedimientos"
+>
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+    
+    <!-- COLUMNA IZQUIERDA (4/12) -->
+    <div class="lg:col-span-4 flex flex-col gap-6">
+      <!-- OBJETIVO -->
+      <div class="bg-white rounded-xl p-6 card-shadow border-l-8 category-missional animate-on-scroll">
+        <h3 class="flex items-center gap-2 text-green-700 font-bold text-xs uppercase tracking-wider mb-3">
+          <i class="fas fa-bullseye text-green-600"></i> Objetivo del Proceso
+        </h3>
+        <p class="text-sm text-gray-700 leading-relaxed text-justify">
+          Gestionar las iniciativas normativas presentadas ante el Concejo Municipal para el establecimiento de políticas públicas en beneficio de la comunidad.
+        </p>
+      </div>
+
+      <!-- RESPONSABLES -->
+      <div class="bg-white rounded-xl p-6 card-shadow border-l-8 border-gray-300 animate-on-scroll" style="animation-delay: 0.1s;">
+        <h3 class="flex items-center gap-2 text-blue-900 font-bold text-xs uppercase tracking-wider mb-5">
+          <i class="fas fa-users"></i> Responsables
+        </h3>
+        <div class="space-y-4">
+          <div class="flex items-center gap-4">
+            <div class="w-10 h-10 rounded-full bg-yellow-50 flex items-center justify-center text-brand-gold">
+              <i class="fas fa-gavel"></i>
+            </div>
+            <div>
+              <p class="font-bold text-gray-800 leading-tight">Presidente</p>
+              <p class="text-xs text-gray-500 uppercase">Mesa Directiva</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-900">
+              <i class="fas fa-folder-open"></i>
+            </div>
+            <div>
+              <p class="font-bold text-gray-800 leading-tight">Secretaría General</p>
+              <p class="text-xs text-gray-500 uppercase">Apoyo administrativo</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COLUMNA DERECHA (8/12) -->
+    <div class="lg:col-span-8 flex flex-col gap-6">
+      <!-- FLUJO -->
+      <div class="bg-white rounded-xl p-6 card-shadow h-full flex flex-col animate-on-scroll" style="animation-delay: 0.2s;">
+        <h3 class="flex items-center gap-2 text-blue-900 text-lg font-bold mb-6 border-b border-gray-100 pb-4">
+          <i class="fas fa-diagram-project text-green-600"></i> Flujo del Procedimiento
+        </h3>
+        
+        <div class="flex-1 overflow-y-auto pr-4 space-y-0 relative custom-scroll" style="max-height: 520px;">
+          <!-- Timeline Line -->
+          <div class="absolute left-[27px] top-4 bottom-4 w-1 bg-gray-200 rounded-full"></div>
+          
+          <!-- Steps -->
+          {[
+            { icon: 'fas fa-file-circle-plus', title: 'Radicación del proyecto', desc: 'Presentación del proyecto de acuerdo ante la Secretaría General.', color: 'text-blue-600' },
+            { icon: 'fas fa-search', title: 'Revisión de requisitos', desc: 'Verificación de requisitos legales y administrativos.', color: 'text-indigo-600' },
+            { icon: 'fas fa-user-pen', title: 'Designación de ponente', desc: 'La Mesa Directiva designa concejal ponente.', color: 'text-purple-600' },
+            { icon: 'fas fa-book-open', title: 'Estudio del proyecto', desc: 'Análisis y elaboración del informe del ponente.', color: 'text-pink-600' },
+            { icon: 'fas fa-comments', title: 'Primer debate', desc: 'Discusión del proyecto en comisión.', color: 'text-red-600' },
+            { icon: 'fas fa-landmark', title: 'Segundo debate', desc: 'Discusión en sesión plenaria.', color: 'text-orange-600' },
+            { icon: 'fas fa-check', title: 'Aprobación', desc: 'Votación del proyecto de acuerdo.', color: 'text-green-600' },
+            { icon: 'fas fa-stamp', title: 'Sanción del acuerdo', desc: 'El alcalde sanciona el acuerdo aprobado.', color: 'text-teal-600' },
+            { icon: 'fas fa-clipboard-check', title: 'Seguimiento', desc: 'Verificación de la implementación del acuerdo municipal.', color: 'text-cyan-600' },
+          ].map((step, i) => (
+            <div class="relative pl-16 py-4 group">
+              <div class={`absolute left-[13px] top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white border-4 border-gray-200 flex items-center justify-center z-10 group-hover:border-green-500 transition-colors duration-300`}></div>
+              <div class="bg-gray-50 rounded-xl p-4 border border-gray-100 hover:shadow-md hover:border-gray-300 transition-all duration-300 flex items-start gap-4 ml-4">
+                <div class={`w-12 h-12 rounded-full bg-white shadow-sm flex items-center justify-center shrink-0 ${step.color}`}>
+                  <i class={`${step.icon} text-xl`}></i>
+                </div>
+                <div>
+                  <h4 class="font-bold text-gray-800 text-base mb-1">{step.title}</h4>
+                  <p class="text-sm text-gray-600 leading-snug">{step.desc}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-6 flex justify-end">
+    <DownloadButton href="/C-Procedimientos/Procedimiento de Control Politico.pdf" tipo="misional" texto="Descargar Procedimiento" />
+  </div>
+</ProcesoLayout>
+
+<style>
+  .custom-scroll::-webkit-scrollbar {
+    width: 6px;
+  }
+  .custom-scroll::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 10px;
+  }
+  .custom-scroll::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+  }
+  .custom-scroll::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+</style>

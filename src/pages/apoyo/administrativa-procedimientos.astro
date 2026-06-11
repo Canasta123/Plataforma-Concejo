@@ -1,0 +1,174 @@
+---
+import ProcesoLayout from '../../layouts/ProcesoLayout.astro';
+---
+
+<ProcesoLayout
+  title="Procedimientos - Administrativa y Financiera"
+  numero="08"
+  tituloHeader="Procedimientos: Almacén y Presupuesto"
+  subtituloHeader="Gestión Administrativa, Financiera y TH"
+  tipo="apoyo"
+  badge="10 Procedimientos"
+  badgeIcon="fas fa-layer-group"
+  rutaActual="/apoyo/administrativa-procedimientos"
+>
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch h-full">
+    
+    <!-- Card 1: Almacén -->
+    <div class="bg-white rounded-xl card-shadow flex flex-col relative pt-4 px-8 pb-6 border-t-4 border-brand-gold animate-on-scroll">
+      <div class="flex justify-center mb-4">
+        <div class="w-16 h-16 rounded-full bg-yellow-50 flex items-center justify-center text-brand-gold shadow-sm border border-yellow-100">
+          <i class="fas fa-boxes-stacked text-2xl"></i>
+        </div>
+      </div>
+      <h3 class="text-center font-bold text-brand-gold text-xl leading-tight mb-2">
+        Gestión de Almacén
+      </h3>
+      <p class="text-center text-xs text-gray-400 mb-6 uppercase tracking-wider font-semibold">4 Procedimientos</p>
+      
+      <div class="flex-1 space-y-3 overflow-y-auto custom-scroll pr-2">
+        <!-- Item 1 -->
+        <a href="/C-Procedimientos/Procedimiento control de invetario de bienes.pdf" download target="_blank" class="block p-4 rounded-lg border border-gray-100 bg-white shadow-sm flex items-center gap-4 transition-all duration-300 hover:-translate-y-1 hover:border-brand-gold hover:bg-yellow-50 group">
+          <div class="w-12 h-12 rounded-full bg-yellow-50 flex items-center justify-center flex-shrink-0 group-hover:bg-brand-gold group-hover:text-white transition-colors duration-300 text-brand-gold">
+            <i class="fas fa-clipboard-check"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-gray-800 text-sm group-hover:text-brand-gold transition-colors">Control de Inventario</h4>
+            <p class="text-xs text-gray-500">Recepción, registro, custodia y entrega de elementos.</p>
+          </div>
+        </a>
+
+        <!-- Item 2 -->
+        <a href="/C-Procedimientos/Procedimiento salida de bienes.pdf" download target="_blank" class="block p-4 rounded-lg border border-gray-100 bg-white shadow-sm flex items-center gap-4 transition-all duration-300 hover:-translate-y-1 hover:border-brand-gold hover:bg-yellow-50 group">
+          <div class="w-12 h-12 rounded-full bg-yellow-50 flex items-center justify-center flex-shrink-0 group-hover:bg-brand-gold group-hover:text-white transition-colors duration-300 text-brand-gold">
+            <i class="fas fa-dolly"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-gray-800 text-sm group-hover:text-brand-gold transition-colors">Salidas de Bienes</h4>
+            <p class="text-xs text-gray-500">Entrega de suministros a áreas funcionales.</p>
+          </div>
+        </a>
+
+        <!-- Item 3 -->
+        <a href="/C-Procedimientos/Procedimiento entrada de bienes.pdf" download target="_blank" class="block p-4 rounded-lg border border-gray-100 bg-white shadow-sm flex items-center gap-4 transition-all duration-300 hover:-translate-y-1 hover:border-brand-gold hover:bg-yellow-50 group">
+          <div class="w-12 h-12 rounded-full bg-yellow-50 flex items-center justify-center flex-shrink-0 group-hover:bg-brand-gold group-hover:text-white transition-colors duration-300 text-brand-gold">
+            <i class="fas fa-truck-loading"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-gray-800 text-sm group-hover:text-brand-gold transition-colors">Entradas de Bienes</h4>
+            <p class="text-xs text-gray-500">Control de ingreso de bienes muebles e inmuebles.</p>
+          </div>
+        </a>
+
+        <!-- Item 4 -->
+        <a href="/C-Procedimientos/Procedimineto baja de bienes inservibles u obsoletos.pdf" download target="_blank" class="block p-4 rounded-lg border border-gray-100 bg-white shadow-sm flex items-center gap-4 transition-all duration-300 hover:-translate-y-1 hover:border-brand-gold hover:bg-yellow-50 group">
+          <div class="w-12 h-12 rounded-full bg-yellow-50 flex items-center justify-center flex-shrink-0 group-hover:bg-brand-gold group-hover:text-white transition-colors duration-300 text-brand-gold">
+            <i class="fas fa-recycle"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-gray-800 text-sm group-hover:text-brand-gold transition-colors">Baja de Bienes</h4>
+            <p class="text-xs text-gray-500">Disposición final de bienes inservibles u obsoletos.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Card 2: Presupuesto y Tesorería -->
+    <div class="bg-white rounded-xl card-shadow flex flex-col relative pt-4 px-8 pb-6 border-t-4 border-brand-gold animate-on-scroll" style="animation-delay: 0.1s;">
+      <div class="flex justify-center mb-4">
+        <div class="w-16 h-16 rounded-full bg-yellow-50 flex items-center justify-center text-brand-gold shadow-sm border border-yellow-100">
+          <i class="fas fa-coins text-2xl"></i>
+        </div>
+      </div>
+      <h3 class="text-center font-bold text-brand-gold text-xl leading-tight mb-2">
+        Presupuesto, Contabilidad y Tesorería
+      </h3>
+      <p class="text-center text-xs text-gray-400 mb-6 uppercase tracking-wider font-semibold">6 Procedimientos</p>
+      
+      <div class="flex-1 grid grid-cols-1 gap-3 overflow-y-auto custom-scroll pr-2" style="max-height: 400px;">
+        <!-- Item 1 -->
+        <a href="/C-Procedimientos/Procedimientos Cuentas por pagar.pdf" download target="_blank" class="block p-3 rounded-lg border border-gray-100 bg-white shadow-sm flex items-center gap-4 transition-all duration-300 hover:-translate-y-1 hover:border-brand-gold hover:bg-yellow-50 group">
+          <div class="w-10 h-10 rounded-full bg-yellow-50 flex items-center justify-center flex-shrink-0 group-hover:bg-brand-gold group-hover:text-white transition-colors duration-300 text-brand-gold">
+            <i class="fas fa-file-invoice-dollar"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-gray-800 text-sm group-hover:text-brand-gold transition-colors">Cuentas por Pagar</h4>
+            <p class="text-xs text-gray-500">Análisis y revisión de soportes para pago.</p>
+          </div>
+        </a>
+
+        <!-- Item 2 -->
+        <a href="/C-Procedimientos/Proc elaboracion PAC.pdf" download target="_blank" class="block p-3 rounded-lg border border-gray-100 bg-white shadow-sm flex items-center gap-4 transition-all duration-300 hover:-translate-y-1 hover:border-brand-gold hover:bg-yellow-50 group">
+          <div class="w-10 h-10 rounded-full bg-yellow-50 flex items-center justify-center flex-shrink-0 group-hover:bg-brand-gold group-hover:text-white transition-colors duration-300 text-brand-gold">
+            <i class="fas fa-calendar-alt"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-gray-800 text-sm group-hover:text-brand-gold transition-colors">Elaboración PAC</h4>
+            <p class="text-xs text-gray-500">Programación Anual de Caja mensualizada.</p>
+          </div>
+        </a>
+
+        <!-- Item 3 -->
+        <a href="/C-Procedimientos/Procedimiento manejo de tesoreria.pdf" download target="_blank" class="block p-3 rounded-lg border border-gray-100 bg-white shadow-sm flex items-center gap-4 transition-all duration-300 hover:-translate-y-1 hover:border-brand-gold hover:bg-yellow-50 group">
+          <div class="w-10 h-10 rounded-full bg-yellow-50 flex items-center justify-center flex-shrink-0 group-hover:bg-brand-gold group-hover:text-white transition-colors duration-300 text-brand-gold">
+            <i class="fas fa-landmark"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-gray-800 text-sm group-hover:text-brand-gold transition-colors">Manejo de Tesorería</h4>
+            <p class="text-xs text-gray-500">Administración de recursos y cuentas bancarias.</p>
+          </div>
+        </a>
+
+        <!-- Item 4 -->
+        <a href="/C-Procedimientos/Proc Plan Anual de Adquisiciones.pdf" download target="_blank" class="block p-3 rounded-lg border border-gray-100 bg-white shadow-sm flex items-center gap-4 transition-all duration-300 hover:-translate-y-1 hover:border-brand-gold hover:bg-yellow-50 group">
+          <div class="w-10 h-10 rounded-full bg-yellow-50 flex items-center justify-center flex-shrink-0 group-hover:bg-brand-gold group-hover:text-white transition-colors duration-300 text-brand-gold">
+            <i class="fas fa-shopping-cart"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-gray-800 text-sm group-hover:text-brand-gold transition-colors">Plan de Adquisiciones</h4>
+            <p class="text-xs text-gray-500">Gestión en plataforma SECOP II.</p>
+          </div>
+        </a>
+
+        <!-- Item 5 -->
+        <a href="/C-Procedimientos/Procedimiento reconocimienro honorarios.pdf" download target="_blank" class="block p-3 rounded-lg border border-gray-100 bg-white shadow-sm flex items-center gap-4 transition-all duration-300 hover:-translate-y-1 hover:border-brand-gold hover:bg-yellow-50 group">
+          <div class="w-10 h-10 rounded-full bg-yellow-50 flex items-center justify-center flex-shrink-0 group-hover:bg-brand-gold group-hover:text-white transition-colors duration-300 text-brand-gold">
+            <i class="fas fa-hand-holding-dollar"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-gray-800 text-sm group-hover:text-brand-gold transition-colors">Reconocimiento Honorarios</h4>
+            <p class="text-xs text-gray-500">Liquidación por asistencia a plenarias.</p>
+          </div>
+        </a>
+
+        <!-- Item 6 -->
+        <a href="/C-Procedimientos/Procedimiento Ejecución Presupuestal.pdf" download target="_blank" class="block p-3 rounded-lg border border-gray-100 bg-white shadow-sm flex items-center gap-4 transition-all duration-300 hover:-translate-y-1 hover:border-brand-gold hover:bg-yellow-50 group">
+          <div class="w-10 h-10 rounded-full bg-yellow-50 flex items-center justify-center flex-shrink-0 group-hover:bg-brand-gold group-hover:text-white transition-colors duration-300 text-brand-gold">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-gray-800 text-sm group-hover:text-brand-gold transition-colors">Ejecución Presupuestal</h4>
+            <p class="text-xs text-gray-500">Control y seguimiento de apropiaciones.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</ProcesoLayout>
+
+<style>
+  .custom-scroll::-webkit-scrollbar {
+    width: 6px;
+  }
+  .custom-scroll::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 10px;
+  }
+  .custom-scroll::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+  }
+  .custom-scroll::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+</style>

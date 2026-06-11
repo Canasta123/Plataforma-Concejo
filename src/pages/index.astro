@@ -1,0 +1,392 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Inicio - SGC" description="Sistema de Gestión de Calidad — Concejo Municipal de Chía 2026">
+  <div class="min-h-screen flex flex-col bg-slate-50">
+
+    <!-- 1. Hero Section -->
+    <div class="w-full min-h-screen flex flex-col justify-center items-center text-center px-6 py-20 relative overflow-hidden bg-gradient-to-br from-[#0f1e3d] via-brand-blue to-[#1a3a6e]">
+      
+      <!-- Background Elements -->
+      <div class="absolute inset-0 pointer-events-none overflow-hidden">
+        <div class="absolute -top-1/4 -right-1/4 w-[600px] h-[600px] rounded-full border border-white/5"></div>
+        <div class="absolute -top-1/4 -right-1/4 w-[800px] h-[800px] rounded-full border border-white/3"></div>
+        <div class="absolute -bottom-1/3 -left-1/4 w-[500px] h-[500px] rounded-full bg-brand-gold/5 blur-[80px]"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full border border-white/[0.03]"></div>
+        <div class="absolute inset-0 opacity-[0.04]" style="background-image: linear-gradient(to right, white 1px, transparent 1px), linear-gradient(to bottom, white 1px, transparent 1px); background-size: 60px 60px;"></div>
+        <div class="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-brand-gold to-transparent opacity-70"></div>
+      </div>
+
+      <!-- Logo -->
+      <div class="mb-8 relative z-10 animate-on-scroll flex flex-col items-center">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full blur-[80px] bg-white/10 -z-10"></div>
+        <img src="/logo1.png" class="w-auto h-44 md:h-56 object-contain filter drop-shadow-2xl" alt="Logo Concejo Municipal de Chía" />
+      </div>
+
+      <!-- Titles -->
+      <div class="max-w-3xl relative z-10 animate-on-scroll">
+        <p class="text-brand-gold/80 text-xs md:text-sm font-bold tracking-[0.4em] uppercase mb-4">
+          Sistema de Gestión de Calidad
+        </p>
+        <h1 class="font-extrabold text-4xl md:text-6xl text-white uppercase mb-4 tracking-tight" style="font-family: 'Montserrat', sans-serif; text-shadow: 0 2px 40px rgba(0,0,0,0.4);">
+          Concejo Municipal <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-gold to-yellow-200">de Chía</span>
+        </h1>
+        <h2 class="text-base md:text-xl italic text-blue-200/80 font-light" style="font-family: 'Lato', sans-serif;">
+          Plataforma de Procesos y Mesa de Ayuda — <span class="text-brand-gold font-semibold not-italic">2026</span>
+        </h2>
+      </div>
+
+      <!-- ISO Badge -->
+      <div class="mt-8 relative z-10 animate-on-scroll">
+        <div class="inline-flex items-center gap-3 bg-white/8 border border-white/15 backdrop-blur-sm px-5 py-2.5 rounded-full shadow-lg">
+          <i class="fas fa-certificate text-brand-gold text-sm"></i>
+          <span class="text-white/90 text-sm font-semibold tracking-wider">ISO 9001:2015</span>
+        </div>
+      </div>
+
+      <!-- Navigation buttons -->
+      <div class="mt-12 w-full max-w-4xl relative z-10 flex flex-col sm:flex-row justify-center items-center gap-4 px-4 animate-on-scroll">
+        
+        <a
+          href="/procesos"
+          id="btn-menu-principal"
+          class="group relative inline-flex items-center justify-center gap-3 px-8 py-4 font-bold text-slate-900 text-base rounded-2xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-white/40 w-full sm:w-auto min-w-[200px] bg-white"
+          role="button"
+        >
+          <div class="absolute inset-0 bg-gradient-to-r from-transparent via-slate-900/5 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700 ease-in-out"></div>
+          <i class="fas fa-sitemap text-[#3359A4] text-lg group-hover:scale-115 transition-transform duration-200"></i>
+          <span class="tracking-wide">Menú Principal</span>
+        </a>
+
+        <a
+          href="/mesa-ayuda"
+          class="group inline-flex items-center justify-center gap-3 px-8 py-4 font-bold text-gray-900 text-base rounded-2xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-yellow-300/40 w-full sm:w-auto min-w-[200px]"
+          style="background-color: #FFD402;"
+        >
+          <i class="fas fa-headset text-lg group-hover:scale-115 transition-transform duration-200"></i>
+          <span class="tracking-wide">Mesa de Ayuda</span>
+        </a>
+
+        <a
+          href="#identidad"
+          class="group inline-flex items-center justify-center gap-3 px-8 py-4 font-bold text-white text-base rounded-2xl border border-white/20 bg-white/5 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:bg-white/10 w-full sm:w-auto min-w-[200px]"
+        >
+          <i class="fas fa-circle-info text-blue-300 text-lg group-hover:scale-115 transition-transform duration-200"></i>
+          <span class="tracking-wide">Identidad y Mapa</span>
+        </a>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/50 animate-bounce cursor-pointer">
+        <a href="#identidad" class="text-xs uppercase tracking-[0.2em] font-bold hover:text-brand-gold transition-colors">Ver Identidad y Mapa</a>
+        <i class="fas fa-chevron-down text-base"></i>
+      </div>
+    </div>
+
+    <!-- 2. Identidad Institucional Section (Misión y Visión) -->
+    <div id="identidad" class="w-full bg-slate-50 py-24 px-6 md:px-12 relative overflow-hidden">
+      
+      <div class="absolute inset-0 pointer-events-none opacity-[0.03]" style="background-image: radial-gradient(#3359A4 1.5px, transparent 1.5px); background-size: 24px 24px;"></div>
+      
+      <div class="max-w-6xl mx-auto relative z-10">
+        
+        <!-- Header -->
+        <div class="text-center mb-16 animate-on-scroll">
+          <h2 class="text-xs font-bold text-brand-blue uppercase tracking-[0.3em] mb-2">Concejo de Chía</h2>
+          <h3 class="font-extrabold text-3xl md:text-5xl text-[#0f1e3d]" style="font-family: 'Montserrat', sans-serif;">
+            Identidad Institucional
+          </h3>
+          <div class="w-20 h-1 bg-brand-gold mx-auto mt-4 rounded-full"></div>
+        </div>
+
+        <!-- Misión y Visión Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20">
+          
+          <!-- Card Misión -->
+          <div class="bg-white rounded-3xl p-8 md:p-10 border border-slate-100 shadow-xl shadow-slate-100/40 relative overflow-hidden group hover:shadow-2xl hover:shadow-brand-blue/5 transition-all duration-300 transform hover:-translate-y-1 animate-on-scroll">
+            <div class="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-brand-blue/5 group-hover:bg-brand-blue/10 transition-colors duration-300"></div>
+            <div class="flex items-center gap-4 mb-6">
+              <div class="w-14 h-14 rounded-2xl bg-brand-blue/10 flex items-center justify-center text-brand-blue text-2xl group-hover:scale-110 transition-transform duration-300">
+                <i class="fas fa-bullseye"></i>
+              </div>
+              <h4 class="font-extrabold text-2xl text-[#0f1e3d]" style="font-family: 'Montserrat', sans-serif; tracking-wide">MISIÓN</h4>
+            </div>
+            <p class="text-slate-600 text-sm md:text-base leading-relaxed text-justify" style="font-family: 'Lato', sans-serif;">
+              Como corporación político administrativa, que trabaja por el bienestar social de su comunidad, ejercerá con sapiencia y responsabilidad el control político a la administración municipal, para que prevalezca la vocería del interés general y el bien común, diseñando políticas locales para la promoción del desarrollo social, económico, político, cultural y ambiental del municipio, mediante acuerdos enmarcados en la Constitución y la ley.
+            </p>
+          </div>
+
+          <!-- Card Visión -->
+          <div class="bg-white rounded-3xl p-8 md:p-10 border border-slate-100 shadow-xl shadow-slate-100/40 relative overflow-hidden group hover:shadow-2xl hover:shadow-brand-gold/5 transition-all duration-300 transform hover:-translate-y-1 animate-on-scroll">
+            <div class="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-brand-gold/5 group-hover:bg-brand-gold/10 transition-colors duration-300"></div>
+            <div class="flex items-center gap-4 mb-6">
+              <div class="w-14 h-14 rounded-2xl bg-brand-gold/10 flex items-center justify-center text-brand-gold text-2xl group-hover:scale-110 transition-transform duration-300">
+                <i class="fas fa-eye"></i>
+              </div>
+              <h4 class="font-extrabold text-2xl text-[#0f1e3d]" style="font-family: 'Montserrat', sans-serif; tracking-wide">VISIÓN</h4>
+            </div>
+            <p class="text-slate-600 text-sm md:text-base leading-relaxed text-justify" style="font-family: 'Lato', sans-serif;">
+              El Concejo Municipal de Chía para el 2032, a través de sus funciones constitucionales y administrativas, será reconocido por contribuir al desarrollo social, económico, político, cultural y ambiental, a través de acuerdos municipales y controles políticos, que aporten al bienestar y calidad de vida de los habitantes de nuestro municipio, con amplio sentido de identidad y pertenencia.
+            </p>
+          </div>
+        </div>
+
+        <!-- Principios y Valores -->
+        <div class="animate-on-scroll">
+          <div class="text-center mb-10">
+            <h4 class="font-extrabold text-xl md:text-2xl text-[#0f1e3d] uppercase tracking-wider" style="font-family: 'Montserrat', sans-serif;">
+              Principios y Valores Institucionales
+            </h4>
+            <p class="text-sm text-slate-400 mt-1">Los pilares éticos que guían nuestras acciones diarias</p>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4">
+            
+            <!-- Solidaridad -->
+            <div class="bg-white rounded-2xl p-5 border border-slate-100 shadow-md flex flex-col items-center justify-center text-center gap-3 hover:shadow-lg transition-all duration-200 group hover:-translate-y-1 hover:border-brand-blue/30">
+              <div class="w-11 h-11 rounded-xl bg-slate-50 flex items-center justify-center text-brand-blue group-hover:bg-brand-blue/10 group-hover:text-brand-blue transition-colors duration-200">
+                <i class="fas fa-handshake-angle text-xl"></i>
+              </div>
+              <span class="text-xs font-bold text-slate-700 tracking-wide">Solidaridad</span>
+            </div>
+
+            <!-- Honestidad -->
+            <div class="bg-white rounded-2xl p-5 border border-slate-100 shadow-md flex flex-col items-center justify-center text-center gap-3 hover:shadow-lg transition-all duration-200 group hover:-translate-y-1 hover:border-brand-blue/30">
+              <div class="w-11 h-11 rounded-xl bg-slate-50 flex items-center justify-center text-brand-blue group-hover:bg-brand-blue/10 group-hover:text-brand-blue transition-colors duration-200">
+                <i class="fas fa-user-shield text-xl"></i>
+              </div>
+              <span class="text-xs font-bold text-slate-700 tracking-wide">Honestidad</span>
+            </div>
+
+            <!-- Respeto -->
+            <div class="bg-white rounded-2xl p-5 border border-slate-100 shadow-md flex flex-col items-center justify-center text-center gap-3 hover:shadow-lg transition-all duration-200 group hover:-translate-y-1 hover:border-brand-blue/30">
+              <div class="w-11 h-11 rounded-xl bg-slate-50 flex items-center justify-center text-brand-blue group-hover:bg-brand-blue/10 group-hover:text-brand-blue transition-colors duration-200">
+                <i class="fas fa-scale-balanced text-xl"></i>
+              </div>
+              <span class="text-xs font-bold text-slate-700 tracking-wide">Respeto</span>
+            </div>
+
+            <!-- Compromiso Social -->
+            <div class="bg-white rounded-2xl p-5 border border-slate-100 shadow-md flex flex-col items-center justify-center text-center gap-3 hover:shadow-lg transition-all duration-200 group hover:-translate-y-1 hover:border-brand-blue/30">
+              <div class="w-11 h-11 rounded-xl bg-slate-50 flex items-center justify-center text-brand-blue group-hover:bg-brand-blue/10 group-hover:text-brand-blue transition-colors duration-200">
+                <i class="fas fa-heart-circle-check text-xl"></i>
+              </div>
+              <span class="text-xs font-bold text-slate-700 tracking-wide">Compromiso Social</span>
+            </div>
+
+            <!-- Responsabilidad -->
+            <div class="bg-white rounded-2xl p-5 border border-slate-100 shadow-md flex flex-col items-center justify-center text-center gap-3 hover:shadow-lg transition-all duration-200 group hover:-translate-y-1 hover:border-brand-blue/30">
+              <div class="w-11 h-11 rounded-xl bg-slate-50 flex items-center justify-center text-brand-blue group-hover:bg-brand-blue/10 group-hover:text-brand-blue transition-colors duration-200">
+                <i class="fas fa-circle-check text-xl"></i>
+              </div>
+              <span class="text-xs font-bold text-slate-700 tracking-wide">Responsabilidad</span>
+            </div>
+
+            <!-- Voluntad de Servicio -->
+            <div class="bg-white rounded-2xl p-5 border border-slate-100 shadow-md flex flex-col items-center justify-center text-center gap-3 hover:shadow-lg transition-all duration-200 group hover:-translate-y-1 hover:border-brand-blue/30">
+              <div class="w-11 h-11 rounded-xl bg-slate-50 flex items-center justify-center text-brand-blue group-hover:bg-brand-blue/10 group-hover:text-brand-blue transition-colors duration-200">
+                <i class="fas fa-hands-holding-circle text-xl"></i>
+              </div>
+              <span class="text-xs font-bold text-slate-700 tracking-wide">Voluntad de Servicio</span>
+            </div>
+
+            <!-- Equidad -->
+            <div class="bg-white rounded-2xl p-5 border border-slate-100 shadow-md flex flex-col items-center justify-center text-center gap-3 hover:shadow-lg transition-all duration-200 group hover:-translate-y-1 hover:border-brand-blue/30">
+              <div class="w-11 h-11 rounded-xl bg-slate-50 flex items-center justify-center text-brand-blue group-hover:bg-brand-blue/10 group-hover:text-brand-blue transition-colors duration-200">
+                <i class="fas fa-equals text-xl"></i>
+              </div>
+              <span class="text-xs font-bold text-slate-700 tracking-wide">Equidad</span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 3. Mapa de Procesos Section -->
+    <div id="mapa" class="w-full py-24 px-6 md:px-12 relative overflow-hidden bg-gradient-to-br from-[#0f1e3d] via-[#122852] to-[#1a3a6e] text-center">
+      
+      <div class="absolute inset-0 pointer-events-none opacity-[0.03]" style="background-image: linear-gradient(to right, white 1px, transparent 1px), linear-gradient(to bottom, white 1px, transparent 1px); background-size: 50px 50px;"></div>
+      
+      <div class="max-w-6xl mx-auto relative z-10">
+        
+        <!-- Header -->
+        <div class="mb-12 animate-on-scroll">
+          <h2 class="text-xs font-bold text-brand-gold uppercase tracking-[0.3em] mb-2">Sistema de Gestión de Calidad</h2>
+          <h3 class="font-extrabold text-3xl md:text-5xl text-white uppercase" style="font-family: 'Montserrat', sans-serif;">
+            Mapa de Procesos
+          </h3>
+          <p class="text-sm text-blue-200/60 mt-2 max-w-xl mx-auto">
+            Visualización general de la cadena de valor y flujos operacionales del Concejo de Chía
+          </p>
+          <div class="w-20 h-1 bg-brand-gold mx-auto mt-4 rounded-full"></div>
+        </div>
+
+        <!-- Mapa Img Card -->
+        <div class="max-w-5xl mx-auto rounded-3xl overflow-hidden border border-white/10 shadow-2xl relative bg-white/5 backdrop-blur-md p-3 animate-on-scroll">
+          <!-- Floating Zoom Controls -->
+          <div class="absolute top-6 right-6 z-20 flex gap-2">
+            <button id="btn-zoom-in" class="w-10 h-10 rounded-xl bg-slate-900/60 hover:bg-slate-900/80 border border-white/10 backdrop-blur-md flex items-center justify-center text-white transition-all active:scale-95 shadow-lg cursor-pointer" title="Acercar">
+              <i class="fas fa-plus text-sm"></i>
+            </button>
+            <button id="btn-zoom-out" class="w-10 h-10 rounded-xl bg-slate-900/60 hover:bg-slate-900/80 border border-white/10 backdrop-blur-md flex items-center justify-center text-white transition-all active:scale-95 shadow-lg cursor-pointer" title="Alejar">
+              <i class="fas fa-minus text-sm"></i>
+            </button>
+            <button id="btn-zoom-reset" class="w-10 h-10 rounded-xl bg-slate-900/60 hover:bg-slate-900/80 border border-white/10 backdrop-blur-md flex items-center justify-center text-white transition-all active:scale-95 shadow-lg cursor-pointer" title="Restablecer">
+              <i class="fas fa-rotate-left text-sm"></i>
+            </button>
+          </div>
+
+          <!-- Zoom/Pan Container -->
+          <div id="zoom-container" class="relative overflow-hidden rounded-2xl bg-[#f0f4f8] select-none">
+            <img 
+              id="zoom-image" 
+              src="/mapa-procesos.png" 
+              class="w-full h-auto object-cover transition-transform duration-200 ease-out origin-center" 
+              alt="Mapa de Procesos Oficial" 
+              draggable="false"
+            />
+          </div>
+        </div>
+
+        <!-- Footer CTA -->
+        <div class="mt-12 animate-on-scroll">
+          <a
+            href="/procesos"
+            class="group inline-flex items-center justify-center gap-3 px-10 py-5 font-bold text-gray-900 text-base rounded-2xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-yellow-300/40"
+            style="background-color: #FFD402;"
+          >
+            <i class="fas fa-sitemap text-lg group-hover:rotate-12 transition-transform duration-200"></i>
+            <span class="tracking-wide uppercase">Ingresar al Índice de Procesos</span>
+            <i class="fas fa-chevron-right text-xs opacity-75 group-hover:translate-x-1 transition-transform duration-200"></i>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 4. Footer -->
+    <footer class="w-full bg-[#0b1426] border-t border-white/5 py-8 px-6 text-center text-gray-500 text-xs">
+      <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+        <p class="font-medium">© 2026 Concejo Municipal de Chía. Todos los derechos reservados.</p>
+        <div class="flex gap-4">
+          <a href="https://www.concejomunicipalchia.gov.co" target="_blank" rel="noopener noreferrer" class="hover:text-brand-gold transition-colors">Sitio Web Oficial</a>
+          <span class="text-white/10">|</span>
+          <span class="font-semibold text-white/40">Sistema de Gestión de Calidad</span>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+  <script is:inline>
+    function setupZoom() {
+      const container = document.getElementById('zoom-container');
+      const img = document.getElementById('zoom-image');
+      const btnIn = document.getElementById('btn-zoom-in');
+      const btnOut = document.getElementById('btn-zoom-out');
+      const btnReset = document.getElementById('btn-zoom-reset');
+
+      if (!container || !img || !btnIn || !btnOut || !btnReset) return;
+
+      let scale = 1;
+      let translateX = 0;
+      let translateY = 0;
+      let isDragging = false;
+      let startX = 0;
+      let startY = 0;
+
+      const updateTransform = (useTransition = true) => {
+        if (useTransition) {
+          img.style.transition = 'transform 0.2s ease-out';
+        } else {
+          img.style.transition = 'none';
+        }
+        
+        if (scale === 1) {
+          translateX = 0;
+          translateY = 0;
+          container.style.cursor = 'default';
+        } else {
+          container.style.cursor = 'grab';
+        }
+        
+        img.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+      };
+
+      btnIn.addEventListener('click', () => {
+        scale = Math.min(scale + 0.25, 3.5);
+        updateTransform(true);
+      });
+
+      btnOut.addEventListener('click', () => {
+        scale = Math.max(scale - 0.25, 1);
+        updateTransform(true);
+      });
+
+      btnReset.addEventListener('click', () => {
+        scale = 1;
+        translateX = 0;
+        translateY = 0;
+        updateTransform(true);
+      });
+
+      container.addEventListener('mousedown', (e) => {
+        if (scale === 1) return;
+        isDragging = true;
+        container.style.cursor = 'grabbing';
+        startX = e.clientX - translateX;
+        startY = e.clientY - translateY;
+        e.preventDefault();
+      });
+
+      window.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        translateX = e.clientX - startX;
+        translateY = e.clientY - startY;
+        updateTransform(false);
+      });
+
+      window.addEventListener('mouseup', () => {
+        if (isDragging) {
+          isDragging = false;
+          container.style.cursor = 'grab';
+        }
+      });
+
+      container.addEventListener('touchstart', (e) => {
+        if (scale === 1) return;
+        isDragging = true;
+        const touch = e.touches[0];
+        startX = touch.clientX - translateX;
+        startY = touch.clientY - translateY;
+      }, { passive: true });
+
+      container.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        const touch = e.touches[0];
+        translateX = touch.clientX - startX;
+        translateY = touch.clientY - startY;
+        updateTransform(false);
+      }, { passive: true });
+
+      container.addEventListener('touchend', () => {
+        isDragging = false;
+      });
+    }
+
+    // Run on first load
+    setupZoom();
+    
+    // Support Astro transitions
+    document.addEventListener('astro:page-load', setupZoom);
+  </script>
+</BaseLayout>
+
+<style is:global>
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
+

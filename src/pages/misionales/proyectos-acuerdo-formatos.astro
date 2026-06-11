@@ -1,0 +1,89 @@
+---
+import FormatosLayout from '../../layouts/FormatosLayout.astro';
+import ExplorerCard from '../../components/ExplorerCard.astro';
+---
+
+<FormatosLayout
+  title="Formatos - Proyectos de Acuerdo"
+  numero="05"
+  tituloHeader="Proyectos de Acuerdo"
+  subtituloHeader="Formatos e Instrumentos"
+  tipo="misional"
+  badge="Proceso Misional"
+  badgeIcon="fas fa-file-invoice"
+  rutaActual="/misionales/proyectos-acuerdo-formatos"
+>
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 pb-8">
+    <!-- Columna Izquierda (66% / 2 cols en lg) -->
+    <div class="lg:col-span-2 flex flex-col gap-6">
+      <!-- Fila Superior -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="h-[450px]">
+          <ExplorerCard
+            titulo="Actas y Acuerdos"
+            icono="fas fa-file-signature"
+            rutaExplorador="Formatos/5. Proyectos de Acuerdo/Actas y Acuerdos"
+            borderColor="blue"
+            bgIcon="fas fa-gavel"
+          />
+        </div>
+        <div class="h-[450px]">
+          <ExplorerCard
+            titulo="Control Asistencia"
+            icono="fas fa-clipboard-check"
+            rutaExplorador="Formatos/5. Proyectos de Acuerdo/Control Asistencia"
+            borderColor="blue"
+            bgIcon="fas fa-users"
+          />
+        </div>
+      </div>
+      <!-- Fila Inferior -->
+      <div class="h-[450px]">
+        <ExplorerCard
+          titulo="Seguimiento y Soporte Documental"
+          icono="fas fa-tasks"
+          rutaExplorador="Formatos/5. Proyectos de Acuerdo/Seguimiento y Soporte Documental"
+          borderColor="blue"
+        />
+      </div>
+    </div>
+
+    <!-- Columna Derecha (33% / 1 col en lg) -->
+    <div class="lg:col-span-1 h-[450px]">
+      <div class="bg-white rounded-xl card-shadow p-6 relative overflow-hidden border-t-4 border-brand-gold flex flex-col h-full">
+        <div class="absolute top-0 right-0 p-4 opacity-5">
+          <i class="fas fa-cogs text-8xl text-brand-gold"></i>
+        </div>
+        <h3 class="font-bold text-brand-blue text-lg mb-4 flex items-center shrink-0 relative z-10 border-b border-gray-100 pb-3">
+          <i class="fas fa-tools mr-2 text-brand-gold"></i> Gestión Documental
+        </h3>
+        
+        <div class="flex flex-col gap-4 overflow-y-auto pr-2 flex-1 relative z-10">
+          
+          <a href="#" class="bg-yellow-50 rounded-lg p-4 border border-yellow-100 shadow-sm hover:border-green-400 transition-colors group shrink-0">
+            <div class="flex items-center mb-2">
+              <div class="w-8 h-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center mr-3 group-hover:bg-green-600 group-hover:text-white transition-colors">
+                <i class="fas fa-plus"></i>
+              </div>
+              <h4 class="font-bold text-gray-800 text-sm uppercase tracking-wider">Creación</h4>
+            </div>
+            <p class="text-xs text-gray-600 pl-11">Aprobación creación formatos trámite de proyectos</p>
+          </a>
+          
+          <a href="#" class="bg-yellow-50 rounded-lg p-4 border border-yellow-100 shadow-sm hover:border-red-400 transition-colors group shrink-0">
+            <div class="flex items-center mb-2">
+              <div class="w-8 h-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center mr-3 group-hover:bg-red-600 group-hover:text-white transition-colors">
+                <i class="fas fa-trash-alt"></i>
+              </div>
+              <h4 class="font-bold text-gray-800 text-sm uppercase tracking-wider">Anulación</h4>
+            </div>
+            <p class="text-xs text-gray-600 pl-11">Aprobación anulación formatos trámite de proyectos</p>
+          </a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</FormatosLayout>
+
+

@@ -1,0 +1,72 @@
+---
+import FormatosLayout from '../../layouts/FormatosLayout.astro';
+import ExplorerCard from '../../components/ExplorerCard.astro';
+import DownloadButton from '../../components/DownloadButton.astro';
+---
+
+<FormatosLayout
+  title="Relacionamiento con la Ciudadanía - Estratégicos"
+  numero="03"
+  tituloHeader="Relacionamiento con la Ciudadanía"
+  subtituloHeader="Proceso"
+  tipo="estrategico"
+  badge="Formatos y Normativa"
+  badgeIcon="fas fa-file-alt"
+  rutaActual="/estrategicos/ciudadania"
+>
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 pb-8">
+    <!-- Columna Izquierda (66% / 2 cols en lg) -->
+    <div class="lg:col-span-2 flex flex-col gap-6">
+      <!-- Fila Superior: dos cards lado a lado -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="h-[450px] animate-on-scroll">
+          <ExplorerCard
+            titulo="Transparencia y Ética"
+            icono="fas fa-eye"
+            rutaExplorador="Formatos/3. Relacionamiento con la Ciudadanía/Transparencia y Ética"
+            borderColor="blue"
+            bgIcon="fas fa-balance-scale"
+          />
+        </div>
+        <div class="h-[450px] animate-on-scroll" style="animation-delay: 0.1s;">
+          <ExplorerCard
+            titulo="Servicio al Ciudadano"
+            icono="fas fa-headset"
+            rutaExplorador="Formatos/3. Relacionamiento con la Ciudadanía/Servicio al Ciudadano"
+            borderColor="blue"
+            bgIcon="fas fa-smile"
+          />
+        </div>
+      </div>
+      <!-- Fila Inferior -->
+      <div class="h-[450px] animate-on-scroll" style="animation-delay: 0.2s;">
+        <ExplorerCard
+          titulo="Gestión y Planeación"
+          icono="fas fa-tasks"
+          rutaExplorador="Formatos/3. Relacionamiento con la Ciudadanía/Gestión y Planeación"
+          borderColor="blue"
+        />
+      </div>
+    </div>
+    
+    <!-- Columna Derecha (33% / 1 col en lg) -->
+    <div class="lg:col-span-1 flex flex-col gap-6">
+      <div class="h-[450px] animate-on-scroll" style="animation-delay: 0.3s;">
+        <ExplorerCard
+          titulo="Manuales y Normativa"
+          icono="fas fa-book-reader"
+          rutaExplorador="Formatos/3. Relacionamiento con la Ciudadanía/Manuales y Normativas"
+          borderColor="gold"
+          bgIcon="fas fa-book"
+        />
+      </div>
+
+      <!-- Botón Descargar Caracterización -->
+      <div class="flex justify-end mt-auto animate-on-scroll" style="animation-delay: 0.4s;">
+        <DownloadButton href="/C-Procesos/RC.pdf" tipo="estrategico" texto="Descargar Caracterización" />
+      </div>
+    </div>
+  </div>
+</FormatosLayout>
+
+

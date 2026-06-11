@@ -1,0 +1,16 @@
+---
+type Prioridad = 'alta' | 'media' | 'baja';
+interface Props { prioridad: Prioridad; }
+const { prioridad } = Astro.props;
+
+const map: Record<Prioridad, { label: string; cls: string; icon: string }> = {
+  alta:  { label: 'Alta',  cls: 'bg-red-100 text-red-700 border-red-200',       icon: 'fa-arrow-up' },
+  media: { label: 'Media', cls: 'bg-orange-100 text-orange-700 border-orange-200', icon: 'fa-minus' },
+  baja:  { label: 'Baja',  cls: 'bg-gray-100 text-gray-600 border-gray-200',    icon: 'fa-arrow-down' },
+};
+const { label, cls, icon } = map[prioridad] ?? map.media;
+---
+<span class={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold border ${cls}`}>
+  <i class={`fas ${icon} text-[10px]`}></i>
+  {label}
+</span>

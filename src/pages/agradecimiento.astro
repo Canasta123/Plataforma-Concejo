@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Cierre Institucional" description="Gracias por su atención">
+  <div class="slide-container relative overflow-hidden bg-[#0a80b8] text-white min-h-screen flex flex-col justify-between">
+    
+    <!-- Background Decorations -->
+    <div class="absolute w-[800px] h-[800px] rounded-full bg-white opacity-[0.03] top-[-200px] right-[-200px] pointer-events-none"></div>
+    <div class="absolute w-[600px] h-[600px] rounded-full bg-black opacity-[0.02] bottom-[-150px] left-[-150px] pointer-events-none"></div>
+    
+    <!-- Main Content Wrapper -->
+    <main class="flex-1 flex flex-col items-center justify-center relative z-10 p-6 md:p-12 animate-on-scroll">
+      
+      <!-- Logo Area -->
+      <div class="mb-6 text-center flex flex-col items-center">
+        <!-- Logo free, no circle -->
+        <img src="/logo1.png" alt="Logo Concejo Municipal" class="w-auto h-48 md:h-56 object-contain filter drop-shadow-md mb-3">
+        <h2 class="text-[10px] font-bold tracking-[0.2em] uppercase text-white/90">Concejo Municipal de Chía</h2>
+      </div>
+      
+      <!-- Main Heading -->
+      <div class="text-center mb-16 max-w-4xl">
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-5 leading-tight text-white drop-shadow-sm">
+          GRACIAS POR SU ATENCIÓN
+        </h1>
+        <div class="w-16 h-[2px] bg-brand-gold mx-auto mb-6 rounded-full shadow-sm"></div>
+        <p class="text-xl md:text-2xl font-light italic text-brand-gold">
+          "Calidad, Transparencia y Servicio a la Comunidad"
+        </p>
+      </div>
+      
+      <!-- Contact Information Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-5xl">
+        
+        <!-- Card 1: Digital Channels -->
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-8 flex flex-col justify-center border border-white/10 shadow-lg">
+          <h3 class="text-sm font-bold uppercase mb-6 text-brand-gold">
+            Canales Digitales
+          </h3>
+          <div class="flex flex-col gap-5">
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 rounded-lg bg-brand-gold flex items-center justify-center shrink-0">
+                <i class="fas fa-globe text-lg text-brand-blue"></i>
+              </div>
+              <div>
+                <p class="text-[9px] text-white/80 uppercase tracking-widest mb-0.5">Sitio Web Oficial</p>
+                <a href="https://www.concejomunicipalchia.gov.co" target="_blank" rel="noopener noreferrer" class="text-sm md:text-base font-bold text-white hover:text-brand-gold transition-colors">
+                  www.concejomunicipalchia.gov.co
+                </a>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 rounded-lg bg-brand-gold flex items-center justify-center shrink-0">
+                <i class="fas fa-envelope-open-text text-lg text-brand-blue"></i>
+              </div>
+              <div>
+                <p class="text-[9px] text-white/80 uppercase tracking-widest mb-0.5">Atención al Ciudadano</p>
+                <p class="text-sm md:text-base font-bold text-white">Canal PQRSDF - Ventanilla Única</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Card 2: Social & Location -->
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-8 flex flex-col justify-center border border-white/10 shadow-lg">
+          <h3 class="text-sm font-bold uppercase mb-6 text-brand-gold">
+            Síguenos en Redes
+          </h3>
+          <div class="flex flex-wrap items-center gap-3 mb-8">
+            <a href="https://web.facebook.com/pages/Concejo-Municipal-De-Chia/124239831035262" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center hover:bg-brand-gold hover:text-brand-blue hover:border-brand-gold transition-all duration-300 text-white shadow-sm">
+              <i class="fab fa-facebook-f text-sm"></i>
+            </a>
+            <a href="https://x.com/concejochia" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center hover:bg-brand-gold hover:text-brand-blue hover:border-brand-gold transition-all duration-300 text-white shadow-sm">
+              <span class="font-bold font-sans text-sm">X</span>
+            </a>
+            <a href="https://www.instagram.com/concejodechia" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center hover:bg-brand-gold hover:text-brand-blue hover:border-brand-gold transition-all duration-300 text-white shadow-sm">
+              <i class="fab fa-instagram text-sm"></i>
+            </a>
+            <a href="https://m.youtube.com/@ConcejoChia" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center hover:bg-brand-gold hover:text-brand-blue hover:border-brand-gold transition-all duration-300 text-white shadow-sm">
+              <i class="fab fa-youtube text-sm"></i>
+            </a>
+          </div>
+          <div class="flex items-center gap-2 mt-auto pt-5 border-t border-white/20">
+            <i class="fas fa-map-marker-alt text-brand-gold text-sm"></i>
+            <p class="text-[11px] text-white/90 tracking-wide">Chía, Cundinamarca - Colombia | 2026</p>
+          </div>
+        </div>
+        
+      </div>
+      
+      <div class="mt-14 flex justify-center animate-on-scroll" style="animation-delay: 0.2s;">
+        <a href="/" class="px-8 py-3 bg-[#38508e] text-white text-sm font-bold rounded-lg shadow-md hover:bg-[#2b3e70] transition-all duration-300 transform hover:-translate-y-1">
+          Menú Principal
+        </a>
+      </div>
+      
+    </main>
+
+  </div>
+</BaseLayout>

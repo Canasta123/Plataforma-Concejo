@@ -1,0 +1,85 @@
+---
+import FormatosLayout from '../../layouts/FormatosLayout.astro';
+import ExplorerCard from '../../components/ExplorerCard.astro';
+---
+
+<FormatosLayout
+  title="Formatos - Control Político"
+  numero="04"
+  tituloHeader="Formatos e Instrumentos"
+  subtituloHeader="Control Político"
+  tipo="misional"
+  badge="Proceso Misional"
+  badgeIcon="fas fa-landmark"
+  rutaActual="/misionales/control-politico-formatos"
+>
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 pb-8">
+    <!-- Columna Izquierda (66% / 2 cols en lg) -->
+    <div class="lg:col-span-2 flex flex-col gap-6">
+      <!-- Fila Superior -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="h-[450px]">
+          <ExplorerCard
+            titulo="Asistencia y Votaciones"
+            icono="fas fa-users"
+            rutaExplorador="Formatos/4. Control Político/Asistencia y Votaciones"
+            borderColor="blue"
+            bgIcon="fas fa-clipboard-check"
+          />
+        </div>
+        <div class="h-[450px]">
+          <ExplorerCard
+            titulo="Documentos de Sesión"
+            icono="fas fa-gavel"
+            rutaExplorador="Formatos/4. Control Político/Documentos de Sesión"
+            borderColor="blue"
+            bgIcon="fas fa-file-contract"
+          />
+        </div>
+      </div>
+      <!-- Fila Inferior -->
+      <div class="h-[450px]">
+        <ExplorerCard
+          titulo="Instrumentos de Control y Calidad"
+          icono="fas fa-balance-scale-right"
+          rutaExplorador="Formatos/4. Control Político/Instrumentos de Control y Calidad"
+          borderColor="blue"
+        />
+      </div>
+    </div>
+
+    <!-- Columna Derecha (33% / 1 col en lg) -->
+    <div class="lg:col-span-1 h-[450px]">
+      <div class="bg-white rounded-xl card-shadow p-6 relative overflow-hidden border-t-4 border-brand-gold flex flex-col h-full">
+        <div class="absolute top-0 right-0 p-4 opacity-5">
+          <i class="fas fa-cog text-8xl text-brand-gold"></i>
+        </div>
+        <h3 class="font-bold text-brand-blue text-lg mb-4 flex items-center shrink-0 relative z-10 border-b border-gray-100 pb-3">
+          <i class="fas fa-file-signature mr-2 text-brand-gold"></i> Gestión de Formatos
+        </h3>
+        
+        <div class="flex flex-col gap-4 overflow-y-auto pr-2 flex-1 relative z-10">
+          <p class="text-sm text-gray-600 mb-2">Formatos administrativos para el control del ciclo de vida de los documentos del proceso.</p>
+          
+          <a href="#" class="bg-yellow-50 rounded-lg p-4 border border-yellow-100 flex items-start gap-3 hover:border-brand-gold transition-colors group shrink-0">
+            <i class="fas fa-sync-alt mt-1 text-brand-gold group-hover:rotate-180 transition-transform duration-500"></i>
+            <div>
+              <p class="text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1">Actualización</p>
+              <p class="text-sm font-bold text-brand-blue leading-tight">Aprobación Actualización Control Político</p>
+            </div>
+          </a>
+          
+          <a href="#" class="bg-red-50 rounded-lg p-4 border border-red-100 flex items-start gap-3 hover:border-red-400 transition-colors group shrink-0">
+            <i class="fas fa-ban mt-1 text-red-500 group-hover:scale-110 transition-transform"></i>
+            <div>
+              <p class="text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1">Anulación</p>
+              <p class="text-sm font-bold text-red-700 leading-tight">Aprobación Anulación Control Político</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</FormatosLayout>
+
+

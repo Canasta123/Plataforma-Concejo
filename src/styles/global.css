@@ -1,0 +1,354 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-blue: #3359A4;
+  --color-brand-gold: #FFD402;
+  --color-brand-cyan: #0384BA;
+  --color-brand-green: #009741;
+  --color-brand-red: #E30D21;
+
+  --font-sans: 'Lato', 'Inter', system-ui, sans-serif;
+  --font-heading: 'Montserrat', 'Inter', system-ui, sans-serif;
+}
+
+@layer base {
+  @font-face {
+    font-family: 'external-montserrat';
+    src: local('Montserrat');
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #f9fafb;
+    color: #1f2937;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 999px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+}
+
+@layer utilities {
+  .slide-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+  }
+
+  .card-shadow {
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.06);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+  .card-shadow:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.06), 0 12px 32px rgba(0,0,0,0.10);
+  }
+
+  .card-shadow-lg {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.06), 0 16px 40px rgba(0,0,0,0.10);
+  }
+
+  .hover-lift {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .hover-lift:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  }
+
+  .btn-glow {
+    position: relative;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 0 10px rgba(51, 89, 164, 0.4);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .btn-glow:hover {
+    transform: translateY(-4px);
+    background-color: #0384BA !important;
+    color: #ffffff !important;
+    box-shadow:
+      0 0 15px rgba(202, 138, 4, 0.6),
+      0 0 30px rgba(202, 138, 4, 0.4),
+      0 0 45px rgba(202, 138, 4, 0.2);
+    text-shadow: 0 0 5px rgba(255,255,255,0.5);
+  }
+
+  .btn-descargar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    border: 2px solid transparent;
+    cursor: pointer;
+    position: relative;
+    z-index: 20;
+    line-height: 1;
+    white-space: nowrap;
+    user-select: none;
+  }
+  .btn-descargar > * {
+    pointer-events: none;
+  }
+  .btn-descargar:hover {
+    transform: translateY(-2px);
+  }
+
+  .btn-descargar.estrategico {
+    background: #3359A4;
+    color: white;
+    border-color: #1e3a8a;
+  }
+  .btn-descargar.estrategico:hover {
+    background: transparent;
+    color: #3359A4;
+    box-shadow: 0 0 15px rgba(30, 58, 138, 0.5);
+    transform: translateY(-2px);
+  }
+
+  .btn-descargar.misional {
+    background: #009741;
+    color: white;
+    border-color: #009741;
+  }
+  .btn-descargar.misional:hover {
+    background: transparent;
+    color: #009741;
+    box-shadow: 0 0 15px rgba(0, 151, 65, 0.5);
+    transform: translateY(-2px);
+  }
+
+  .btn-descargar.apoyo {
+    background: #FFD402;
+    color: #1f2937;
+    border-color: #FFD402;
+  }
+  .btn-descargar.apoyo:hover {
+    background: transparent;
+    color: #d4a500;
+    box-shadow: 0 0 15px rgba(202, 138, 4, 0.5);
+    transform: translateY(-2px);
+  }
+
+  .btn-descargar.evaluacion {
+    background: #E30D21;
+    color: white;
+    border-color: #E30D21;
+  }
+  .btn-descargar.evaluacion:hover {
+    background: transparent;
+    color: #E30D21;
+    box-shadow: 0 0 15px rgba(227, 13, 33, 0.5);
+    transform: translateY(-2px);
+  }
+
+  /* ── Ver PDF outlined button ─────────────────────────────── */
+  .btn-ver-pdf {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    border: 2px solid transparent;
+    cursor: pointer;
+    background: transparent;
+    position: relative;
+    z-index: 20;
+    line-height: 1;
+    white-space: nowrap;
+    user-select: none;
+  }
+  .btn-ver-pdf > * {
+    pointer-events: none;
+  }
+  .btn-ver-pdf:hover {
+    transform: translateY(-2px);
+  }
+
+  .btn-ver-pdf.estrategico {
+    border-color: #3359A4;
+    color: #3359A4;
+  }
+  .btn-ver-pdf.estrategico:hover {
+    background: #3359A4;
+    color: white;
+    box-shadow: 0 0 15px rgba(51, 89, 164, 0.4);
+  }
+
+  .btn-ver-pdf.misional {
+    border-color: #009741;
+    color: #009741;
+  }
+  .btn-ver-pdf.misional:hover {
+    background: #009741;
+    color: white;
+    box-shadow: 0 0 15px rgba(0, 151, 65, 0.4);
+  }
+
+  .btn-ver-pdf.apoyo {
+    border-color: #d4a500;
+    color: #d4a500;
+  }
+  .btn-ver-pdf.apoyo:hover {
+    background: #FFD402;
+    color: #1f2937;
+    box-shadow: 0 0 15px rgba(202, 138, 4, 0.4);
+  }
+
+  .btn-ver-pdf.evaluacion {
+    border-color: #E30D21;
+    color: #E30D21;
+  }
+  .btn-ver-pdf.evaluacion:hover {
+    background: #E30D21;
+    color: white;
+    box-shadow: 0 0 15px rgba(227, 13, 33, 0.4);
+  }
+
+  .modal-bg {
+    display: none;
+  }
+  .modal-bg.flex {
+    display: flex;
+  }
+
+  .section-title::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 3px;
+    background: var(--color-brand-gold);
+    border-radius: 2px;
+    margin-top: 6px;
+  }
+
+  .icon-bg {
+    position: absolute;
+    right: -16px;
+    bottom: -16px;
+    font-size: 8rem;
+    opacity: 0.04;
+    pointer-events: none;
+  }
+}
+
+@layer components {
+  .category-strategic { border-color: var(--color-brand-blue); }
+  .category-missional  { border-color: var(--color-brand-green); }
+  .category-support    { border-color: var(--color-brand-gold); }
+  .category-evaluation { border-color: var(--color-brand-red); }
+
+  .timeline-point {
+    position: relative;
+    padding-left: 1.5rem;
+  }
+
+  .timeline-point::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--color-brand-blue);
+  }
+
+  .timeline-line::after {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 24px;
+    width: 2px;
+    height: calc(100% + 1rem);
+    background: linear-gradient(to bottom, var(--color-brand-blue), transparent);
+  }
+
+  .stat-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    border-left-width: 4px;
+    border-left-style: solid;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.06);
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes shimmer {
+    0%   { transform: translateX(-200%); }
+    100% { transform: translateX(200%); }
+  }
+
+  @keyframes counterPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.04); }
+  }
+
+  .stat-animate {
+    animation: counterPulse 2s ease-in-out 0.5s 3;
+  }
+
+  /* GSAP sets opacity:0 just before animating each element.
+     This CSS just ensures elements don't flash before GSAP runs.
+     The 300ms fallback reveals them if JS is slow. */
+  .animate-on-scroll {
+    opacity: 0;
+    animation: fadeInFallback 0.4s ease-out 0.3s forwards;
+  }
+
+  @keyframes fadeInFallback {
+    to { opacity: 1; }
+  }
+}

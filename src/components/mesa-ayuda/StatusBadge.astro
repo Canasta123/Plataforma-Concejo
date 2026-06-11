@@ -1,0 +1,17 @@
+---
+type Estado = 'abierto' | 'en_progreso' | 'resuelto' | 'cerrado';
+interface Props { estado: Estado; }
+const { estado } = Astro.props;
+
+const map: Record<Estado, { label: string; cls: string; icon: string }> = {
+  abierto:     { label: 'Abierto',      cls: 'bg-blue-100 text-blue-800 border-blue-200',   icon: 'fa-circle-dot' },
+  en_progreso: { label: 'En Progreso',  cls: 'bg-yellow-100 text-yellow-800 border-yellow-200', icon: 'fa-spinner' },
+  resuelto:    { label: 'Resuelto',     cls: 'bg-green-100 text-green-800 border-green-200',  icon: 'fa-circle-check' },
+  cerrado:     { label: 'Cerrado',      cls: 'bg-gray-100 text-gray-600 border-gray-200',    icon: 'fa-circle-xmark' },
+};
+const { label, cls, icon } = map[estado] ?? map.abierto;
+---
+<span class={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold border ${cls}`}>
+  <i class={`fas ${icon} text-[10px]`}></i>
+  {label}
+</span>

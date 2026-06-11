@@ -1,0 +1,111 @@
+---
+import FormatosLayout from '../../layouts/FormatosLayout.astro';
+import ExplorerCard from '../../components/ExplorerCard.astro';
+---
+
+<FormatosLayout
+  title="Formatos - Administrativa"
+  numero="08"
+  tituloHeader="Formatos e Instrumentos"
+  subtituloHeader="Gestión Administrativa, Financiera y Talento Humano"
+  tipo="apoyo"
+  badge="Listado Maestro"
+  badgeIcon="fas fa-file-alt"
+  rutaActual="/apoyo/administrativa-formatos"
+>
+  <div class="flex flex-col gap-8 h-full overflow-y-auto custom-scroll pr-2 pb-8 pt-2">
+    
+    <!-- Primera fila: Almacén, SST, Manuales y Guías -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="h-[420px]">
+        <ExplorerCard
+          titulo="Almacén"
+          icono="fas fa-warehouse"
+          rutaExplorador="Formatos/8. Gestión Administrativa, Financiera y Talento Humano/Almacén"
+          borderColor="blue"
+          bgIcon="fas fa-boxes"
+        />
+      </div>
+      <div class="h-[420px]">
+        <ExplorerCard
+          titulo="Seguridad y Salud (SST)"
+          icono="fas fa-shield-alt"
+          rutaExplorador="Formatos/8. Gestión Administrativa, Financiera y Talento Humano/SST"
+          borderColor="blue"
+          bgIcon="fas fa-hard-hat"
+        />
+      </div>
+      <div class="h-[420px]">
+        <ExplorerCard
+          titulo="Manuales y Guías"
+          icono="fas fa-book"
+          rutaExplorador="Formatos/8. Gestión Administrativa, Financiera y Talento Humano/Manuales y Guías"
+          borderColor="gold"
+          bgIcon="fas fa-book-reader"
+        />
+      </div>
+    </div>
+
+    <!-- Segunda fila: Talento Humano -->
+    <div class="mt-2 animate-on-scroll">
+      <h3 class="font-bold text-brand-blue text-xl mb-4 flex items-center border-b border-gray-200 pb-3">
+        <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center mr-3 text-brand-gold shadow-sm">
+          <i class="fas fa-user-tie"></i>
+        </div>
+        Subprocesos de Talento Humano
+      </h3>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="h-[420px]">
+          <ExplorerCard
+            titulo="Vinculación"
+            icono="fas fa-user-plus"
+            rutaExplorador="Formatos/8. Gestión Administrativa, Financiera y Talento Humano/Talento Humano/Vinculación"
+            borderColor="blue"
+          />
+        </div>
+        <div class="h-[420px]">
+          <ExplorerCard
+            titulo="Inducción y Cap."
+            icono="fas fa-chalkboard-teacher"
+            rutaExplorador="Formatos/8. Gestión Administrativa, Financiera y Talento Humano/Talento Humano/Inducción y Capacitación"
+            borderColor="blue"
+          />
+        </div>
+        <div class="h-[420px]">
+          <ExplorerCard
+            titulo="Solicitudes"
+            icono="fas fa-paper-plane"
+            rutaExplorador="Formatos/8. Gestión Administrativa, Financiera y Talento Humano/Talento Humano/Solicitudes"
+            borderColor="blue"
+          />
+        </div>
+        <div class="h-[420px]">
+          <ExplorerCard
+            titulo="Legal y Varios"
+            icono="fas fa-gavel"
+            rutaExplorador="Formatos/8. Gestión Administrativa, Financiera y Talento Humano/Talento Humano/Legal y Varios"
+            borderColor="blue"
+          />
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</FormatosLayout>
+
+<style>
+  .custom-scroll::-webkit-scrollbar {
+    width: 6px;
+  }
+  .custom-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scroll::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+  }
+  .custom-scroll::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+</style>

@@ -1,0 +1,21 @@
+---
+interface Props {
+  textoIzquierdo: string;
+  iconoIzquierdo?: string;
+  textoDerecho?: string;
+}
+
+const {
+  textoIzquierdo,
+  iconoIzquierdo = 'fas fa-info-circle',
+  textoDerecho = 'Concejo Municipal de Chía — 2026',
+} = Astro.props;
+---
+
+<footer class="bg-white border-t border-gray-200 flex items-center justify-between px-6 md:px-12 py-2 text-xs text-gray-400 shrink-0">
+  <div class="flex items-center space-x-2">
+    <i class={iconoIzquierdo}></i>
+    <p>{textoIzquierdo}</p>
+  </div>
+  <p class="hidden sm:block">{textoDerecho}</p>
+</footer>

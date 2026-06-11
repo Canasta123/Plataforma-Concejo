@@ -1,0 +1,106 @@
+---
+import MesaAyudaLayout from '../../../../layouts/MesaAyudaLayout.astro';
+import StatusBadge from '../../../../components/mesa-ayuda/StatusBadge.astro';
+import PriorityBadge from '../../../../components/mesa-ayuda/PriorityBadge.astro';
+import SlaIndicator from '../../../../components/mesa-ayuda/SlaIndicator.astro';
+import TicketDetail from '../../../../components/mesa-ayuda/interactive/TicketDetail.svelte';
+import { getSession } from '../../../../lib/auth';
+import { supabase } from '../../../../lib/supabase';
+
+const session = await getSession(Astro.cookies);
+if (!session) return Astro.redirect('/mesa-ayuda/login');
+if (session.rol !== 'agente') return Astro.redirect('/mesa-ayuda');
+
+const { id } = Astro.params;
+
+const { data: ticket } = await supabase
+  .from('tickets')
+  .select('*')
+  .eq('id', id)
+  .single();
+
+if (!ticket) return Astro.redirect('/mesa-ayuda/agente');
+
+const { data: trazabilidad } = await supabase
+  .from('trazabilidad')
+  .select('*, autor:autor_id(nombre, cargo)')
+  .eq('ticket_id', id)
+  .order('created_at', { ascending: true });
+
+const [{ data: creador }, { data: agente }] = await Promise.all([
+  supabase.from('usuarios').select('nombre, correo, cargo').eq('id', ticket.creador_id).single(),
+  ticket.agente_id
+    ? supabase.from('usuarios').select('nombre, cargo').eq('id', ticket.agente_id).single()
+    : Promise.resolve({ data: null }),
+]);
+---
+<MesaAyudaLayout title={`Agente · ${ticket.codigo}`} session={session}>
+  <div class="max-w-5xl mx-auto px-4 py-8">
+
+    <a href="/mesa-ayuda/agente" class="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-gray-600 mb-6 transition-colors">
+      <i class="fas fa-arrow-left text-xs"></i> Volver a la consola
+    </a>
+
+    <!-- Ticket header -->
+    <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 mb-6">
+      <div class="flex items-start justify-between gap-4 mb-4">
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center gap-2 flex-wrap mb-2">
+            <span class="text-xs font-mono font-bold text-gray-400">{ticket.codigo}</span>
+            <StatusBadge estado={ticket.estado} />
+            <PriorityBadge prioridad={ticket.prioridad} />
+          </div>
+          <h1 class="text-xl font-bold text-gray-900">{ticket.titulo}</h1>
+        </div>
+        <div class="shrink-0 w-36">
+          <SlaIndicator
+            fechaCreacion={ticket.fecha_creacion}
+            fechaLimite={ticket.fecha_limite}
+            estado={ticket.estado}
+          />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs text-gray-500 border-t border-gray-100 pt-4">
+        <div>
+          <span class="font-semibold text-gray-400 block">Solicitante</span>
+          <span class="text-gray-700">{creador?.nombre ?? '—'}</span>
+          {creador?.correo && <span class="text-gray-400 block">{creador.correo}</span>}
+        </div>
+        <div>
+          <span class="font-semibold text-gray-400 block">Categoría</span>
+          <span class="capitalize text-gray-700">{ticket.categoria}</span>
+        </div>
+        <div>
+          <span class="font-semibold text-gray-400 block">Agente asignado</span>
+          <span class="text-gray-700">{agente ? agente.nombre : 'Sin asignar'}</span>
+        </div>
+        <div>
+          <span class="font-semibold text-gray-400 block">Creado</span>
+          <span class="text-gray-700">{new Date(ticket.fecha_creacion).toLocaleString('es-CO', { timeZone: 'America/Bogota', dateStyle: 'medium', timeStyle: 'short' })}</span>
+        </div>
+        <div>
+          <span class="font-semibold text-gray-400 block">Límite SLA</span>
+          <span class="text-gray-700">{new Date(ticket.fecha_limite).toLocaleString('es-CO', { timeZone: 'America/Bogota', dateStyle: 'medium', timeStyle: 'short' })}</span>
+        </div>
+      </div>
+
+      {ticket.descripcion && (
+        <div class="mt-4 border-t border-gray-100 pt-4">
+          <p class="text-xs font-semibold text-gray-400 mb-1.5">Descripción del solicitante</p>
+          <p class="text-sm text-gray-700 whitespace-pre-wrap break-words leading-relaxed">{ticket.descripcion}</p>
+        </div>
+      )}
+    </div>
+
+    <!-- Interactive controls + history -->
+    <TicketDetail
+      client:load
+      ticket={ticket}
+      trazabilidad={trazabilidad ?? []}
+      sessionRol={session.rol}
+      sessionId={session.id}
+    />
+
+  </div>
+</MesaAyudaLayout>

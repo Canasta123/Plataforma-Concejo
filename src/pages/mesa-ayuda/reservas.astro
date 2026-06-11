@@ -1,0 +1,16 @@
+---
+import MesaAyudaLayout from '../../layouts/MesaAyudaLayout.astro';
+import ReservaCalendar from '../../components/mesa-ayuda/interactive/ReservaCalendar.svelte';
+import { getSession } from '../../lib/auth';
+
+const session = await getSession(Astro.cookies);
+if (!session) return Astro.redirect('/mesa-ayuda/login');
+---
+
+<MesaAyudaLayout title="Reservas de Recursos">
+  <ReservaCalendar
+    client:load
+    userRol={session.rol}
+    userId={session.id}
+  />
+</MesaAyudaLayout>

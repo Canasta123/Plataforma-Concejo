@@ -1,0 +1,66 @@
+[
+  {
+    "id": "kb-001",
+    "titulo": "No puedo iniciar sesión en el sistema",
+    "categoria": "software",
+    "tags": ["contraseña", "acceso", "login", "sesión"],
+    "resumen": "Pasos para recuperar el acceso cuando no puedes ingresar al sistema.",
+    "contenido": "Si no puedes iniciar sesión, sigue estos pasos en orden:\n\n1. Verifica que estás usando el correo institucional correcto (usuario@cmc.gov.co).\n2. Comprueba que el BLOQ MAYÚS no esté activado al escribir la contraseña.\n3. Intenta restablecer tu contraseña desde el enlace '¿Olvidaste tu contraseña?' en la pantalla de ingreso.\n4. Limpia la caché y las cookies de tu navegador (Ctrl + Shift + Delete) y vuelve a intentarlo.\n5. Prueba con un navegador diferente (Chrome, Edge, Firefox).\n6. Si el problema persiste después de estos pasos, radica un ticket indicando el mensaje de error exacto que ves."
+  },
+  {
+    "id": "kb-002",
+    "titulo": "El sistema va muy lento o se congela",
+    "categoria": "software",
+    "tags": ["lento", "congelado", "rendimiento", "velocidad"],
+    "resumen": "Qué hacer cuando el sistema o el navegador responde con lentitud.",
+    "contenido": "La lentitud puede deberse a varios factores. Prueba lo siguiente:\n\n1. Cierra las pestañas del navegador que no estás usando — cada pestaña consume memoria.\n2. Reinicia el navegador completamente.\n3. Verifica tu conexión a internet: abre speedtest.net y comprueba que tienes al menos 5 Mbps de bajada.\n4. Reinicia tu equipo si llevas varias horas trabajando sin hacerlo.\n5. Revisa si hay actualizaciones de Windows pendientes que puedan estar ejecutándose en segundo plano.\n6. Si el problema ocurre solo en el sistema del Concejo y no en otras páginas, radica un ticket con capturas de pantalla y la hora exacta del incidente."
+  },
+  {
+    "id": "kb-003",
+    "titulo": "No se imprime correctamente / la impresora no responde",
+    "categoria": "hardware",
+    "tags": ["impresora", "imprimir", "papel", "tóner"],
+    "resumen": "Solución a los problemas más comunes con impresoras de oficina.",
+    "contenido": "Cuando la impresora no responde o imprime incorrectamente:\n\n1. Verifica que la impresora esté encendida y conectada (revisa el cable USB o la conexión WiFi).\n2. Comprueba que haya papel cargado correctamente y que no haya atascos.\n3. Revisa el nivel de tóner o tinta desde el panel de la impresora.\n4. En Windows, ve a Configuración → Impresoras y escáneres, selecciona la impresora y haz clic en 'Abrir cola'. Si hay trabajos atascados, cancélalos todos.\n5. Apaga la impresora, espera 30 segundos y vuelve a encenderla.\n6. Si la impresora aparece como 'Sin conexión', haz clic derecho sobre ella en Windows → Ver qué se está imprimiendo → Impresora → Usar impresora sin conexión (para desmarcar esa opción).\n7. Si ningún paso funciona, radica un ticket con el modelo de impresora y el mensaje de error."
+  },
+  {
+    "id": "kb-004",
+    "titulo": "Sin acceso a internet o la red es inestable",
+    "categoria": "redes",
+    "tags": ["internet", "red", "wifi", "ethernet", "conexión", "cable"],
+    "resumen": "Diagnóstico básico cuando no hay conexión a internet o la red falla.",
+    "contenido": "Si no tienes internet o la conexión es intermitente:\n\n1. Revisa si otros equipos en la misma oficina tienen el mismo problema. Si es así, el problema es de la red general y debes reportarlo directamente a soporte.\n2. Si solo tu equipo tiene el problema, verifica el cable de red: desconéctalo y vuelve a conectarlo firmemente.\n3. Si usas WiFi, desconéctate de la red y vuelve a conectarte.\n4. Reinicia el adaptador de red: ve a Panel de control → Centro de redes → Cambiar configuración del adaptador → clic derecho sobre tu adaptador → Deshabilitar, espera 10 segundos y habilítalo de nuevo.\n5. Abre el símbolo del sistema (cmd) y escribe: `ipconfig /flushdns` seguido de Enter.\n6. Si el problema continúa, radica un ticket indicando: si es WiFi o cable, tu ubicación física y cuándo comenzó el problema."
+  },
+  {
+    "id": "kb-005",
+    "titulo": "Cómo solicitar instalación de software",
+    "categoria": "software",
+    "tags": ["instalar", "programa", "aplicación", "software", "licencia"],
+    "resumen": "Procedimiento para solicitar la instalación de un programa nuevo en tu equipo.",
+    "contenido": "Para instalar software en equipos institucionales debes seguir el proceso formal:\n\n1. Verifica primero si el software que necesitas ya está disponible en tu equipo o en el servidor de aplicaciones.\n2. Si no está disponible, radica un ticket en la Mesa de Ayuda con:\n   - Nombre exacto del software y versión requerida\n   - Justificación del uso (para qué proceso o tarea lo necesitas)\n   - Si requieres licencia o es gratuito/de código abierto\n3. El área de TI evaluará la solicitud y la compatibilidad con los sistemas del Concejo.\n4. Una vez aprobado, se coordinará una cita para la instalación. No intentes instalar software por tu cuenta — los equipos tienen restricciones de administrador por políticas de seguridad.\n5. El tiempo de respuesta estimado es de 24 a 72 horas según la prioridad asignada."
+  },
+  {
+    "id": "kb-006",
+    "titulo": "El correo institucional no envía ni recibe mensajes",
+    "categoria": "software",
+    "tags": ["correo", "email", "outlook", "gmail", "mensajes", "bandeja"],
+    "resumen": "Pasos cuando el correo electrónico institucional no funciona.",
+    "contenido": "Si tienes problemas con el correo institucional:\n\n1. Verifica tu conexión a internet — el correo requiere conectividad.\n2. Comprueba si el problema es solo con el cliente de escritorio (Outlook) o también en la versión web. Si en la web funciona, el problema es la configuración del cliente.\n3. En Outlook: ve a Enviar/Recibir → Actualizar carpeta. Si aparece un error de sincronización, anótalo.\n4. Verifica que tu contraseña no haya expirado — si cambiaste la contraseña de red recientemente, debes actualizarla también en Outlook.\n5. Revisa la carpeta de Spam/Correo no deseado si no recibes mensajes específicos.\n6. Comprueba tu cuota de almacenamiento: si el buzón está lleno no podrás recibir nuevos correos. Elimina o archiva correos antiguos.\n7. Si el problema persiste, radica un ticket con el mensaje de error exacto y el nombre del remitente/destinatario afectado."
+  },
+  {
+    "id": "kb-007",
+    "titulo": "Mi equipo no enciende o se apaga solo",
+    "categoria": "hardware",
+    "tags": ["apagar", "encender", "no enciende", "bloqueo", "pantalla azul", "BSOD"],
+    "resumen": "Qué hacer cuando el computador no inicia o se apaga inesperadamente.",
+    "contenido": "Cuando el equipo no enciende o se apaga solo:\n\n**Si no enciende:**\n1. Verifica que el cable de poder esté bien conectado al equipo y al tomacorriente.\n2. Comprueba que la regleta de energía esté encendida y funcionando.\n3. Presiona el botón de encendido durante 5 segundos para forzar un apagado completo, luego vuelve a encenderlo.\n4. Si el equipo es portátil, intenta conectarlo directamente a la corriente sin la batería.\n\n**Si se apaga solo:**\n1. Esto puede indicar sobrecalentamiento — verifica que las rejillas de ventilación no estén bloqueadas por polvo u objetos.\n2. Anota la hora exacta y qué estabas haciendo cuando se apagó.\n3. Si aparece pantalla azul (BSOD), fotografía el código de error antes de que se reinicie.\n4. Radica un ticket inmediatamente — los apagados repentinos pueden indicar falla de hardware."
+  },
+  {
+    "id": "kb-008",
+    "titulo": "Cómo compartir archivos entre compañeros de forma segura",
+    "categoria": "redes",
+    "tags": ["compartir", "archivos", "carpeta", "red", "drive", "sharepoint"],
+    "resumen": "Métodos aprobados para compartir documentos con colegas.",
+    "contenido": "Para compartir archivos de forma segura usa los canales institucionales:\n\n**Opción 1 — Carpetas de red compartidas:**\n- Accede a las carpetas compartidas desde el Explorador de archivos: \\\\servidor\\compartidos\n- Solo coloca allí documentos de trabajo, no información personal ni confidencial sin cifrar.\n\n**Opción 2 — Correo institucional:**\n- Para archivos pequeños (menos de 10 MB) puedes adjuntarlos al correo.\n- Para archivos grandes, usa el almacenamiento en la nube institucional.\n\n**Opción 3 — SharePoint/OneDrive institucional (si está habilitado):**\n- Usa el enlace de colaboración institucional. Nunca uses cuentas personales de Google Drive o Dropbox para documentos del Concejo.\n\n**Reglas importantes:**\n- No envíes información de actas, contratos o datos personales por WhatsApp o redes sociales.\n- Si necesitas compartir un archivo y no sabes cómo, radica un ticket y te asesoramos."
+  }
+]

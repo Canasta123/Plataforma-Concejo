@@ -1,0 +1,10 @@
+[
+  { "carpeta": "Plan de Acción CMC",               "icono": "fas fa-clipboard-list",    "color": "text-blue-500" },
+  { "carpeta": "Plan Estratégico",                  "icono": "fas fa-route",             "color": "text-blue-500" },
+  { "carpeta": "Manual de Calidad",                 "icono": "fas fa-book-open",         "color": "text-blue-500" },
+  { "carpeta": "Mapa de Procesos",                  "icono": "fas fa-project-diagram",   "color": "text-blue-500" },
+  { "carpeta": "Normatividad",                      "icono": "fas fa-gavel",             "color": "text-blue-500" },
+  { "carpeta": "Cambio Climático",                  "icono": "fas fa-leaf",              "color": "text-green-500" },
+  { "carpeta": "FORMATOS GENERALES SGC 2025",       "icono": "fas fa-file-contract",     "color": "text-blue-500" },
+  { "carpeta": "Riesgos y oportunidades",           "icono": "fas fa-exclamation-triangle", "color": "text-yellow-500" }
+]

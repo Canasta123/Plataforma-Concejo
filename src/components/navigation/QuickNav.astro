@@ -1,0 +1,103 @@
+---
+import procesos from '../../data/procesos.json';
+
+const procesosOrdered = procesos.sort((a, b) => parseInt(a.numero) - parseInt(b.numero));
+
+const dotColor = {
+  estrategico: 'bg-blue-700',
+  misional:    'bg-green-700',
+  apoyo:       'bg-yellow-500',
+  evaluacion:  'bg-red-600',
+};
+
+const currentPath = Astro.url.pathname;
+let currentProcess = null;
+
+for (const p of procesos) {
+  if (currentPath === p.ruta || (p.subpaginas && p.subpaginas.some(sub => currentPath === sub.ruta))) {
+    currentProcess = p;
+    break;
+  }
+}
+if (!currentProcess) {
+  for (const p of procesos) {
+    if (currentPath.startsWith(p.ruta)) {
+      currentProcess = p;
+      break;
+    }
+  }
+}
+
+const mainIcon = currentProcess ? currentProcess.icono : 'fas fa-map-marked-alt';
+---
+
+<!-- QuickNav: small toggle button top-left, panel expands on click -->
+<div id="quicknav-root" class="fixed top-20 left-3 z-40 hidden lg:block">
+  <!-- Toggle button -->
+  <button
+    id="quicknav-toggle"
+    class="w-9 h-9 rounded-full bg-white border border-gray-200 shadow-md flex items-center justify-center text-gray-500 hover:text-brand-blue hover:border-brand-blue hover:shadow-lg transition-all duration-200"
+    title="Accesos rápidos"
+    aria-label="Abrir navegación rápida"
+    aria-expanded="false"
+    data-main-icon={mainIcon}
+    onclick="
+      const panel = document.getElementById('quicknav-panel');
+      const btn = document.getElementById('quicknav-toggle');
+      const hidden = panel.classList.toggle('hidden');
+      btn.setAttribute('aria-expanded', String(!hidden));
+      const mIcon = btn.getAttribute('data-main-icon');
+      btn.querySelector('i').className = hidden ? mIcon + ' text-sm' : 'fas fa-times text-sm text-brand-blue';
+    "
+  >
+    <i class={`${mainIcon} text-sm`} style={currentProcess ? `color: ${currentProcess.color};` : ''}></i>
+  </button>
+
+  <!-- Dropdown panel (hidden by default) -->
+  <div
+    id="quicknav-panel"
+    class="hidden absolute top-11 left-0 w-60 bg-white rounded-xl shadow-2xl border border-gray-100 overflow-hidden"
+  >
+    <!-- Header -->
+    <div class="px-4 py-2.5 border-b border-gray-100 bg-gray-50/60">
+      <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Accesos Rápidos</p>
+    </div>
+
+    <!-- Links -->
+    <nav class="py-1 max-h-[60vh] overflow-y-auto">
+      {procesosOrdered.map((proceso) => (
+        <a
+          href={proceso.ruta}
+          class="flex items-center gap-3 px-3 py-2 hover:bg-gray-50 transition-colors group"
+          onclick="document.getElementById('quicknav-panel').classList.add('hidden'); const mIcon = document.getElementById('quicknav-toggle').getAttribute('data-main-icon'); document.getElementById('quicknav-toggle').querySelector('i').className = mIcon + ' text-sm';"
+        >
+          <div class={`w-5 h-5 rounded-md flex items-center justify-center shrink-0 ${dotColor[proceso.tipo]} bg-opacity-15`}>
+            <i class={`${proceso.icono} text-[10px] ${dotColor[proceso.tipo].replace('bg-', 'text-')}`}></i>
+          </div>
+          <div class="min-w-0">
+            <span class="text-[9px] font-bold text-gray-400 uppercase tracking-wider block leading-none">{proceso.numero}</span>
+            <span class="text-xs font-semibold text-gray-700 group-hover:text-brand-blue transition-colors leading-tight truncate block">{proceso.nombre}</span>
+          </div>
+        </a>
+      ))}
+    </nav>
+  </div>
+</div>
+
+<!-- Close panel when clicking outside -->
+<script is:inline>
+  document.addEventListener('click', function(e) {
+    const root = document.getElementById('quicknav-root');
+    if (root && !root.contains(e.target)) {
+      const panel = document.getElementById('quicknav-panel');
+      const btn = document.getElementById('quicknav-toggle');
+      if (panel && !panel.classList.contains('hidden')) {
+        panel.classList.add('hidden');
+        if (btn) {
+          const mIcon = btn.getAttribute('data-main-icon') || 'fas fa-map-marked-alt';
+          btn.querySelector('i').className = mIcon + ' text-sm';
+        }
+      }
+    }
+  });
+</script>

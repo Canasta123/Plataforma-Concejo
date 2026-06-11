@@ -1,0 +1,14 @@
+---
+import { getSession } from '../../lib/auth';
+
+const session = await getSession(Astro.cookies);
+if (!session) return Astro.redirect('/mesa-ayuda/login');
+
+const destino =
+  session.rol === 'admin'    ? '/mesa-ayuda/admin' :
+  session.rol === 'agente'   ? '/mesa-ayuda/agente' :
+  session.rol === 'auditor'  ? '/mesa-ayuda/auditor' :
+                               '/mesa-ayuda/dashboard';
+
+return Astro.redirect(destino, 302);
+---

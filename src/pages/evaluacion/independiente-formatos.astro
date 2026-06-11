@@ -1,0 +1,55 @@
+---
+import FormatosLayout from '../../layouts/FormatosLayout.astro';
+import ExplorerCard from '../../components/ExplorerCard.astro';
+---
+
+<FormatosLayout
+  title="Formatos y Guías - Evaluación"
+  numero="09"
+  tituloHeader="Formatos y Guías"
+  subtituloHeader="Evaluación Independiente"
+  tipo="evaluacion"
+  badge="Control Interno"
+  badgeIcon="fas fa-file-invoice"
+  rutaActual="/evaluacion/independiente-formatos"
+>
+  <div class="flex flex-col lg:flex-row h-full gap-6">
+    <div class="w-full lg:w-2/3 h-full flex flex-col bg-white rounded-xl card-shadow p-6 relative overflow-hidden border-t-4 border-red-700">
+      <div class="absolute top-0 right-0 p-4 opacity-5 pointer-events-none">
+        <i class="fas fa-clipboard-check text-9xl text-red-700"></i>
+      </div>
+      <h3 class="font-bold text-red-700 text-xl mb-6 flex items-center relative z-10 shrink-0">
+        <i class="fas fa-tasks mr-2 text-red-700"></i> Formatos y Planes de Auditoría
+      </h3>
+      <div class="grid grid-cols-3 gap-4 relative z-10 flex-1 content-start">
+        <ExplorerCard
+          titulo="Planificación"
+          icono="fas fa-calendar-alt"
+          rutaExplorador="Formatos/9. Evaluación Independiente/Formatos y Planes de Auditoría/Planificación"
+          borderColor="red"
+        />
+        <ExplorerCard
+          titulo="Informes"
+          icono="fas fa-file-contract"
+          rutaExplorador="Formatos/9. Evaluación Independiente/Formatos y Planes de Auditoría/Informes"
+          borderColor="red"
+        />
+        <ExplorerCard
+          titulo="Mejoramiento"
+          icono="fas fa-chart-line"
+          rutaExplorador="Formatos/9. Evaluación Independiente/Formatos y Planes de Auditoría/Mejoramiento"
+          borderColor="red"
+        />
+      </div>
+    </div>
+    <div class="w-full lg:w-1/3 h-full">
+      <ExplorerCard
+        titulo="Guías y Referentes"
+        icono="fas fa-book"
+        rutaExplorador="Formatos/9. Evaluación Independiente/Guías y Referentes"
+        borderColor="red"
+        bgIcon="fas fa-book-reader"
+      />
+    </div>
+  </div>
+</FormatosLayout>

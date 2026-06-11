@@ -1,0 +1,56 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ProcessNav from '../components/navigation/ProcessNav.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  numero: string;
+  tituloHeader: string;
+  subtituloHeader?: string;
+  tipo: 'estrategico' | 'misional' | 'apoyo' | 'evaluacion';
+  badge?: string;
+  badgeIcon?: string;
+  footerTexto?: string;
+  footerIcono?: string;
+  rutaActual: string;
+}
+
+const {
+  title,
+  description,
+  numero,
+  tituloHeader,
+  subtituloHeader,
+  tipo,
+  badge,
+  badgeIcon,
+  footerTexto = 'Sistema de Gestión de Calidad',
+  footerIcono = 'fas fa-info-circle',
+  rutaActual,
+} = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="slide-container h-screen overflow-hidden">
+    <Header
+      titulo={tituloHeader}
+      subtitulo={subtituloHeader}
+      numero={numero}
+      tipo={tipo}
+      badge={badge}
+      badgeIcon={badgeIcon}
+    />
+
+    <main class="flex-1 min-h-0 p-6 md:p-8 overflow-y-auto">
+      <div class="h-full w-full">
+        <slot />
+      </div>
+    </main>
+
+    <Footer textoIzquierdo={footerTexto} iconoIzquierdo={footerIcono} />
+    <ProcessNav rutaActual={rutaActual} />
+  </div>
+</BaseLayout>

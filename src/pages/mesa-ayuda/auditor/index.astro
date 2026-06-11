@@ -1,0 +1,150 @@
+---
+import MesaAyudaLayout from '../../../layouts/MesaAyudaLayout.astro';
+import AuditorCharts from '../../../components/mesa-ayuda/interactive/AuditorCharts.svelte';
+import StatusBadge from '../../../components/mesa-ayuda/StatusBadge.astro';
+import ExportExcelModal from '../../../components/mesa-ayuda/interactive/ExportExcelModal.svelte';
+import { getSession } from '../../../lib/auth';
+import { supabase } from '../../../lib/supabase';
+
+const session = await getSession(Astro.cookies);
+if (!session) return Astro.redirect('/mesa-ayuda/login');
+if (session.rol !== 'auditor' && session.rol !== 'admin') return Astro.redirect('/mesa-ayuda');
+
+// Cargar métricas server-side para el componente Svelte
+const [{ data: tickets }, { data: usuarios }] = await Promise.all([
+  supabase.from('tickets').select('*').order('fecha_creacion', { ascending: false }),
+  supabase.from('usuarios').select('id, nombre, cargo, rol'),
+]);
+
+const { data: agentes } = await supabase
+  .from('usuarios')
+  .select('id, nombre')
+  .eq('rol', 'agente')
+  .eq('activo', true)
+  .order('nombre');
+
+const all = tickets ?? [];
+
+const porEstado = {
+  abierto:     all.filter(t => t.estado === 'abierto').length,
+  en_progreso: all.filter(t => t.estado === 'en_progreso').length,
+  resuelto:    all.filter(t => t.estado === 'resuelto').length,
+  cerrado:     all.filter(t => t.estado === 'cerrado').length,
+};
+const porPrioridad = {
+  alta:  all.filter(t => t.prioridad === 'alta').length,
+  media: all.filter(t => t.prioridad === 'media').length,
+  baja:  all.filter(t => t.prioridad === 'baja').length,
+};
+const porCategoria = {
+  hardware: all.filter(t => t.categoria === 'hardware').length,
+  software: all.filter(t => t.categoria === 'software').length,
+  redes:    all.filter(t => t.categoria === 'redes').length,
+  otro:     all.filter(t => t.categoria === 'otro').length,
+};
+
+const terminados = all.filter(t => t.estado === 'resuelto' || t.estado === 'cerrado');
+const dentroSla  = terminados.filter(t => {
+  const cierre = new Date(t.updated_at ?? t.fecha_creacion).getTime();
+  return cierre <= new Date(t.fecha_limite).getTime();
+}).length;
+
+const sla = {
+  total:     terminados.length,
+  cumplidos: dentroSla,
+  pct:       terminados.length > 0 ? Math.round((dentroSla / terminados.length) * 100) : 0,
+};
+
+const vencidos = all.filter(t => {
+  if (t.estado === 'resuelto' || t.estado === 'cerrado') return false;
+  return Date.now() > new Date(t.fecha_limite).getTime();
+}).length;
+
+const hace30 = Date.now() - 30 * 24 * 3600 * 1000;
+const porDia: Record<string, number> = {};
+all.filter(t => new Date(t.fecha_creacion).getTime() >= hace30).forEach(t => {
+  const dia = t.fecha_creacion.slice(0, 10);
+  porDia[dia] = (porDia[dia] ?? 0) + 1;
+});
+const diasOrdenados = Object.keys(porDia).sort();
+const volumen = { labels: diasOrdenados, data: diasOrdenados.map(d => porDia[d]) };
+
+const chartData = { total: all.length, porEstado, porPrioridad, porCategoria, sla, vencidos, volumen };
+
+// Últimos 10 tickets para tabla de evidencia
+const recientes = all.slice(0, 10);
+---
+<MesaAyudaLayout title="Panel de Auditoría" session={session}>
+  <div class="max-w-6xl mx-auto px-4 py-8">
+
+    <div class="flex items-center justify-between mb-8">
+      <div>
+        <h1 class="text-2xl font-bold text-gray-900">Panel de Auditoría</h1>
+        <p class="text-sm text-gray-500 mt-0.5">Métricas y trazabilidad del sistema</p>
+      </div>
+      <button
+        onclick="document.getElementById('exportModalAuditor').classList.toggle('hidden')"
+        class="flex items-center gap-2 px-4 py-2.5 rounded-xl font-bold text-sm text-gray-700 border border-gray-200 hover:border-gray-300 bg-white transition-all"
+      >
+        <i class="fas fa-file-excel text-green-600"></i> Exportar Excel
+      </button>
+    </div>
+    <!-- Export modal -->
+    <div id="exportModalAuditor" class="hidden mb-6">
+      <ExportExcelModal client:load rol="auditor" agentes={agentes ?? []} />
+    </div>
+
+    <!-- Gráficas interactivas -->
+    <AuditorCharts client:load data={chartData} />
+
+    <!-- Tabla de tickets recientes con enlace a evidencia -->
+    <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 mt-2">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-sm font-bold text-gray-700">Tickets Recientes — Evidencia</h2>
+        <span class="text-xs text-gray-400">Últimos 10</span>
+      </div>
+
+      {recientes.length === 0 ? (
+        <p class="text-sm text-gray-400 text-center py-8">Sin tickets registrados.</p>
+      ) : (
+        <div class="overflow-x-auto">
+          <table class="w-full text-xs">
+            <thead>
+              <tr class="border-b border-gray-100">
+                <th class="text-left py-2 px-3 font-semibold text-gray-500">Código</th>
+                <th class="text-left py-2 px-3 font-semibold text-gray-500">Título</th>
+                <th class="text-left py-2 px-3 font-semibold text-gray-500">Estado</th>
+                <th class="text-left py-2 px-3 font-semibold text-gray-500">Prioridad</th>
+                <th class="text-left py-2 px-3 font-semibold text-gray-500">Creado</th>
+                <th class="text-right py-2 px-3 font-semibold text-gray-500">Evidencia</th>
+              </tr>
+            </thead>
+            <tbody>
+              {recientes.map(t => (
+                <tr class="border-b border-gray-50 hover:bg-gray-50 transition-colors">
+                  <td class="py-2.5 px-3 font-mono text-gray-400">{t.codigo}</td>
+                  <td class="py-2.5 px-3 text-gray-800 max-w-[200px] truncate">{t.titulo}</td>
+                  <td class="py-2.5 px-3"><StatusBadge estado={t.estado} /></td>
+                  <td class="py-2.5 px-3 capitalize text-gray-600">{t.prioridad}</td>
+                  <td class="py-2.5 px-3 text-gray-400">
+                    {new Date(t.fecha_creacion).toLocaleDateString('es-CO', { timeZone: 'America/Bogota', dateStyle: 'short' })}
+                  </td>
+                  <td class="py-2.5 px-3 text-right">
+                    <a
+                      href={`/api/mesa-ayuda/tickets/${t.id}/pdf`}
+                      target="_blank"
+                      class="inline-flex items-center gap-1 text-blue-600 hover:text-blue-800 font-semibold transition-colors"
+                    >
+                      <i class="fas fa-file-alt text-[10px]"></i> Ver PDF
+                    </a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </div>
+
+  </div>
+</MesaAyudaLayout>

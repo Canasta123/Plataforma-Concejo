@@ -1,0 +1,22 @@
+---
+interface Props {
+  tipo: 'inicio' | 'fin';
+  titulo?: string;
+  descripcion: string;
+}
+
+const { tipo, titulo, descripcion } = Astro.props;
+
+const isInicio = tipo === 'inicio';
+const label  = titulo ?? (isInicio ? 'Inicio' : 'Fin');
+const cls    = isInicio
+  ? 'bg-green-50 border-green-100 text-green-700'
+  : 'bg-red-50 border-red-100 text-red-700';
+const labelCls = isInicio ? 'text-green-700' : 'text-red-700';
+---
+
+<div class="timeline-point mb-8 last:mb-0 animate-on-scroll">
+  {isInicio && <div class="timeline-line"></div>}
+  <h4 class={`text-sm font-bold uppercase mb-1 ${labelCls}`}>{label}</h4>
+  <p class={`${cls} border p-3 rounded-lg text-sm text-gray-600`} set:html={descripcion} />
+</div>

@@ -1,0 +1,196 @@
+---
+import ProcesoLayout from '../../layouts/ProcesoLayout.astro';
+import FileExplorer from '../../components/interactive/FileExplorer.svelte';
+---
+
+<ProcesoLayout
+  title="Procedimientos - Gestión Jurídica"
+  numero="06"
+  tituloHeader="Procedimientos Jurídicos"
+  subtituloHeader="Gestión Jurídica y Contractual"
+  tipo="apoyo"
+  badge="3 Procedimientos + Formatos"
+  badgeIcon="fas fa-layer-group"
+  rutaActual="/apoyo/juridica-procedimientos"
+>
+  <div class="flex flex-col gap-6">
+    <!-- Top Section: Subprocesses Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      
+      <!-- Card 1: Actividad Litigiosa -->
+      <div class="bg-white rounded-xl card-shadow flex flex-col relative pt-2 px-6 pb-6 animate-on-scroll">
+        <div class="flex justify-center mb-2">
+          <a href="/C-Procedimientos/PROCEDIMIENTO ACTIVIDAD LITIGIOSA.pdf" download target="_blank" class="w-16 h-16 rounded-full bg-yellow-50 flex items-center justify-center text-brand-gold hover:bg-brand-gold hover:text-white transition-colors duration-300 shadow-sm border border-yellow-100 group">
+            <i class="fas fa-balance-scale text-2xl group-hover:hidden"></i>
+            <i class="fas fa-download text-2xl hidden group-hover:block"></i>
+          </a>
+        </div>
+        <h3 class="text-center font-bold text-brand-blue text-lg leading-tight mb-4 min-h-[3rem] flex items-center justify-center">
+          Actividad Litigiosa
+        </h3>
+        <div class="flex-1 space-y-4">
+          <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
+            <div class="flex items-center gap-2 mb-1">
+              <i class="fas fa-user-tie text-brand-gold text-xs"></i>
+              <p class="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Encargado</p>
+            </div>
+            <p class="text-sm text-gray-800 font-medium leading-snug">Profesional Universitario (Jurídica), Dir. Adm. y Fin., Sec. General</p>
+          </div>
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <i class="fas fa-bullseye text-brand-blue text-xs"></i>
+              <p class="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Objetivo</p>
+            </div>
+            <p class="text-xs text-gray-600 leading-snug text-justify">
+              Adelantar actividades para la defensa de los derechos del Concejo Municipal ante autoridades judiciales y administrativas.
+            </p>
+          </div>
+          <div class="mt-auto">
+            <div class="flex items-center gap-2 mb-2">
+              <i class="fas fa-route text-green-600 text-xs"></i>
+              <p class="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Alcance</p>
+            </div>
+            <div class="relative border-l-2 border-green-200 pl-4 py-1 space-y-3">
+              <div class="relative">
+                <div class="absolute -left-[21px] top-1.5 w-2.5 h-2.5 rounded-full bg-green-500 border-2 border-white"></div>
+                <p class="text-xs text-gray-600"><span class="font-bold text-gray-800">Inicio:</span> Notificación o decisión de acción.</p>
+              </div>
+              <div class="relative">
+                <div class="absolute -left-[21px] top-1.5 w-2.5 h-2.5 rounded-full bg-red-500 border-2 border-white"></div>
+                <p class="text-xs text-gray-600"><span class="font-bold text-gray-800">Fin:</span> Sentencia o decisión final.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Asesoría Jurídica -->
+      <div class="bg-white rounded-xl card-shadow flex flex-col relative pt-2 px-6 pb-6 animate-on-scroll" style="animation-delay: 0.1s;">
+        <div class="flex justify-center mb-2">
+          <a href="/C-Procedimientos/PROCEDIMIENTO ASESORÍA JURÍDICA.pdf" download target="_blank" class="w-16 h-16 rounded-full bg-yellow-50 flex items-center justify-center text-brand-gold hover:bg-brand-gold hover:text-white transition-colors duration-300 shadow-sm border border-yellow-100 group">
+            <i class="fas fa-hands-helping text-2xl group-hover:hidden"></i>
+            <i class="fas fa-download text-2xl hidden group-hover:block"></i>
+          </a>
+        </div>
+        <h3 class="text-center font-bold text-brand-blue text-lg leading-tight mb-4 min-h-[3rem] flex items-center justify-center">
+          Asesoría Jurídica
+        </h3>
+        <div class="flex-1 space-y-4">
+          <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
+            <div class="flex items-center gap-2 mb-1">
+              <i class="fas fa-user-tie text-brand-gold text-xs"></i>
+              <p class="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Encargado</p>
+            </div>
+            <p class="text-sm text-gray-800 font-medium leading-snug">Profesional Universitario (Jurídica), Contratistas Externos</p>
+          </div>
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <i class="fas fa-bullseye text-brand-blue text-xs"></i>
+              <p class="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Objetivo</p>
+            </div>
+            <p class="text-xs text-gray-600 leading-snug text-justify">
+              Brindar respuesta oportuna a consultas presentadas por funcionarios, concejales y Mesa Directiva de la Corporación.
+            </p>
+          </div>
+          <div class="mt-auto">
+            <div class="flex items-center gap-2 mb-2">
+              <i class="fas fa-route text-green-600 text-xs"></i>
+              <p class="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Alcance</p>
+            </div>
+            <div class="relative border-l-2 border-green-200 pl-4 py-1 space-y-3">
+              <div class="relative">
+                <div class="absolute -left-[21px] top-1.5 w-2.5 h-2.5 rounded-full bg-green-500 border-2 border-white"></div>
+                <p class="text-xs text-gray-600"><span class="font-bold text-gray-800">Inicio:</span> Presentación de solicitud.</p>
+              </div>
+              <div class="relative">
+                <div class="absolute -left-[21px] top-1.5 w-2.5 h-2.5 rounded-full bg-red-500 border-2 border-white"></div>
+                <p class="text-xs text-gray-600"><span class="font-bold text-gray-800">Fin:</span> Entrega de concepto/asesoría.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Expedición Actos Administrativos -->
+      <div class="bg-white rounded-xl card-shadow flex flex-col relative pt-2 px-6 pb-6 animate-on-scroll" style="animation-delay: 0.2s;">
+        <div class="flex justify-center mb-2">
+          <a href="/C-Procedimientos/PROCEDIMIENTO ACTOS ADMINISTRATIVOS.pdf" download target="_blank" class="w-16 h-16 rounded-full bg-yellow-50 flex items-center justify-center text-brand-gold hover:bg-brand-gold hover:text-white transition-colors duration-300 shadow-sm border border-yellow-100 group">
+            <i class="fas fa-file-signature text-2xl group-hover:hidden"></i>
+            <i class="fas fa-download text-2xl hidden group-hover:block"></i>
+          </a>
+        </div>
+        <h3 class="text-center font-bold text-brand-blue text-lg leading-tight mb-4 min-h-[3rem] flex items-center justify-center">
+          Expedición de Actos Administrativos
+        </h3>
+        <div class="flex-1 space-y-4">
+          <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
+            <div class="flex items-center gap-2 mb-1">
+              <i class="fas fa-user-tie text-brand-gold text-xs"></i>
+              <p class="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Encargado</p>
+            </div>
+            <p class="text-sm text-gray-800 font-medium leading-snug">Estructuradores, Dir. Adm., Sec. General, Prof. Universitario</p>
+          </div>
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <i class="fas fa-bullseye text-brand-blue text-xs"></i>
+              <p class="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Objetivo</p>
+            </div>
+            <p class="text-xs text-gray-600 leading-snug text-justify">
+              Definir los pasos para la elaboración, revisión y emisión de actos administrativos del Concejo Municipal de Chía.
+            </p>
+          </div>
+          <div class="mt-auto">
+            <div class="flex items-center gap-2 mb-2">
+              <i class="fas fa-route text-green-600 text-xs"></i>
+              <p class="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Alcance</p>
+            </div>
+            <div class="relative border-l-2 border-green-200 pl-4 py-1 space-y-3">
+              <div class="relative">
+                <div class="absolute -left-[21px] top-1.5 w-2.5 h-2.5 rounded-full bg-green-500 border-2 border-white"></div>
+                <p class="text-xs text-gray-600"><span class="font-bold text-gray-800">Inicio:</span> Necesidad de proferir acto.</p>
+              </div>
+              <div class="relative">
+                <div class="absolute -left-[21px] top-1.5 w-2.5 h-2.5 rounded-full bg-red-500 border-2 border-white"></div>
+                <p class="text-xs text-gray-600"><span class="font-bold text-gray-800">Fin:</span> Archivo del acto administrativo.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Section: Formatos Jurídicos -->
+    <div class="bg-white rounded-xl card-shadow p-6 border-l-4 border-brand-gold relative overflow-hidden animate-on-scroll" style="animation-delay: 0.3s;">
+      <div class="absolute top-0 right-0 p-4 opacity-5">
+        <i class="fas fa-folder-open text-8xl text-brand-blue"></i>
+      </div>
+      <div class="flex items-center gap-4 mb-4 relative z-10">
+        <div class="bg-brand-blue text-white w-10 h-10 rounded-full flex items-center justify-center text-lg shadow-sm">
+          <i class="fas fa-list-ul"></i>
+        </div>
+        <h3 class="text-xl font-bold text-brand-blue">Formatos Jurídicos Asociados</h3>
+        <div class="h-px bg-gray-200 flex-1 ml-4 hidden sm:block"></div>
+      </div>
+      <div class="explorador-contenido relative z-10 h-[350px] overflow-y-auto custom-scroll pr-2">
+      <FileExplorer client:load rutaBase="Formatos/6. Gestión Jurídica y Contractual/Formatos Jurídicos" />
+    </div>
+    </div>
+  </div>
+</ProcesoLayout>
+
+<style>
+  .custom-scroll::-webkit-scrollbar {
+    width: 6px;
+  }
+  .custom-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scroll::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+  }
+  .custom-scroll::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+</style>

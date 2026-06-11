@@ -1,0 +1,192 @@
+---
+import ProcesoLayout from '../../layouts/ProcesoLayout.astro';
+import DownloadButton from '../../components/DownloadButton.astro';
+---
+
+<ProcesoLayout
+  title="Procedimientos - Evaluación Independiente"
+  numero="09"
+  tituloHeader="Evaluación Independiente"
+  subtituloHeader="Procedimientos"
+  tipo="evaluacion"
+  badge="Control y Evaluación"
+  badgeIcon="fas fa-shield-halved"
+  rutaActual="/evaluacion/independiente-procedimientos"
+>
+  <div class="flex flex-col gap-8 h-full">
+
+    <!-- PROCEDIMIENTO 1 -->
+    <div class="bg-white rounded-xl p-6 card-shadow border-t-8 border-red-700 animate-on-scroll shrink-0">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between mb-6 gap-4">
+        <div>
+          <h2 class="text-xl font-bold text-red-700 flex items-center gap-2 mb-2">
+            <i class="fas fa-triangle-exclamation text-red-700"></i>
+            Evaluación a la Administración del Riesgo
+          </h2>
+          <p class="text-sm text-gray-600 leading-relaxed max-w-3xl">
+            Verifica la correcta identificación, análisis, valoración y tratamiento de los riesgos institucionales, permitiendo fortalecer el sistema de control interno y la toma de decisiones preventivas.
+          </p>
+        </div>
+        
+        <div class="bg-gray-50 rounded-lg p-3 border border-gray-100 shrink-0">
+          <h3 class="text-[10px] font-bold text-gray-500 uppercase mb-2 tracking-wider">Encargados</h3>
+          <div class="flex flex-col gap-2 text-sm text-gray-700 font-medium">
+            <div class="flex items-center gap-2">
+              <i class="fas fa-user-shield text-red-700 w-4 text-center"></i> Control Interno
+            </div>
+            <div class="flex items-center gap-2">
+              <i class="fas fa-users text-red-700 w-4 text-center"></i> Líderes de Proceso
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+        <div class="bg-red-50 rounded-lg p-4 border border-red-100 flex items-start gap-3 hover:shadow-md transition-shadow">
+          <div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center shrink-0 text-red-700">
+            <i class="fas fa-search"></i>
+          </div>
+          <div>
+            <b class="text-sm text-gray-800 block mb-1">Identificación</b>
+            <p class="text-xs text-gray-600">Identificación de riesgos institucionales.</p>
+          </div>
+        </div>
+        
+        <div class="bg-red-50 rounded-lg p-4 border border-red-100 flex items-start gap-3 hover:shadow-md transition-shadow">
+          <div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center shrink-0 text-red-700">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <div>
+            <b class="text-sm text-gray-800 block mb-1">Análisis</b>
+            <p class="text-xs text-gray-600">Evaluación de probabilidad e impacto.</p>
+          </div>
+        </div>
+
+        <div class="bg-red-50 rounded-lg p-4 border border-red-100 flex items-start gap-3 hover:shadow-md transition-shadow">
+          <div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center shrink-0 text-red-700">
+            <i class="fas fa-list-check"></i>
+          </div>
+          <div>
+            <b class="text-sm text-gray-800 block mb-1">Seguimiento</b>
+            <p class="text-xs text-gray-600">Monitoreo a controles y acciones.</p>
+          </div>
+        </div>
+
+        <div class="bg-red-50 rounded-lg p-4 border border-red-100 flex items-start gap-3 hover:shadow-md transition-shadow">
+          <div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center shrink-0 text-red-700">
+            <i class="fas fa-file-circle-check"></i>
+          </div>
+          <div>
+            <b class="text-sm text-gray-800 block mb-1">Informe</b>
+            <p class="text-xs text-gray-600">Reporte de resultados.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-center border-t border-gray-100 pt-4">
+        <DownloadButton href="/C-Procedimientos/ProcedimientoAdministraciondelriesgo.pdf" tipo="evaluacion" texto="Descargar Procedimiento" />
+      </div>
+    </div>
+
+    <!-- PROCEDIMIENTO 2 -->
+    <div class="bg-white rounded-xl p-6 card-shadow border-t-8 border-red-700 animate-on-scroll flex-1 flex flex-col" style="animation-delay: 0.1s;">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between mb-6 gap-4">
+        <div>
+          <h2 class="text-xl font-bold text-red-700 flex items-center gap-2 mb-2">
+            <i class="fas fa-magnifying-glass-chart text-red-700"></i>
+            Auditoría Interna de Gestión
+          </h2>
+          <p class="text-sm text-gray-600 leading-relaxed max-w-3xl">
+            Evalúa de forma independiente la eficacia del Sistema de Gestión de Calidad y el cumplimiento de los procedimientos institucionales.
+          </p>
+        </div>
+        
+        <div class="bg-gray-50 rounded-lg p-3 border border-gray-100 shrink-0">
+          <h3 class="text-[10px] font-bold text-gray-500 uppercase mb-2 tracking-wider">Encargados</h3>
+          <div class="flex flex-col gap-2 text-sm text-gray-700 font-medium">
+            <div class="flex items-center gap-2">
+              <i class="fas fa-user-shield text-red-700 w-4 text-center"></i> Control Interno
+            </div>
+            <div class="flex items-center gap-2">
+              <i class="fas fa-user-check text-red-700 w-4 text-center"></i> Auditor Interno
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-6 flex-1 content-start overflow-y-auto custom-scroll pr-2">
+        <div class="bg-red-50 rounded-lg p-4 border border-red-100 flex items-start gap-3 hover:shadow-md transition-shadow">
+          <div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center shrink-0 text-red-700">
+            <i class="fas fa-calendar-check"></i>
+          </div>
+          <div>
+            <b class="text-sm text-gray-800 block mb-1">Planificación</b>
+            <p class="text-xs text-gray-600">Plan anual de auditoría.</p>
+          </div>
+        </div>
+
+        <div class="bg-red-50 rounded-lg p-4 border border-red-100 flex items-start gap-3 hover:shadow-md transition-shadow">
+          <div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center shrink-0 text-red-700">
+            <i class="fas fa-folder-open"></i>
+          </div>
+          <div>
+            <b class="text-sm text-gray-800 block mb-1">Revisión doc.</b>
+            <p class="text-xs text-gray-600">Análisis de procesos.</p>
+          </div>
+        </div>
+
+        <div class="bg-red-50 rounded-lg p-4 border border-red-100 flex items-start gap-3 hover:shadow-md transition-shadow">
+          <div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center shrink-0 text-red-700">
+            <i class="fas fa-users"></i>
+          </div>
+          <div>
+            <b class="text-sm text-gray-800 block mb-1">Entrevistas</b>
+            <p class="text-xs text-gray-600">Recolección de información.</p>
+          </div>
+        </div>
+
+        <div class="bg-red-50 rounded-lg p-4 border border-red-100 flex items-start gap-3 hover:shadow-md transition-shadow">
+          <div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center shrink-0 text-red-700">
+            <i class="fas fa-clipboard-check"></i>
+          </div>
+          <div>
+            <b class="text-sm text-gray-800 block mb-1">Observaciones</b>
+            <p class="text-xs text-gray-600">Registro de resultados.</p>
+          </div>
+        </div>
+
+        <div class="bg-red-50 rounded-lg p-4 border border-red-100 flex items-start gap-3 hover:shadow-md transition-shadow">
+          <div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center shrink-0 text-red-700">
+            <i class="fas fa-file-lines"></i>
+          </div>
+          <div>
+            <b class="text-sm text-gray-800 block mb-1">Informe final</b>
+            <p class="text-xs text-gray-600">Entrega del informe.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-center border-t border-gray-100 pt-4 mt-auto">
+        <DownloadButton href="/C-Procedimientos/PROCEDIMIENTO AUDITORIA INTERNA DE GESTION 2025 FIRMADA (1).pdf" tipo="evaluacion" texto="Descargar Procedimiento" />
+      </div>
+    </div>
+
+  </div>
+</ProcesoLayout>
+
+<style>
+  .custom-scroll::-webkit-scrollbar {
+    width: 6px;
+  }
+  .custom-scroll::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 10px;
+  }
+  .custom-scroll::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+  }
+  .custom-scroll::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+</style>

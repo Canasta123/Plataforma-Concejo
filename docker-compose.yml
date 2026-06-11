@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  sgc-cmc:
+    image: TU_USUARIO/sgc-cmc:latest   # <-- reemplaza TU_USUARIO
+    container_name: sgc-cmc
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      HOST: "0.0.0.0"
+      PORT: "3000"
+      SUPABASE_URL: ${SUPABASE_URL}
+      SUPABASE_SERVICE_KEY: ${SUPABASE_SERVICE_KEY}
+      AUTH_SECRET: ${AUTH_SECRET}
+      SMTP_HOST: ${SMTP_HOST}
+      SMTP_PORT: ${SMTP_PORT}
+      SMTP_USER: ${SMTP_USER}
+      SMTP_PASS: ${SMTP_PASS}
+      SMTP_FROM_NAME: ${SMTP_FROM_NAME}
+      SMTP_FROM_EMAIL: ${SMTP_FROM_EMAIL}
+      # Rutas de datos persistentes (apuntan a los volúmenes del NAS)
+      UPLOAD_DIR: /data/archivos
+      TRAZABILIDAD_CSV: /data/trazabilidad.csv
+    volumes:
+      # ── Documentos del proyecto (estructura de /public en el NAS) ──────────
+      # Copia la carpeta public/ del proyecto a /share/Container/sgc-cmc/public/ en el NAS
+      - /share/Container/sgc-cmc/public/C-Procesos:/app/dist/client/C-Procesos
+      - /share/Container/sgc-cmc/public/C-Procedimientos:/app/dist/client/C-Procedimientos
+      - /share/Container/sgc-cmc/public/archivos:/app/dist/client/archivos
+
+      # ── Datos generados por la app (persistentes) ─────────────────────────
+      - /share/Container/sgc-cmc/public/archivos:/data/archivos
+      - /share/Container/sgc-cmc/trazabilidad.csv:/data/trazabilidad.csv

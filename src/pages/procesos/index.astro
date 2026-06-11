@@ -1,0 +1,128 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProcessCard from '../../components/ProcessCard.astro';
+import procesos from '../../data/procesos.json';
+import ProcessNav from '../../components/navigation/ProcessNav.astro';
+import Footer from '../../components/Footer.astro';
+
+const estrategicos = procesos.filter(p => p.tipo === 'estrategico');
+const misionales   = procesos.filter(p => p.tipo === 'misional');
+const apoyo        = procesos.filter(p => p.tipo === 'apoyo');
+const evaluacion   = procesos.filter(p => p.tipo === 'evaluacion');
+
+const groups = [
+  {
+    label: 'Estratégicos',
+    color: '#1e3a8a',
+    headerBg: '#dbeafe',
+    items: estrategicos
+  },
+  {
+    label: 'Misionales',
+    color: '#166534',
+    headerBg: '#dcfce7',
+    items: misionales
+  },
+  {
+    label: 'Apoyo',
+    color: '#FFD402',
+    headerBg: '#fef9c3',
+    items: apoyo
+  },
+  {
+    label: 'Evaluación',
+    color: '#991b1b',
+    headerBg: '#fee2e2',
+    items: evaluacion
+  },
+];
+---
+
+<BaseLayout title="Índice de Procesos" description="Mapa de Procesos SGC — Concejo Municipal de Chía 2026">
+  <div class="slide-container">
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b border-gray-100 flex items-center justify-between px-6 md:px-12 h-20 relative z-20 shrink-0">
+      <div class="flex items-center gap-4">
+        <div class="w-1.5 h-12 rounded-full bg-gradient-to-b from-brand-blue to-blue-900 shadow-sm"></div>
+        <div>
+          <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-0.5">Sistema de Gestión de Calidad</p>
+          <h1 class="text-xl md:text-2xl font-bold text-brand-blue uppercase tracking-wide" style="font-family: 'Montserrat', sans-serif;">
+            Índice de Procesos
+          </h1>
+        </div>
+      </div>
+      <!-- Legend -->
+      <div class="hidden md:flex items-center gap-5 text-xs font-semibold">
+        <div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full bg-blue-900"></div><span class="text-gray-600">Estratégicos</span></div>
+        <div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full bg-green-700"></div><span class="text-gray-600">Misionales</span></div>
+        <div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full bg-yellow-400"></div><span class="text-gray-600">Apoyo</span></div>
+        <div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full bg-red-700"></div><span class="text-gray-600">Evaluación</span></div>
+      </div>
+    </header>
+
+    <!-- Main grid: 4 columnas como el original -->
+    <main class="flex-1 p-6 md:p-8 flex gap-5 bg-gray-50/40 overflow-hidden">
+      {groups.map((group, gi) => (
+        <div
+          class={`flex flex-col gap-3 animate-on-scroll ${group.label === 'Evaluación' ? 'w-64 shrink-0' : 'flex-1'}`}
+          style={`animation-delay: ${gi * 0.06}s`}
+        >
+          <div
+            class="px-4 py-2.5 rounded-t-lg font-bold text-center text-sm uppercase tracking-wide border-b-2"
+            style={`background-color: ${group.headerBg}; color: ${group.color}; border-color: ${group.color};`}
+          >
+            Procesos {group.label}
+          </div>
+
+          {group.items.map(p => (
+            <a
+              href={p.ruta}
+              class="process-index-card relative overflow-hidden flex-1 flex flex-col items-center justify-center text-center gap-3 px-4 py-6 rounded-xl bg-white shadow-sm border border-gray-100 transition-all duration-200"
+              style={`--card-color: ${group.color};`}
+            >
+              <span class="process-num absolute top-1/2 right-4 -translate-y-1/2 text-7xl font-black text-gray-200 select-none transition-all duration-200 z-0">
+                {p.numero}
+              </span>
+              <div class="relative z-10 flex flex-col items-center gap-2 w-full">
+                <i class={`${p.icono} process-icon text-4xl mb-1 transition-all duration-200`} style={`color: ${group.color};`}></i>
+                <h3 class="process-name text-sm font-bold text-gray-700 leading-snug transition-all duration-200">{p.nombre}</h3>
+              </div>
+            </a>
+          ))}
+        </div>
+      ))}
+    </main>
+
+    <!-- Bottom nav row -->
+    <div class="px-6 md:px-12 pb-4 pt-3 flex items-center justify-between bg-white border-t border-gray-100">
+      <a href="/" class="nav-btn btn-glow-tailwind">◀︎</a>
+      <a href="/estadisticas" class="nav-btn btn-glow-tailwind">Resumen Presentación</a>
+    </div>
+
+    <Footer textoIzquierdo="Mapa de Procesos 2026" iconoIzquierdo="fas fa-sitemap" textoDerecho="www.concejomunicipalchia.gov.co" />
+    <ProcessNav rutaActual="/procesos" />
+  </div>
+</BaseLayout>
+
+<style>
+  .process-index-card:hover {
+    background-color: var(--card-color);
+    border-color: var(--card-color);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  }
+  .process-num {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800; /* Extra bold */
+  }
+  .process-index-card:hover .process-num {
+    color: rgba(255, 255, 255, 0.3) !important;
+  }
+  .process-index-card:hover .process-icon {
+    color: white !important;
+  }
+  .process-index-card:hover .process-name {
+    color: white;
+  }
+</style>

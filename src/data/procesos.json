@@ -1,0 +1,175 @@
+[
+  {
+    "id": 1,
+    "numero": "01",
+    "nombre": "Direccionamiento Estratégico y Comunicaciones",
+    "tipo": "estrategico",
+    "color": "#3359A4",
+    "colorClass": "brand-blue",
+    "bgClass": "bg-blue-100",
+    "textClass": "text-blue-900",
+    "borderClass": "border-brand-blue",
+    "icono": "fas fa-compass",
+    "ruta": "/estrategicos/direccionamiento",
+    "rutaPdf": "/C-Procesos/DEC.pdf",
+    "subpaginas": [
+      { "label": "Caracterización", "ruta": "/estrategicos/direccionamiento" },
+      { "label": "Procedimientos", "ruta": "/estrategicos/direccionamiento-procedimientos" },
+      { "label": "Proveedores", "ruta": "/estrategicos/direccionamiento-proveedores" },
+      { "label": "Formatos", "ruta": "/estrategicos/direccionamiento-formatos" },
+      { "label": "Indicadores", "ruta": "/estrategicos/direccionamiento-indicadores" }
+    ]
+  },
+  {
+    "id": 2,
+    "numero": "02",
+    "nombre": "Gestión de Calidad",
+    "tipo": "estrategico",
+    "color": "#3359A4",
+    "colorClass": "brand-blue",
+    "bgClass": "bg-blue-100",
+    "textClass": "text-blue-900",
+    "borderClass": "border-brand-blue",
+    "icono": "fas fa-award",
+    "ruta": "/estrategicos/calidad",
+    "rutaPdf": "/C-Procesos/GC.pdf",
+    "subpaginas": [
+      { "label": "Caracterización", "ruta": "/estrategicos/calidad" },
+      { "label": "Procedimientos", "ruta": "/estrategicos/calidad-procedimientos" },
+      { "label": "Formatos", "ruta": "/estrategicos/calidad-formatos" }
+    ]
+  },
+  {
+    "id": 3,
+    "numero": "03",
+    "nombre": "Relacionamiento con la Ciudadanía",
+    "tipo": "estrategico",
+    "color": "#3359A4",
+    "colorClass": "brand-blue",
+    "bgClass": "bg-blue-100",
+    "textClass": "text-blue-900",
+    "borderClass": "border-brand-blue",
+    "icono": "fas fa-users",
+    "ruta": "/estrategicos/ciudadania",
+    "rutaPdf": "/C-Procesos/RC.pdf",
+    "subpaginas": [
+      { "label": "Caracterización", "ruta": "/estrategicos/ciudadania" }
+    ]
+  },
+  {
+    "id": 4,
+    "numero": "04",
+    "nombre": "Control Político",
+    "tipo": "misional",
+    "color": "#009741",
+    "colorClass": "brand-green",
+    "bgClass": "bg-green-100",
+    "textClass": "text-green-900",
+    "borderClass": "border-brand-green",
+    "icono": "fas fa-eye",
+    "ruta": "/misionales/control-politico",
+    "rutaPdf": "/C-Procesos/CPolitico.pdf",
+    "subpaginas": [
+      { "label": "Caracterización", "ruta": "/misionales/control-politico" },
+      { "label": "Procedimientos", "ruta": "/misionales/control-politico-procedimientos" },
+      { "label": "Formatos", "ruta": "/misionales/control-politico-formatos" }
+    ]
+  },
+  {
+    "id": 5,
+    "numero": "05",
+    "nombre": "Proyectos de Acuerdo",
+    "tipo": "misional",
+    "color": "#009741",
+    "colorClass": "brand-green",
+    "bgClass": "bg-green-100",
+    "textClass": "text-green-900",
+    "borderClass": "border-brand-green",
+    "icono": "fas fa-file-signature",
+    "ruta": "/misionales/proyectos-acuerdo",
+    "rutaPdf": "/C-Procesos/TPA.pdf",
+    "subpaginas": [
+      { "label": "Caracterización", "ruta": "/misionales/proyectos-acuerdo" },
+      { "label": "Procedimientos", "ruta": "/misionales/proyectos-acuerdo-procedimientos" },
+      { "label": "Formatos", "ruta": "/misionales/proyectos-acuerdo-formatos" }
+    ]
+  },
+  {
+    "id": 6,
+    "numero": "06",
+    "nombre": "Gestión Jurídica y Contractual",
+    "tipo": "apoyo",
+    "color": "#FFD402",
+    "colorClass": "brand-gold",
+    "bgClass": "bg-yellow-100",
+    "textClass": "text-yellow-900",
+    "borderClass": "border-brand-gold",
+    "icono": "fas fa-balance-scale",
+    "ruta": "/apoyo/juridica",
+    "rutaPdf": "/C-Procesos/GJyC.pdf",
+    "subpaginas": [
+      { "label": "Caracterización", "ruta": "/apoyo/juridica" },
+      { "label": "Procedimientos", "ruta": "/apoyo/juridica-procedimientos" },
+      { "label": "Formatos", "ruta": "/apoyo/juridica-formatos" },
+      { "label": "Indicadores", "ruta": "/apoyo/juridica-indicadores" }
+    ]
+  },
+  {
+    "id": 7,
+    "numero": "07",
+    "nombre": "Gestión Documental y TI",
+    "tipo": "apoyo",
+    "color": "#FFD402",
+    "colorClass": "brand-gold",
+    "bgClass": "bg-yellow-100",
+    "textClass": "text-yellow-900",
+    "borderClass": "border-brand-gold",
+    "icono": "fas fa-server",
+    "ruta": "/apoyo/documental-ti",
+    "rutaPdf": "/C-Procesos/GDTI.pdf",
+    "subpaginas": [
+      { "label": "Caracterización", "ruta": "/apoyo/documental-ti" },
+      { "label": "Procedimientos", "ruta": "/apoyo/documental-ti-procedimientos" },
+      { "label": "Formatos", "ruta": "/apoyo/documental-ti-formatos" }
+    ]
+  },
+  {
+    "id": 8,
+    "numero": "08",
+    "nombre": "Gestión Administrativa, Financiera y Talento Humano",
+    "tipo": "apoyo",
+    "color": "#FFD402",
+    "colorClass": "brand-gold",
+    "bgClass": "bg-yellow-100",
+    "textClass": "text-yellow-900",
+    "borderClass": "border-brand-gold",
+    "icono": "fas fa-user-tie",
+    "ruta": "/apoyo/administrativa",
+    "rutaPdf": "/C-Procesos/GAF.pdf",
+    "subpaginas": [
+      { "label": "Caracterización", "ruta": "/apoyo/administrativa" },
+      { "label": "Procedimientos", "ruta": "/apoyo/administrativa-procedimientos" },
+      { "label": "Formatos", "ruta": "/apoyo/administrativa-formatos" },
+      { "label": "Formatos II", "ruta": "/apoyo/administrativa-formatos-2" }
+    ]
+  },
+  {
+    "id": 9,
+    "numero": "09",
+    "nombre": "Evaluación Independiente",
+    "tipo": "evaluacion",
+    "color": "#E30D21",
+    "colorClass": "brand-red",
+    "bgClass": "bg-red-100",
+    "textClass": "text-red-900",
+    "borderClass": "border-brand-red",
+    "icono": "fas fa-chart-line",
+    "ruta": "/evaluacion/independiente",
+    "rutaPdf": "/C-Procesos/EI.pdf",
+    "subpaginas": [
+      { "label": "Caracterización", "ruta": "/evaluacion/independiente" },
+      { "label": "Procedimientos", "ruta": "/evaluacion/independiente-procedimientos" },
+      { "label": "Formatos", "ruta": "/evaluacion/independiente-formatos" }
+    ]
+  }
+]
