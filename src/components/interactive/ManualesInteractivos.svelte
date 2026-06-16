@@ -90,22 +90,26 @@
     {
       name: "Hoja de Control",
       purpose: "Obligatorio en carpetas complejas (contratos, resoluciones). Registra cada tipo documental indexado con fecha y folios.",
-      rule: "Se coloca al inicio de la carpeta, antes del primer folio. No se folia."
+      rule: "Se coloca al inicio de la carpeta, antes del primer folio. No se folia.",
+      path: "/archivos/Formatos/7. Gestión Documental y Tecnologías de la Información/Gestión Documental/005_HOJ_CONTROL/HOJA DE CONTROL.xlsx"
     },
     {
       name: "Testigo Documental",
       purpose: "Ficha de cartón o papel que reemplaza un documento original que ha sido retirado temporalmente de la carpeta para préstamo.",
-      rule: "Indica fecha, responsable, folios retirados y el motivo del préstamo."
+      rule: "Indica fecha, responsable, folios retirados y el motivo del préstamo.",
+      path: "/archivos/Formatos/7. Gestión Documental y Tecnologías de la Información/Gestión Documental/006_TESTIGO_DOC/TESTIGO DOCUMENTAL.xlsx"
     },
     {
       name: "Rótulo de Medios Magnéticos",
       purpose: "Formato adhesivo circular o cuadrado para identificar CD/DVD/USB que contienen anexos digitales de las transferencias.",
-      rule: "Debe estar diligenciado con el código de serie, nombre de la oficina y año."
+      rule: "Debe estar diligenciado con el código de serie, nombre de la oficina y año.",
+      path: "/archivos/Formatos/7. Gestión Documental y Tecnologías de la Información/Gestión Documental/007_ROT_MAGNETICOS/ROTULO MEDIOS MAGNETICOS.xlsx"
     },
     {
       name: "FUID (Inventario)",
       purpose: "El Formato Único de Inventario Documental es la herramienta oficial para detallar las series que se entregan al Archivo Central.",
-      rule: "Se entrega firmado en original y dos copias, adjuntando la base de datos digital en excel."
+      rule: "Se entrega firmado en original y dos copias, adjuntando la base de datos digital en excel.",
+      path: "/archivos/Formatos/7. Gestión Documental y Tecnologías de la Información/Gestión Documental/003_FUID/FUID.xlsx"
     }
   ];
 </script>
@@ -224,19 +228,19 @@
       <!-- Descarga Manual -->
       <div class="bg-brand-blue/5 border border-brand-blue/10 rounded-lg p-4 flex flex-col sm:flex-row items-center justify-between gap-4 mt-auto">
         <div class="flex items-center gap-3">
-          <i class="far fa-file-word text-3xl text-blue-600"></i>
+          <i class="far fa-file-pdf text-3xl text-red-500"></i>
           <div>
             <span class="text-xs font-bold text-brand-blue block">Documento de Referencia Completo</span>
-            <span class="text-[11px] text-gray-500 block">Manual de Ventanilla Única de Atención al Ciudadano 2026</span>
+            <span class="text-[11px] text-gray-500 block">Manual de Ventanilla Única de Atención al Ciudadano 2026 (PDF)</span>
           </div>
         </div>
         <a 
-          href="/archivos/MANUAL DE VENTANILLA UNICA VUAR 2026.docx"
+          href="/archivos/MANUAL DE VENTANILLA UNICA VUAR 2026.pdf"
           download
           class="bg-brand-blue hover:bg-blue-700 text-white text-xs font-bold py-2 px-4 rounded shadow-md transition-all flex items-center gap-2 self-stretch sm:self-auto justify-center"
         >
           <i class="fas fa-download"></i>
-          <span>Descargar Manual Word</span>
+          <span>Descargar Manual PDF</span>
         </a>
       </div>
 
@@ -343,12 +347,22 @@
         </h4>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           {#each formatosClave as formato}
-            <div class="bg-gray-50/50 border border-gray-100 rounded-lg p-3.5 hover:shadow-md transition-all flex flex-col justify-between">
+            <div class="bg-gray-50/50 border border-gray-100 rounded-lg p-3.5 hover:shadow-md transition-all flex flex-col justify-between gap-3">
               <div>
-                <span class="text-xs font-bold text-brand-blue block mb-1">{formato.name}</span>
+                <div class="flex items-start justify-between gap-3">
+                  <span class="text-xs font-bold text-brand-blue block mb-1">{formato.name}</span>
+                  <a 
+                    href={formato.path} 
+                    download 
+                    class="w-6 h-6 rounded-full bg-white hover:bg-brand-blue hover:text-white border border-gray-200/60 flex items-center justify-center text-gray-500 hover:shadow-sm transition-all shrink-0"
+                    title="Descargar Plantilla"
+                  >
+                    <i class="fas fa-download text-[10px]"></i>
+                  </a>
+                </div>
                 <p class="text-[11px] text-gray-500 leading-relaxed mb-2 font-medium">{formato.purpose}</p>
               </div>
-              <span class="text-[10px] text-brand-gold bg-yellow-50 border border-yellow-100 px-2 py-1 rounded block self-start font-bold">
+              <span class="text-[10px] text-brand-gold bg-yellow-50 border border-yellow-100 px-2 py-1 rounded block self-start font-bold font-semibold">
                 <i class="fas fa-circle-exclamation mr-1"></i>Regla: {formato.rule}
               </span>
             </div>
@@ -374,19 +388,19 @@
       <!-- Descarga Manual -->
       <div class="bg-brand-blue/5 border border-brand-blue/10 rounded-lg p-4 flex flex-col sm:flex-row items-center justify-between gap-4 mt-auto">
         <div class="flex items-center gap-3">
-          <i class="far fa-file-word text-3xl text-blue-600"></i>
+          <i class="far fa-file-pdf text-3xl text-red-500"></i>
           <div>
             <span class="text-xs font-bold text-brand-blue block">Documento de Referencia Completo</span>
-            <span class="text-[11px] text-gray-500 block">Instructivo para la Organización y Gestión de Archivos 2025</span>
+            <span class="text-[11px] text-gray-500 block">Instructivo para la Organización y Gestión de Archivos 2025 (PDF)</span>
           </div>
         </div>
         <a 
-          href="/archivos/Instructivo gestion de archivo.docx"
+          href="/archivos/Instructivo gestion de archivo.pdf"
           download
           class="bg-brand-blue hover:bg-blue-700 text-white text-xs font-bold py-2 px-4 rounded shadow-md transition-all flex items-center gap-2 self-stretch sm:self-auto justify-center"
         >
           <i class="fas fa-download"></i>
-          <span>Descargar Instructivo Word</span>
+          <span>Descargar Instructivo PDF</span>
         </a>
       </div>
 
