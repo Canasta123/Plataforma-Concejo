@@ -1,0 +1,182 @@
+[
+  {
+    "category": "Organización y Archivo de Gestión",
+    "icon": "fas fa-folder-tree",
+    "formats": [
+      {
+        "name": "Formato Único de Inventario Documental (FUID)",
+        "file": "FUID.xlsx",
+        "path": "/archivos/Formatos/7. Gestión Documental y Tecnologías de la Información/Gestión Documental/003_FUID/FUID.xlsx",
+        "type": "excel"
+      },
+      {
+        "name": "Hoja de Control de Expedientes",
+        "file": "HOJA DE CONTROL.xlsx",
+        "path": "/archivos/Formatos/7. Gestión Documental y Tecnologías de la Información/Gestión Documental/005_HOJ_CONTROL/HOJA DE CONTROL.xlsx",
+        "type": "excel"
+      },
+      {
+        "name": "Testigo Documental (Referencia Cruzada)",
+        "file": "TESTIGO DOCUMENTAL.xlsx",
+        "path": "/archivos/Formatos/7. Gestión Documental y Tecnologías de la Información/Gestión Documental/006_TESTIGO_DOC/TESTIGO DOCUMENTAL.xlsx",
+        "type": "excel"
+      },
+      {
+        "name": "Ficha Afuera (Préstamos Internos)",
+        "file": "FICHA AFUERA.doc",
+        "path": "/archivos/Formatos/7. Gestión Documental y Tecnologías de la Información/Gestión Documental/004_FIC_AFUERA/FICHA AFUERA.doc",
+        "type": "word"
+      },
+      {
+        "name": "Rótulo para Carpetas de Archivo",
+        "file": "ROTULO CARPETAS.xlsx",
+        "path": "/archivos/Formatos/7. Gestión Documental y Tecnologías de la Información/Gestión Documental/008_ROT_CARPETA/ROTULO CARPETAS.xlsx",
+        "type": "excel"
+      },
+      {
+        "name": "Rótulo para Cajas de Archivo",
+        "file": "ROTULO CAJAS.docx",
+        "path": "/archivos/Formatos/7. Gestión Documental y Tecnologías de la Información/Gestión Documental/009_ROT_CAJA/ROTULO CAJAS.docx",
+        "type": "word"
+      },
+      {
+        "name": "Rótulo para Medios Magnéticos",
+        "file": "ROTULO MEDIOS MAGNETICOS.xlsx",
+        "path": "/archivos/Formatos/7. Gestión Documental y Tecnologías de la Información/Gestión Documental/007_ROT_MAGNETICOS/ROTULO MEDIOS MAGNETICOS.xlsx",
+        "type": "excel"
+      }
+    ]
+  },
+  {
+    "category": "Préstamo y Consulta de Documentos",
+    "icon": "fas fa-hand-holding-hand",
+    "formats": [
+      {
+        "name": "Solicitud de Préstamo Documental",
+        "file": "SOLCT PRESTAMO DOCUMENTOS.xlsx",
+        "path": "/archivos/Formatos/7. Gestión Documental y Tecnologías de la Información/Gestión Documental/001_SOLC_PRES_DOC/SOLCT PRESTAMO DOCUMENTOS.xlsx",
+        "type": "excel"
+      },
+      {
+        "name": "Control de Préstamos Documentales",
+        "file": "CONTROL PRESTAMO DOC.xlsx",
+        "path": "/archivos/Formatos/7. Gestión Documental y Tecnologías de la Información/Gestión Documental/002_CONT_PREST_DOC/CONTROL PRESTAMO DOC.xlsx",
+        "type": "excel"
+      }
+    ]
+  },
+  {
+    "category": "Correspondencia y Radicación (VUAR)",
+    "icon": "fas fa-envelope-open-text",
+    "formats": [
+      {
+        "name": "Formato de Radicación PQRSDF",
+        "file": "PQRSDF.xlsx",
+        "path": "/archivos/Formatos/7. Gestión Documental y Tecnologías de la Información/Gestión Documental/F015_PQRSDF/PQRSDF.xlsx",
+        "type": "excel"
+      },
+      {
+        "name": "Control de Turnos de Radicación",
+        "file": "TURNO RADICACIÓN.xlsx",
+        "path": "/archivos/Formatos/7. Gestión Documental y Tecnologías de la Información/Gestión Documental/010_TURNO_RAD/TURNO RADICACIÓN.xlsx",
+        "type": "excel"
+      },
+      {
+        "name": "Encuesta de Satisfacción del Ciudadano",
+        "file": "ENCUESTA SATISFACCIÓ N.pdf",
+        "path": "/archivos/Formatos/7. Gestión Documental y Tecnologías de la Información/Gestión Documental/F011_ENCU_SATIS/ENCUESTA SATISFACCIÓ N.pdf",
+        "type": "pdf"
+      },
+      {
+        "name": "Apertura de Buzón de Sugerencias",
+        "file": "Apertura de buzón .xlsx",
+        "path": "/archivos/Formatos/7. Gestión Documental y Tecnologías de la Información/Gestión Documental/F012_APERTURA_BUZÓN/Apertura de buzón .xlsx",
+        "type": "excel"
+      },
+      {
+        "name": "Informe General de PQRSDF",
+        "file": "Informe PQRSDF.docx",
+        "path": "/archivos/Formatos/7. Gestión Documental y Tecnologías de la Información/Gestión Documental/F017_INFOR PQRSDF/Informe PQRSDF.docx",
+        "type": "word"
+      },
+      {
+        "name": "Aprobación de Informe PQRSDF",
+        "file": "Aprobación.pdf",
+        "path": "/archivos/Formatos/7. Gestión Documental y Tecnologías de la Información/Gestión Documental/F017_INFOR PQRSDF/Aprobación.pdf",
+        "type": "pdf"
+      },
+      {
+        "name": "Formato de Informe de Encuesta de Satisfacción",
+        "file": "FORMATO INFORME DE ENCUESTA.docx",
+        "path": "/archivos/Formatos/7. Gestión Documental y Tecnologías de la Información/Gestión Documental/F16_INFOR ENCU SATIS/FORMATO INFORME DE ENCUESTA.docx",
+        "type": "word"
+      }
+    ]
+  },
+  {
+    "category": "Control e Instrumentos Archivísticos",
+    "icon": "fas fa-shield-halved",
+    "formats": [
+      {
+        "name": "Solicitud de Actualización de TRD",
+        "file": "022-ACTUALIZACIÓ N TRD .pdf",
+        "path": "/archivos/Formatos/7. Gestión Documental y Tecnologías de la Información/Gestión Documental/F022_SOLC_ACTU_TRD/022-ACTUALIZACIÓ N TRD .pdf",
+        "type": "pdf"
+      },
+      {
+        "name": "Encuesta Diagnóstica Elaboración TRD",
+        "file": "023-ENCUESTA TRD.pdf",
+        "path": "/archivos/Formatos/7. Gestión Documental y Tecnologías de la Información/Gestión Documental/F023_ENCUESTA_ELAB_TRD/023-ENCUESTA TRD.pdf",
+        "type": "pdf"
+      },
+      {
+        "name": "Formato de Tabla de Retención Documental (TRD)",
+        "file": "4. Form.TRD.xlsx",
+        "path": "/archivos/Formatos/7. Gestión Documental y Tecnologías de la Información/Gestión Documental/F024_TRD/4. Form.TRD.xlsx",
+        "type": "excel"
+      },
+      {
+        "name": "Cuadro de Clasificación Documental (CCD)",
+        "file": "3. Form.CuadroControlDocCCD.xlsx",
+        "path": "/archivos/Formatos/7. Gestión Documental y Tecnologías de la Información/Gestión Documental/F025_CUA__CONTROL_DOC/3. Form.CuadroControlDocCCD.xlsx",
+        "type": "excel"
+      },
+      {
+        "name": "Cronograma de Visitas de Acompañamiento",
+        "file": "CRONOG_VISITAS_AG.xlsx",
+        "path": "/archivos/Formatos/7. Gestión Documental y Tecnologías de la Información/Gestión Documental/F013_CRONOG_VISITAS_AG/CRONOG_VISITAS_AG.xlsx",
+        "type": "excel"
+      },
+      {
+        "name": "Lista de Verificación de Visitas a Archivo",
+        "file": "LISTA_VIS_ARCH_.xlsx",
+        "path": "/archivos/Formatos/7. Gestión Documental y Tecnologías de la Información/Gestión Documental/F014_LISTA VER_VISITAS_ARCH/LISTA_VIS_ARCH_.xlsx",
+        "type": "excel"
+      },
+      {
+        "name": "Acta de Eliminación Documental Oficial",
+        "file": "ACTA DE ELMINACIÓ N DOCUMENTAL No.docx",
+        "path": "/archivos/Formatos/7. Gestión Documental y Tecnologías de la Información/Gestión Documental/F018_ACTA ELIMI DOC/ACTA DE ELMINACIÓ N DOCUMENTAL No.docx",
+        "type": "word"
+      },
+      {
+        "name": "Cronograma de Transferencias Documentales",
+        "file": "FORMT TRANSFERENCIAS DOCUMENTALES.xlsx",
+        "path": "/archivos/Formatos/7. Gestión Documental y Tecnologías de la Información/Gestión Documental/F019_CRONOGRA TRANSFERENCIAS/FORMT TRANSFERENCIAS DOCUMENTALES.xlsx",
+        "type": "excel"
+      },
+      {
+        "name": "Diagnóstico Integral de Archivos 2026",
+        "file": "Diagnóstico Integral ARCHIVOS 2026 .xlsx",
+        "path": "/archivos/Formatos/7. Gestión Documental y Tecnologías de la Información/Gestión Documental/F020_DIAGNOSTICO INTEGRAL ARCHIVOS/Diagnóstico Integral ARCHIVOS 2026 .xlsx",
+        "type": "excel"
+      },
+      {
+        "name": "Acta de Paz y Salvo Documental",
+        "file": "PAZ Y SALVO .pdf",
+        "path": "/archivos/Formatos/7. Gestión Documental y Tecnologías de la Información/Gestión Documental/F021_PAZ Y SALVO/PAZ Y SALVO .pdf",
+        "type": "pdf"
+      }
+    ]
+  }
+]
