@@ -52,6 +52,20 @@ import FormatosList from '../../components/interactive/FormatosList.svelte';
             </div>
           </div>
         </div>
+        
+        <!-- Botón de Descarga del Procedimiento -->
+        <div class="mt-4 pt-3 border-t border-gray-100 flex justify-between items-center mt-auto">
+          <span class="text-[10px] text-gray-400 italic">Procedimiento oficial de control</span>
+          <a 
+            href="/C-Procedimientos/Procedimiento Actualizacion TRD.pdf" 
+            download 
+            class="bg-brand-blue hover:bg-blue-700 text-white text-xs font-bold py-1.5 px-3 rounded shadow-sm transition-all flex items-center gap-1.5"
+            title="Descargar Procedimiento de Actualización de TRD"
+          >
+            <i class="fas fa-download text-[10px]"></i>
+            <span>Descargar PDF</span>
+          </a>
+        </div>
       </div>
 
       <!-- Card Inferior: Formatos Gestión Documental (Categorizados) -->
