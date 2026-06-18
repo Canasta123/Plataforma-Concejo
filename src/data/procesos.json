@@ -129,8 +129,8 @@
     "rutaPdf": "/C-Procesos/GDTI.pdf",
     "subpaginas": [
       { "label": "Caracterización", "ruta": "/apoyo/documental-ti" },
-      { "label": "Procedimientos", "ruta": "/apoyo/documental-ti-procedimientos" },
-      { "label": "Formatos", "ruta": "/apoyo/documental-ti-formatos" }
+      { "label": "Gestión Documental", "ruta": "/apoyo/documental-formatos" },
+      { "label": "Tecnologías (TI)", "ruta": "/apoyo/ti-formatos" }
     ]
   },
   {
