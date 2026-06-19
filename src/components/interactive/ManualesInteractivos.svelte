@@ -91,25 +91,25 @@
       name: "Hoja de Control",
       purpose: "Obligatorio en carpetas complejas (contratos, resoluciones). Registra cada tipo documental indexado con fecha y folios.",
       rule: "Se coloca al inicio de la carpeta, antes del primer folio. No se folia.",
-      path: "/archivos/Formatos/7. Gestión Documental y Tecnologías de la Información/Gestión Documental/005_HOJ_CONTROL/HOJA DE CONTROL.xlsx"
+      path: "/archivos/Formatos/7. Gestión Documental y Tecnologías de la Información/Gestión Documental/Organizacion y Archivo de Gestion/HOJA DE CONTROL.xlsx"
     },
     {
       name: "Testigo Documental",
       purpose: "Ficha de cartón o papel que reemplaza un documento original que ha sido retirado temporalmente de la carpeta para préstamo.",
       rule: "Indica fecha, responsable, folios retirados y el motivo del préstamo.",
-      path: "/archivos/Formatos/7. Gestión Documental y Tecnologías de la Información/Gestión Documental/006_TESTIGO_DOC/TESTIGO DOCUMENTAL.xlsx"
+      path: "/archivos/Formatos/7. Gestión Documental y Tecnologías de la Información/Gestión Documental/Organizacion y Archivo de Gestion/TESTIGO DOCUMENTAL.xlsx"
     },
     {
       name: "Rótulo de Medios Magnéticos",
       purpose: "Formato adhesivo circular o cuadrado para identificar CD/DVD/USB que contienen anexos digitales de las transferencias.",
       rule: "Debe estar diligenciado con el código de serie, nombre de la oficina y año.",
-      path: "/archivos/Formatos/7. Gestión Documental y Tecnologías de la Información/Gestión Documental/007_ROT_MAGNETICOS/ROTULO MEDIOS MAGNETICOS.xlsx"
+      path: "/archivos/Formatos/7. Gestión Documental y Tecnologías de la Información/Gestión Documental/Organizacion y Archivo de Gestion/ROTULO MEDIOS MAGNETICOS.xlsx"
     },
     {
       name: "FUID (Inventario)",
       purpose: "El Formato Único de Inventario Documental es la herramienta oficial para detallar las series que se entregan al Archivo Central.",
       rule: "Se entrega firmado en original y dos copias, adjuntando la base de datos digital en excel.",
-      path: "/archivos/Formatos/7. Gestión Documental y Tecnologías de la Información/Gestión Documental/003_FUID/FUID.xlsx"
+      path: "/archivos/Formatos/7. Gestión Documental y Tecnologías de la Información/Gestión Documental/Organizacion y Archivo de Gestion/FUID.xlsx"
     }
   ];
 </script>

@@ -19,61 +19,45 @@ export const GET: APIRoute = async () => {
     }
 
     try {
-        const folders = fs.readdirSync(targetPath);
-        
-        // Structure our 4 official categories
-        const categories: Record<string, { category: string; icon: string; formats: any[] }> = {
-          "Organización y Archivo de Gestión": {
-            category: "Organización y Archivo de Gestión",
-            icon: "fas fa-folder-tree",
-            formats: []
+        const categoryMap = [
+          {
+            folderName: "Organizacion y Archivo de Gestion",
+            displayName: "Organización y Archivo de Gestión",
+            icon: "fas fa-folder-tree"
           },
-          "Préstamo y Consulta de Documentos": {
-            category: "Préstamo y Consulta de Documentos",
-            icon: "fas fa-hand-holding-hand",
-            formats: []
+          {
+            folderName: "Prestamo y Consulta de Documentos",
+            displayName: "Préstamo y Consulta de Documentos",
+            icon: "fas fa-hand-holding-hand"
           },
-          "Correspondencia y Radicación (VUAR)": {
-            category: "Correspondencia y Radicación (VUAR)",
-            icon: "fas fa-envelope-open-text",
-            formats: []
+          {
+            folderName: "Correspondencia y Radicacion (VUAR)",
+            displayName: "Correspondencia y Radicación (VUAR)",
+            icon: "fas fa-envelope-open-text"
           },
-          "Control e Instrumentos Archivísticos": {
-            category: "Control e Instrumentos Archivísticos",
-            icon: "fas fa-shield-halved",
-            formats: []
+          {
+            folderName: "Control e Instrumentos Archivisticos",
+            displayName: "Control e Instrumentos Archivísticos",
+            icon: "fas fa-shield-halved"
           }
-        };
+        ];
 
-        for (const folder of folders) {
-            const folderPath = path.join(targetPath, folder);
-            if (!fs.statSync(folderPath).isDirectory()) continue;
+        const result = [];
 
-            // Map folders to their respective categories based on prefix naming
-            let catKey = "Control e Instrumentos Archivísticos";
-            if (folder.startsWith('001') || folder.startsWith('002')) {
-                catKey = "Préstamo y Consulta de Documentos";
-            } else if (/^00[3-9]/.test(folder)) {
-                catKey = "Organización y Archivo de Gestión";
-            } else if (
-                folder.startsWith('010') || 
-                folder.startsWith('F011') || 
-                folder.startsWith('F012') || 
-                folder.startsWith('F015') || 
-                folder.startsWith('F16') || 
-                folder.startsWith('F016') || 
-                folder.startsWith('F017')
-            ) {
-                catKey = "Correspondencia y Radicación (VUAR)";
+        for (const cat of categoryMap) {
+            const catPath = path.join(targetPath, cat.folderName);
+            if (!fs.existsSync(catPath) || !fs.statSync(catPath).isDirectory()) {
+                continue;
             }
 
-            // Scan files inside each folder
-            const files = fs.readdirSync(folderPath);
+            const files = fs.readdirSync(catPath);
+            const formats = [];
+
             for (const file of files) {
                 if (file.startsWith('.') || file === 'Thumbs.db' || file === 'desktop.ini' || file.startsWith('~$')) {
                     continue;
                 }
-                const filePath = path.join(folderPath, file);
+                const filePath = path.join(catPath, file);
                 const stat = fs.statSync(filePath);
                 if (stat.isDirectory()) continue;
 
@@ -83,33 +67,32 @@ export const GET: APIRoute = async () => {
                 else if (ext === '.docx' || ext === '.doc') type = 'word';
                 else if (ext === '.pdf') type = 'pdf';
 
-                // Humanize the display name (remove extension and replace underscores/dashes with spaces if needed)
                 let displayName = file.substring(0, file.lastIndexOf('.'));
                 
-                // Clean up prefixes from display names for a cleaner layout if desired
-                // (e.g. F009-ROTULO CAJAS -> ROTULO CAJAS)
+                // Clean up prefixes if any
                 if (displayName.includes('-')) {
                     displayName = displayName.split('-').slice(1).join('-').trim();
                 }
 
-                // Construct relative URL for static file serving
-                const relativeUrl = '/archivos/Formatos/7. Gestión Documental y Tecnologías de la Información/Gestión Documental/' + folder + '/' + encodeURIComponent(file);
+                const relativeUrl = `/archivos/Formatos/7. Gestión Documental y Tecnologías de la Información/Gestión Documental/${cat.folderName}/${encodeURIComponent(file)}`;
 
-                categories[catKey].formats.push({
+                formats.push({
                     name: displayName,
                     file: file,
                     path: relativeUrl,
                     type: type
                 });
             }
-        }
 
-        // Convert categorized object to list and filter empty categories
-        const result = Object.values(categories).filter(c => c.formats.length > 0);
-
-        // Sort files alphabetically inside each category
-        for (const cat of result) {
-            cat.formats.sort((a, b) => a.name.localeCompare(b.name));
+            if (formats.length > 0) {
+                // Sort files alphabetically inside each category
+                formats.sort((a, b) => a.name.localeCompare(b.name));
+                result.push({
+                    category: cat.displayName,
+                    icon: cat.icon,
+                    formats: formats
+                });
+            }
         }
 
         return new Response(JSON.stringify(result), {
