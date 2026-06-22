@@ -632,11 +632,8 @@
               </div>
               <div>
                 <h3 class="text-base font-bold text-slate-800">Formatos Relacionamiento con la Ciudadanía</h3>
-                <p class="text-xs text-slate-500">Sube, edita o descarga plantillas desde Windows Explorer para sincronizarlas</p>
+                <p class="text-xs text-slate-500">Consulta y descarga de formatos y plantillas oficiales</p>
               </div>
-            </div>
-            <div class="text-[10px] font-bold text-slate-400 uppercase bg-slate-100 border border-slate-200/60 px-2 py-1 rounded-md">
-              Sincronización Dinámica Activa
             </div>
           </div>
 
