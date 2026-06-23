@@ -16,7 +16,7 @@
   ];
 
   let username = '';
-  let selectedFolder: string | null = null;
+  let selectedFolder: string | null = 'Riesgos y oportunidades';
   let file: File | null = null;
   let fileInfo = '';
   let fileStatus: 'idle' | 'valid' | 'invalid' = 'idle';
@@ -38,14 +38,6 @@
 
   function selectFolder(folderName: string) {
     selectedFolder = folderName;
-    file = null;
-    fileInfo = '';
-    fileStatus = 'idle';
-    uploadMsg = '';
-  }
-
-  function goBack() {
-    selectedFolder = null;
     file = null;
     fileInfo = '';
     fileStatus = 'idle';
@@ -117,7 +109,7 @@
           $isUploadOpen = false; 
           uploadMsg = ''; 
           uploadOk = false; 
-          selectedFolder = null; 
+          selectedFolder = 'Riesgos y oportunidades'; 
         }, 2200);
       } else {
         throw new Error(data.error ?? 'Error desconocido');
@@ -132,7 +124,7 @@
 
   function resetAndClose() {
     $isUploadOpen = false;
-    selectedFolder = null;
+    selectedFolder = 'Riesgos y oportunidades';
     file = null;
     fileInfo = '';
     fileStatus = 'idle';
@@ -148,7 +140,7 @@
     aria-modal="true"
     aria-label="Buzón de subida de evidencias"
   >
-    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-xl overflow-hidden border border-slate-100 flex flex-col max-h-[90vh]">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-4xl overflow-hidden border border-slate-100 flex flex-col max-h-[90vh]">
       
       <!-- Modal Header -->
       <div class="flex justify-between items-start p-5 border-b border-slate-100 bg-slate-50/50 shrink-0">
@@ -158,7 +150,7 @@
           </div>
           <div>
             <h2 class="text-base font-bold text-slate-800">Buzón de Carga de Evidencias</h2>
-            <p class="text-xs text-slate-400 mt-0.5">Depósito seguro de documentos institucionales</p>
+            <p class="text-xs text-slate-400 mt-0.5">Depósito seguro de documentos institucionales (Canal de una sola vía)</p>
           </div>
         </div>
         <button on:click={resetAndClose} class="w-8 h-8 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 flex items-center justify-center transition-colors" aria-label="Cerrar">
@@ -166,127 +158,141 @@
         </button>
       </div>
 
-      <!-- Navigation breadcrumb when folder selected -->
-      {#if selectedFolder}
-        <div class="px-5 py-2.5 bg-slate-50 border-b border-slate-100 text-xs flex items-center gap-2 shrink-0">
-          <button on:click={goBack} class="text-brand-blue font-bold hover:underline flex items-center gap-1">
-            <i class="fas fa-folder-open"></i> Carpetas
-          </button>
-          <i class="fas fa-chevron-right text-slate-300 text-[10px]"></i>
-          <span class="text-slate-500 font-semibold truncate">{selectedFolder}</span>
-        </div>
-      {/if}
-
-      <!-- Modal Body (Scrollable if needed) -->
-      <div class="p-6 overflow-y-auto flex-1 custom-scroll space-y-5">
+      <!-- Split Layout (Left panel = folder select & user, Right panel = upload dropzone) -->
+      <div class="flex flex-col md:flex-row flex-1 overflow-hidden min-h-0">
         
-        <!-- ESTADO 1: GRID DE SELECCIÓN DE CARPETA -->
-        {#if !selectedFolder}
-          <div class="space-y-4">
-            <!-- Nota informativa de seguridad -->
-            <div class="p-3.5 bg-blue-50/60 border border-blue-100 rounded-xl flex gap-3 text-xs text-blue-900 leading-relaxed font-medium">
-              <i class="fas fa-info-circle text-brand-blue text-base mt-0.5 shrink-0"></i>
-              <div>
-                <strong>Recepción Exclusiva:</strong> Este canal funciona únicamente para depositar evidencias. Por motivos de trazabilidad y seguridad, los funcionarios no podrán ver, modificar ni descargar documentos previamente cargados.
-              </div>
-            </div>
+        <!-- Left Panel: Responsable y Carpetas -->
+        <div class="w-full md:w-[42%] border-r border-slate-100 flex flex-col min-h-0 bg-slate-50/30 p-5 space-y-4 shrink-0">
+          <!-- Responsable input -->
+          <div>
+            <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1.5" for="upload-username">
+              Nombre del Responsable <span class="text-red-500">*</span>
+            </label>
+            <input
+              id="upload-username"
+              type="text"
+              bind:value={username}
+              on:input={saveUsername}
+              class="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue/50 focus:border-brand-blue text-xs font-semibold"
+              placeholder="Escribe tu nombre para trazabilidad"
+              required
+            />
+          </div>
 
-            <!-- Listado de carpetas -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2">
+          <div class="border-t border-slate-200/50 my-1"></div>
+
+          <!-- Mobile Select Dropdown -->
+          <div class="block md:hidden">
+            <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1.5" for="folder-select">
+              Carpeta de Destino
+            </label>
+            <select
+              id="folder-select"
+              bind:value={selectedFolder}
+              class="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue/50 focus:border-brand-blue text-xs font-semibold bg-white text-slate-700"
+            >
+              {#each FOLDERS as f}
+                <option value={f.name}>{f.name}</option>
+              {/each}
+            </select>
+          </div>
+
+          <!-- Desktop vertical list (hidden on mobile) -->
+          <div class="hidden md:flex flex-col flex-1 min-h-0">
+            <span class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">Carpeta de Destino</span>
+            <div class="space-y-1.5 overflow-y-auto pr-1 flex-1 custom-scroll">
               {#each FOLDERS as f}
                 <button
                   on:click={() => selectFolder(f.name)}
-                  class="group p-4 rounded-xl border border-slate-200/80 bg-white hover:border-brand-blue hover:bg-blue-50/10 hover:shadow-sm transition-all text-left flex items-start gap-3 w-full min-w-0"
+                  class="group w-full p-2.5 rounded-lg border text-left flex items-center gap-2.5 transition-all text-xs font-semibold
+                    {selectedFolder === f.name 
+                      ? 'border-brand-blue bg-blue-50/40 text-brand-blue shadow-sm font-bold' 
+                      : 'border-slate-100 bg-white hover:border-slate-300 hover:bg-slate-50 text-slate-700'
+                    }"
                 >
-                  <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 border transition-all {f.color} group-hover:scale-105">
-                    <i class="{f.icon} text-sm"></i>
+                  <!-- Folder Icon with background -->
+                  <div class="w-7 h-7 rounded-md flex items-center justify-center shrink-0 border transition-all 
+                    {selectedFolder === f.name 
+                      ? 'bg-brand-blue text-white border-brand-blue' 
+                      : f.color
+                    } group-hover:scale-105"
+                  >
+                    <i class="{f.icon} text-xs"></i>
                   </div>
-                  <div class="min-w-0 flex-1 flex flex-col justify-center h-9">
-                    <h4 class="text-xs font-bold text-slate-700 leading-tight group-hover:text-brand-blue truncate" title={f.name}>
-                      {f.name}
-                    </h4>
-                    <span class="text-[9px] text-slate-400 mt-0.5">Haga clic para depositar archivo</span>
-                  </div>
+                  <span class="truncate flex-1 leading-snug">{f.name}</span>
+                  {#if selectedFolder === f.name}
+                    <i class="fas fa-chevron-right text-[10px] text-brand-blue/70 shrink-0"></i>
+                  {/if}
                 </button>
               {/each}
             </div>
           </div>
+        </div>
 
-        <!-- ESTADO 2: FORMULARIO DE CARGA PARA LA CARPETA SELECCIONADA -->
-        {:else}
-          <div class="space-y-5 animate-fade-in">
-            <!-- Nombre del Responsable -->
+        <!-- Right Panel: Carga y Confirmación -->
+        <div class="w-full md:w-[58%] flex flex-col min-h-0 bg-white p-5 space-y-4 overflow-y-auto custom-scroll">
+          <!-- Dynamic Header -->
+          <div class="flex items-center gap-2 text-xs font-bold text-slate-800 border-b border-slate-100 pb-3">
+            <i class="fas fa-folder-open text-brand-blue text-sm"></i>
+            <span>Depositar evidencia en:</span>
+            <span class="text-brand-blue truncate flex-1" title={selectedFolder}>{selectedFolder}</span>
+          </div>
+
+          <!-- Nota informativa de seguridad -->
+          <div class="p-3 bg-blue-50/50 border border-blue-100/60 rounded-xl flex gap-2.5 text-[11px] text-blue-900 leading-relaxed font-medium">
+            <i class="fas fa-shield-halved text-brand-blue text-sm mt-0.5 shrink-0"></i>
             <div>
-              <label class="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1.5" for="upload-username">
-                Nombre del Responsable <span class="text-red-500">*</span>
-              </label>
-              <input
-                id="upload-username"
-                type="text"
-                bind:value={username}
-                on:input={saveUsername}
-                class="w-full px-3.5 py-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue/50 focus:border-brand-blue text-xs font-semibold"
-                placeholder="Escribe tu nombre completo para trazabilidad"
-                required
-              />
+              <strong>Recepción Exclusiva:</strong> Este es un canal de una sola vía. Por seguridad, no es posible ver, descargar ni modificar los archivos que ya han sido cargados.
             </div>
+          </div>
 
-            <!-- Drop Zone -->
-            <div>
-              <label class="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1.5">Archivo a Depositar</label>
-              <div
-                class="border-2 border-dashed rounded-xl p-8 text-center cursor-pointer transition-all {dragging ? 'border-brand-blue bg-blue-50/20' : 'border-slate-300 hover:border-brand-blue hover:bg-slate-50/50'}"
-                on:dragenter|preventDefault={() => (dragging = true)}
-                on:dragover|preventDefault={() => (dragging = true)}
-                on:dragleave={() => (dragging = false)}
-                on:drop={onDrop}
-                on:click={() => document.getElementById('upload-input')?.click()}
-                role="button"
-                tabindex="0"
-                on:keydown={(e) => e.key === 'Enter' && document.getElementById('upload-input')?.click()}
-              >
-                <div class="w-12 h-12 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center mx-auto mb-3 shadow-sm text-slate-400">
-                  <i class="fas fa-cloud-upload-alt text-lg"></i>
-                </div>
-                <p class="text-xs text-slate-600 font-bold">Arrastra tu archivo aquí o <span class="text-brand-blue hover:underline">explora tus carpetas</span></p>
-                <p class="text-[10px] text-slate-400 mt-1 leading-snug">Tipos de archivo permitidos: PDF, Word, Excel, PowerPoint<br>Tamaño máximo: 10MB</p>
-                <input id="upload-input" type="file" class="hidden" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx" on:change={onFileChange} />
+          <!-- Drop Zone -->
+          <div class="flex-1 flex flex-col justify-center min-h-[140px]">
+            <div
+              class="border-2 border-dashed rounded-xl p-6 text-center cursor-pointer transition-all flex flex-col justify-center items-center h-full min-h-[140px]
+                {dragging ? 'border-brand-blue bg-blue-50/20' : 'border-slate-300 hover:border-brand-blue hover:bg-slate-50/30'}"
+              on:dragenter|preventDefault={() => (dragging = true)}
+              on:dragover|preventDefault={() => (dragging = true)}
+              on:dragleave={() => (dragging = false)}
+              on:drop={onDrop}
+              on:click={() => document.getElementById('upload-input')?.click()}
+              role="button"
+              tabindex="0"
+              on:keydown={(e) => e.key === 'Enter' && document.getElementById('upload-input')?.click()}
+            >
+              <div class="w-10 h-10 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center mb-2.5 shadow-sm text-slate-400">
+                <i class="fas fa-cloud-upload-alt text-base"></i>
               </div>
+              <p class="text-xs text-slate-600 font-bold">Arrastra tu archivo aquí o <span class="text-brand-blue hover:underline">explora</span></p>
+              <p class="text-[9px] text-slate-400 mt-1 leading-snug">Formatos admitidos: PDF, Word, Excel, PowerPoint<br>Tamaño máximo: 10MB</p>
+              <input id="upload-input" type="file" class="hidden" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx" on:change={onFileChange} />
+            </div>
+          </div>
 
+          <!-- File Info and Feedback Messages -->
+          {#if fileInfo || uploadMsg}
+            <div class="space-y-2 shrink-0">
               {#if fileInfo}
-                <p class="mt-2 text-xs flex items-center gap-1.5 font-semibold {fileStatus === 'valid' ? 'text-green-600' : 'text-red-500'}">
+                <div class="px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-150 text-[11px] flex items-center gap-1.5 font-bold {fileStatus === 'valid' ? 'text-green-600' : 'text-red-500'}">
                   <i class="fas {fileStatus === 'valid' ? 'fa-check-circle' : 'fa-times-circle'}"></i>
-                  {fileInfo}
-                </p>
+                  <span class="truncate">{fileInfo}</span>
+                </div>
+              {/if}
+
+              {#if uploadMsg}
+                <div class="p-2.5 rounded-lg border text-[11px] font-bold flex items-center gap-2 {uploadOk ? 'bg-green-50 border-green-200 text-green-700' : 'bg-red-50 border-red-200 text-red-700'} animate-fade-in">
+                  <i class="fas {uploadOk ? 'fa-check-circle' : 'fa-times-circle'} text-xs"></i>
+                  <span>{uploadMsg}</span>
+                </div>
               {/if}
             </div>
-
-            <!-- Feedback Message -->
-            {#if uploadMsg}
-              <div class="p-3 rounded-lg border text-xs font-semibold flex items-center gap-2 {uploadOk ? 'bg-green-50 border-green-200 text-green-700' : 'bg-red-50 border-red-200 text-red-700'}">
-                <i class="fas {uploadOk ? 'fa-check-circle' : 'fa-times-circle'} text-sm"></i>
-                {uploadMsg}
-              </div>
-            {/if}
-          </div>
-        {/if}
-
-      </div>
-
-      <!-- Modal Footer -->
-      <div class="px-6 py-4 border-t border-slate-100 bg-slate-50/50 flex justify-between items-center shrink-0">
-        <div>
-          {#if selectedFolder}
-            <button on:click={goBack} class="text-xs font-bold text-slate-500 hover:text-slate-800 transition-colors flex items-center gap-1">
-              <i class="fas fa-arrow-left"></i> Cambiar Carpeta
-            </button>
           {/if}
-        </div>
-        <div class="flex gap-2">
-          <button on:click={resetAndClose} class="px-4 py-2 text-xs font-bold text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition-colors">
-            Cancelar
-          </button>
-          {#if selectedFolder}
+
+          <!-- Footer Actions inside the Right Panel -->
+          <div class="pt-3 border-t border-slate-100 flex justify-end gap-2.5 shrink-0">
+            <button on:click={resetAndClose} class="px-4 py-2 text-xs font-bold text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition-colors">
+              Cancelar
+            </button>
             <button
               on:click={submit}
               disabled={fileStatus !== 'valid' || uploading}
@@ -294,14 +300,16 @@
             >
               {#if uploading}
                 <i class="fas fa-spinner fa-spin"></i>
-                <span>Cargando...</span>
+                <span>Enviando...</span>
               {:else}
                 <i class="fas fa-cloud-arrow-up"></i>
                 <span>Depositar Evidencia</span>
               {/if}
             </button>
-          {/if}
+          </div>
+
         </div>
+
       </div>
 
     </div>
@@ -339,4 +347,3 @@
     }
   }
 </style>
-
