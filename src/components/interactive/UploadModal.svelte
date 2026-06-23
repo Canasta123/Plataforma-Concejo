@@ -159,10 +159,10 @@
       </div>
 
       <!-- Split Layout (Left panel = folder select & user, Right panel = upload dropzone) -->
-      <div class="flex flex-col md:flex-row flex-1 overflow-hidden min-h-0">
+      <div class="split-layout">
         
         <!-- Left Panel: Responsable y Carpetas -->
-        <div class="w-full md:w-[42%] border-r border-slate-100 flex flex-col min-h-0 bg-slate-50/30 p-5 space-y-4 shrink-0">
+        <div class="left-panel">
           <!-- Responsable input -->
           <div>
             <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1.5" for="upload-username">
@@ -182,7 +182,7 @@
           <div class="border-t border-slate-200/50 my-1"></div>
 
           <!-- Mobile Select Dropdown -->
-          <div class="block md:hidden">
+          <div class="mobile-select">
             <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1.5" for="folder-select">
               Carpeta de Destino
             </label>
@@ -198,7 +198,7 @@
           </div>
 
           <!-- Desktop vertical list (hidden on mobile) -->
-          <div class="hidden md:flex flex-col flex-1 min-h-0">
+          <div class="desktop-list">
             <span class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">Carpeta de Destino</span>
             <div class="space-y-1.5 overflow-y-auto pr-1 flex-1 custom-scroll">
               {#each FOLDERS as f}
@@ -207,7 +207,7 @@
                   class="group w-full p-2.5 rounded-lg border text-left flex items-center gap-2.5 transition-all text-xs font-semibold
                     {selectedFolder === f.name 
                       ? 'border-brand-blue bg-blue-50/40 text-brand-blue shadow-sm font-bold' 
-                      : 'border-slate-100 bg-white hover:border-slate-300 hover:bg-slate-50 text-slate-700'
+                      : 'border-slate-100 bg-white hover:border-slate-350 hover:bg-slate-50 text-slate-700'
                     }"
                 >
                   <!-- Folder Icon with background -->
@@ -230,7 +230,7 @@
         </div>
 
         <!-- Right Panel: Carga y Confirmación -->
-        <div class="w-full md:w-[58%] flex flex-col min-h-0 bg-white p-5 space-y-4 overflow-y-auto custom-scroll">
+        <div class="right-panel custom-scroll">
           <!-- Dynamic Header -->
           <div class="flex items-center gap-2 text-xs font-bold text-slate-800 border-b border-slate-100 pb-3">
             <i class="fas fa-folder-open text-brand-blue text-sm"></i>
@@ -317,6 +317,66 @@
 {/if}
 
 <style>
+  .split-layout {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  .left-panel {
+    width: 100%;
+    border-right: 1px solid #f1f5f9;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    background-color: rgba(248, 250, 252, 0.3);
+    padding: 1.25rem;
+    gap: 1rem;
+    flex-shrink: 0;
+  }
+
+  .right-panel {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    background-color: #ffffff;
+    padding: 1.25rem;
+    gap: 1rem;
+    overflow-y: auto;
+  }
+
+  .mobile-select {
+    display: block;
+  }
+
+  .desktop-list {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .split-layout {
+      flex-direction: row;
+    }
+    .left-panel {
+      width: 40%;
+    }
+    .right-panel {
+      width: 60%;
+    }
+    .mobile-select {
+      display: none;
+    }
+    .desktop-list {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-height: 0;
+    }
+  }
+
   /* Scrollbar styles for the body */
   .custom-scroll::-webkit-scrollbar {
     width: 6px;
