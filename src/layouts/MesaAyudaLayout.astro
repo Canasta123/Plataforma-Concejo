@@ -4,6 +4,7 @@ import { getSession } from '../lib/auth';
 import type { Rol } from '../lib/supabase';
 import { supabase } from '../lib/supabase';
 import InduccionModal from '../components/mesa-ayuda/interactive/InduccionModal.svelte';
+import NotificationsBell from '../components/mesa-ayuda/interactive/NotificationsBell.svelte';
 
 interface Props {
   title:       string;
@@ -20,6 +21,7 @@ if (rolRequerido && session.rol !== rolRequerido) return Astro.redirect('/mesa-a
 const navItems: { label: string; href: string; rol: Rol[] }[] = [
   { label: 'Usuarios',         href: '/mesa-ayuda/admin',          rol: ['admin'] },
   { label: 'Panel auditoría',  href: '/mesa-ayuda/auditor',        rol: ['admin'] },
+  { label: 'Evidencias',       href: '/mesa-ayuda/evidencias',     rol: ['admin'] },
   { label: 'Reportes Excel',   href: '/mesa-ayuda/reportes',       rol: ['admin', 'auditor'] },
   { label: 'Mis Tickets',      href: '/mesa-ayuda/dashboard',      rol: ['solicitante'] },
   { label: 'Nueva Solicitud',  href: '/mesa-ayuda/nuevo-ticket',   rol: ['solicitante'] },
@@ -106,6 +108,8 @@ if (session && session.rol !== 'admin') {
 
         <!-- Usuario + cerrar sesión -->
         <div class="flex items-center gap-3">
+          <NotificationsBell client:load />
+
           <div class="hidden sm:flex flex-col items-end">
             <span class="text-sm font-semibold text-gray-800">{session.nombre}</span>
             <span class="text-xs text-gray-400 capitalize">{session.rol} · {session.cargo}</span>

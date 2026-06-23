@@ -2,6 +2,7 @@ import type { APIRoute } from 'astro';
 import { supabase } from '../../../../lib/supabase';
 import { getSession } from '../../../../lib/auth';
 import { notificarReservaAprobada, notificarReservaRechazada, notificarReservaCancelada } from '../../../../lib/mailer';
+import { crearNotificacion } from '../../../../lib/notifications';
 
 export const PATCH: APIRoute = async ({ params, request, cookies }) => {
   const session = await getSession(cookies);
@@ -72,11 +73,27 @@ export const PATCH: APIRoute = async ({ params, request, cookies }) => {
         { id: data.id, motivo: data.motivo, fecha_inicio: data.fecha_inicio, fecha_fin: data.fecha_fin, nota_admin: data.nota_admin },
         solicitante, recurso, session.nombre
       );
+
+      await crearNotificacion({
+        usuario_id: solicitante.id,
+        titulo: 'Reserva Aprobada',
+        contenido: `Tu reserva de "${recurso.nombre}" para "${data.motivo}" ha sido aprobada por ${session.nombre}.`,
+        tipo: 'reserva'
+      }).catch(() => {});
+      
     } else if (estado === 'rechazada') {
       await notificarReservaRechazada(
         { motivo: data.motivo, fecha_inicio: data.fecha_inicio, nota_admin: data.nota_admin },
         solicitante, recurso
       );
+
+      await crearNotificacion({
+        usuario_id: solicitante.id,
+        titulo: 'Reserva Rechazada',
+        contenido: `Tu reserva de "${recurso.nombre}" para "${data.motivo}" ha sido rechazada.`,
+        tipo: 'reserva'
+      }).catch(() => {});
+
     } else if (estado === 'cancelada') {
       // Notificar a los encargados del recurso sobre la cancelación
       let responsables: any[] = [];
@@ -104,6 +121,15 @@ export const PATCH: APIRoute = async ({ params, request, cookies }) => {
         { nombre: recurso.nombre },
         responsables
       );
+
+      for (const dest of responsables) {
+        await crearNotificacion({
+          usuario_id: dest.id,
+          titulo: 'Reserva Cancelada',
+          contenido: `${solicitante.nombre} ha cancelado la reserva de "${recurso.nombre}" para "${data.motivo}".`,
+          tipo: 'reserva'
+        }).catch(() => {});
+      }
     }
   } catch (e) {
     console.error('Error enviando notificación de estado de reserva:', e);

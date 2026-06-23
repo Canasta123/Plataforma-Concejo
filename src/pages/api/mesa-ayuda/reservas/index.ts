@@ -3,6 +3,7 @@ import { supabase } from '../../../../lib/supabase';
 import { getSession } from '../../../../lib/auth';
 import { notificarReservaSolicitada } from '../../../../lib/mailer';
 import crypto from 'crypto';
+import { crearNotificacion } from '../../../../lib/notifications';
 
 export const GET: APIRoute = async ({ cookies }) => {
   const session = await getSession(cookies);
@@ -112,6 +113,16 @@ export const POST: APIRoute = async ({ request, cookies }) => {
         { nombre: recurso.nombre },
         destinatarios
       );
+
+      // Crear notificación en Supabase para los responsables
+      for (const dest of destinatarios) {
+        await crearNotificacion({
+          usuario_id: dest.id,
+          titulo: 'Nueva Reserva Solicitada',
+          contenido: `${(row.solicitante as any).nombre} ha solicitado el recurso "${recurso.nombre}" para "${row.motivo}".`,
+          tipo: 'reserva'
+        }).catch(() => {});
+      }
     }
   } catch (e) {
     console.error('Error enviando notificación de reserva:', e);

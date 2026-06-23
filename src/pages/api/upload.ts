@@ -1,6 +1,8 @@
 import type { APIRoute } from 'astro';
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { supabase } from '../../lib/supabase';
+import { crearNotificacion } from '../../lib/notifications';
 
 // Ruta de uploads: prioriza UPLOAD_DIR, luego FILES_BASE_DIR/archivos, finalmente public/archivos.
 const UPLOAD_DIR = process.env.UPLOAD_DIR
@@ -124,7 +126,39 @@ export const POST: APIRoute = async ({ request }) => {
     await fs.appendFile(csvPath, csvLine, 'utf8');
   } catch (err: any) {
     await logError('Writing to trazabilidad CSV: ' + csvPath, err);
-    // We don't fail the upload if only CSV log fails, but we log it
+  }
+
+  // Registrar en Supabase y notificar a los administradores/auditores
+  try {
+    const { error: dbError } = await supabase
+      .from('trazabilidad_evidencias')
+      .insert({
+        ip,
+        usuario: username,
+        carpeta_destino: folder,
+        nombre_archivo: fileName
+      });
+
+    if (dbError) {
+      console.error('Error al insertar trazabilidad de evidencia en Supabase:', dbError);
+    } else {
+      const { data: destUsers } = await supabase
+        .from('usuarios')
+        .select('id')
+        .in('rol', ['admin', 'auditor'])
+        .eq('activo', true);
+
+      for (const dest of destUsers ?? []) {
+        await crearNotificacion({
+          usuario_id: dest.id,
+          titulo: 'Nueva Evidencia Subida',
+          contenido: `${username} ha depositado el archivo "${file.name}" en la carpeta "${folder}".`,
+          tipo: 'evidencia'
+        }).catch(() => {});
+      }
+    }
+  } catch (dbErr) {
+    console.error('Excepción al registrar trazabilidad en Supabase:', dbErr);
   }
 
   return new Response(JSON.stringify({ message: 'Subida exitosa', file: fileName }), { status: 200 });

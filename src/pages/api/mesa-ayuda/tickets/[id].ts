@@ -3,6 +3,7 @@ import { supabase } from '../../../../lib/supabase';
 import { getSession } from '../../../../lib/auth';
 import { notificarCambioEstado, notificarAsignacion } from '../../../../lib/mailer';
 import type { EstadoTicket } from '../../../../lib/supabase';
+import { crearNotificacion } from '../../../../lib/notifications';
 
 export const GET: APIRoute = async ({ params, cookies }) => {
   const session = await getSession(cookies);
@@ -96,10 +97,24 @@ export const PATCH: APIRoute = async ({ params, request, cookies }) => {
 
     if (cambios.estado && solicitante) {
       await notificarCambioEstado(ticketActualizado, solicitante, ticketAnterior.estado).catch(() => {});
+      await crearNotificacion({
+        usuario_id: solicitante.id,
+        titulo: 'Estado de Ticket Actualizado',
+        contenido: `Tu ticket "${ticketActualizado.titulo}" ha cambiado al estado "${cambios.estado}".`,
+        tipo: 'ticket'
+      }).catch(() => {});
     }
     if (cambios.agente_id) {
       const { data: agenteData } = await supabase.from('usuarios').select('*').eq('id', session.id).single();
-      if (agenteData) await notificarAsignacion(ticketActualizado, agenteData).catch(() => {});
+      if (agenteData) {
+        await notificarAsignacion(ticketActualizado, agenteData).catch(() => {});
+        await crearNotificacion({
+          usuario_id: cambios.agente_id as string,
+          titulo: 'Ticket Asignado',
+          contenido: `Se te ha asignado el ticket "${ticketActualizado.titulo}".`,
+          tipo: 'ticket'
+        }).catch(() => {});
+      }
     }
   })();
 

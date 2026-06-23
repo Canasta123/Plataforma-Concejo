@@ -1,0 +1,29 @@
+---
+import MesaAyudaLayout from '../../layouts/MesaAyudaLayout.astro';
+import EvidenciasPanel from '../../components/mesa-ayuda/interactive/admin/EvidenciasPanel.svelte';
+import { getSession } from '../../lib/auth';
+import { supabase } from '../../lib/supabase';
+
+const session = await getSession(Astro.cookies);
+if (!session || session.rol !== 'admin') return Astro.redirect('/mesa-ayuda');
+
+const { data: evidencias } = await supabase
+  .from('trazabilidad_evidencias')
+  .select('*')
+  .order('fecha', { ascending: false });
+---
+
+<MesaAyudaLayout title="Control de Evidencias" rolRequerido="admin">
+  <div class="flex items-center justify-between mb-6">
+    <div>
+      <h1 class="text-xl font-bold text-gray-900" style="font-family: 'Montserrat', sans-serif;">
+        Control y Trazabilidad de Evidencias
+      </h1>
+      <p class="text-sm text-gray-500 mt-1">
+        Consulta, filtra y descarga los archivos de evidencias depositados por los funcionarios en el SGC.
+      </p>
+    </div>
+  </div>
+
+  <EvidenciasPanel client:load evidenciasIniciales={evidencias ?? []} />
+</MesaAyudaLayout>
