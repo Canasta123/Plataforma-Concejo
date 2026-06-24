@@ -13,16 +13,7 @@ const UPLOAD_DIR = process.env.UPLOAD_DIR
       ? path.join(process.cwd(), 'dist', 'client', 'archivos')
       : path.join(process.cwd(), 'public', 'archivos');
 
-const CARPETAS_PERMITIDAS = [
-  'Riesgos y oportunidades',
-  'Planes de Mejoramiento',
-  'Indicadores',
-  'Revisión por la Dirección',
-  'Modelo Integrado de Planeación y Gestión 2025',
-  'Seguimiento Planes Institucionales',
-  'SG-SST',
-  'Empalme',
-];
+// Las carpetas se validan dinámicamente con la base de datos
 
 function formatDate(d: Date): string {
   const p = (n: number) => n.toString().padStart(2, '0');
@@ -65,8 +56,19 @@ export const POST: APIRoute = async ({ request }) => {
     return new Response(JSON.stringify({ error: 'El nombre es obligatorio para la trazabilidad.' }), { status: 400 });
   }
 
-  if (!CARPETAS_PERMITIDAS.includes(folder)) {
-    return new Response(JSON.stringify({ error: `Categoría de destino "${folder}" no permitida para evidencias.` }), { status: 400 });
+  // Verificar si la carpeta existe y está activa en Supabase
+  const { data: dbFolder, error: folderError } = await supabase
+    .from('carpetas_evidencia')
+    .select('id, nombre, activa')
+    .eq('nombre', folder)
+    .single();
+
+  if (folderError || !dbFolder) {
+    return new Response(JSON.stringify({ error: `La carpeta de destino "${folder}" no existe en el sistema.` }), { status: 400 });
+  }
+
+  if (!dbFolder.activa) {
+    return new Response(JSON.stringify({ error: `La carpeta "${folder}" ha sido archivada y ya no acepta cargas.` }), { status: 400 });
   }
 
   const allowed = ['.pdf', '.doc', '.docx', '.xls', '.xlsx', '.ppt', '.pptx'];
@@ -136,7 +138,8 @@ export const POST: APIRoute = async ({ request }) => {
         ip,
         usuario: username,
         carpeta_destino: folder,
-        nombre_archivo: fileName
+        nombre_archivo: fileName,
+        carpeta_id: dbFolder.id
       });
 
     if (dbError) {

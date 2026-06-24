@@ -1,0 +1,25 @@
+---
+import MesaAyudaLayout from '../../layouts/MesaAyudaLayout.astro';
+import InlineUploadPanel from '../../components/mesa-ayuda/interactive/InlineUploadPanel.svelte';
+import { getSession } from '../../lib/auth';
+import { supabase } from '../../lib/supabase';
+
+const session = await getSession(Astro.cookies);
+if (!session) return Astro.redirect('/mesa-ayuda/login');
+
+---
+
+<MesaAyudaLayout title="Buzón de Evidencias" rolRequerido={undefined}>
+  <div class="flex items-center justify-between mb-6">
+    <div>
+      <h1 class="text-xl font-bold text-gray-900" style="font-family: 'Montserrat', sans-serif;">
+        Buzón Digital de Evidencias
+      </h1>
+      <p class="text-sm text-gray-500 mt-1">
+        Deposita las evidencias correspondientes a tu proceso del SGC. Este canal es de una sola vía (recepción segura).
+      </p>
+    </div>
+  </div>
+
+  <InlineUploadPanel client:load initialUsername={session.nombre} />
+</MesaAyudaLayout>

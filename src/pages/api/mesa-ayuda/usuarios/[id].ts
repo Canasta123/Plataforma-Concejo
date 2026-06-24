@@ -25,6 +25,7 @@ export const PATCH: APIRoute = async ({ params, request, cookies }) => {
   if (body.activo !== undefined)             campos.activo = body.activo;
   if (body.correo_notificacion !== undefined) campos.correo_notificacion = body.correo_notificacion || null;
   if (body.induccion_habilitada !== undefined) campos.induccion_habilitada = body.induccion_habilitada;
+  if (body.acceso_evidencias !== undefined)  campos.acceso_evidencias = body.acceso_evidencias;
   if (body.password) {
     campos.password_hash = await bcrypt.hash(body.password, 12);
   }
@@ -33,7 +34,7 @@ export const PATCH: APIRoute = async ({ params, request, cookies }) => {
     .from('usuarios')
     .update(campos)
     .eq('id', id)
-    .select('id, nombre, correo, rol, cargo, activo, correo_notificacion, created_at, induccion_completada, induccion_habilitada')
+    .select('id, nombre, correo, rol, cargo, activo, correo_notificacion, created_at, induccion_completada, induccion_habilitada, acceso_evidencias')
     .single();
 
   if (error) return new Response(JSON.stringify({ error: error.message }), { status: 500 });

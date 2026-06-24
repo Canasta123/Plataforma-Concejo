@@ -18,20 +18,33 @@ const session = await getSession(Astro.cookies);
 if (!session) return Astro.redirect('/mesa-ayuda/login');
 if (rolRequerido && session.rol !== rolRequerido) return Astro.redirect('/mesa-ayuda');
 
-const navItems: { label: string; href: string; rol: Rol[] }[] = [
+// Obtener permisos de acceso a evidencias
+const { data: dbUser } = await supabase
+  .from('usuarios')
+  .select('acceso_evidencias')
+  .eq('id', session.id)
+  .single();
+const tieneAccesoEvidencias = dbUser?.acceso_evidencias ?? false;
+
+const navItems: { label: string; href: string; rol: Rol[]; visible?: boolean }[] = [
   { label: 'Usuarios',         href: '/mesa-ayuda/admin',          rol: ['admin'] },
   { label: 'Panel auditoría',  href: '/mesa-ayuda/auditor',        rol: ['admin'] },
-  { label: 'Evidencias',       href: '/mesa-ayuda/evidencias',     rol: ['admin'] },
+  { label: 'Evidencias (Consola)', href: '/mesa-ayuda/evidencias', rol: ['admin', 'auditor', 'solicitante', 'agente'], visible: tieneAccesoEvidencias || ['admin', 'auditor'].includes(session.rol) },
+  { label: 'Buzón Evidencias', href: '/mesa-ayuda/buzon-evidencias', rol: ['admin', 'solicitante', 'agente', 'auditor'] },
   { label: 'Reportes Excel',   href: '/mesa-ayuda/reportes',       rol: ['admin', 'auditor'] },
   { label: 'Mis Tickets',      href: '/mesa-ayuda/dashboard',      rol: ['solicitante'] },
   { label: 'Nueva Solicitud',  href: '/mesa-ayuda/nuevo-ticket',   rol: ['solicitante'] },
   { label: 'Tablero',          href: '/mesa-ayuda/agente',         rol: ['agente'] },
   { label: 'Reportes',         href: '/mesa-ayuda/auditor',        rol: ['auditor'] },
   { label: 'Base de Conocimiento', href: '/mesa-ayuda/conocimiento', rol: ['admin', 'solicitante', 'agente', 'auditor'] },
-  { label: 'Reservas', href: '/mesa-ayuda/reservas', rol: ['admin', 'solicitante', 'agente', 'auditor'] },
+  { label: 'Reservas',         href: '/mesa-ayuda/reservas',       rol: ['admin', 'solicitante', 'agente', 'auditor'] },
 ];
 
-const itemsVisibles = navItems.filter(i => i.rol.includes(session.rol));
+const itemsVisibles = navItems.filter(i => {
+  const matchRol = i.rol.includes(session.rol);
+  const matchVisible = i.visible !== undefined ? i.visible : true;
+  return matchRol && matchVisible;
+});
 const rutaActual = Astro.url.pathname;
 
 const { data: configRows } = await supabase

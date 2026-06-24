@@ -1,22 +1,23 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import { isUploadOpen } from '../../store/modals';
 
   const VALID_EXT = ['.pdf', '.doc', '.docx', '.xls', '.xlsx', '.ppt', '.pptx'];
   const MAX_SIZE = 10 * 1024 * 1024;
 
-  const FOLDERS = [
-    { name: 'Riesgos y oportunidades', icon: 'fas fa-shield-halved', color: 'text-blue-600 bg-blue-50 border-blue-100' },
-    { name: 'Planes de Mejoramiento', icon: 'fas fa-chart-line', color: 'text-emerald-600 bg-emerald-50 border-emerald-100' },
-    { name: 'Indicadores', icon: 'fas fa-chart-bar', color: 'text-amber-600 bg-amber-50 border-amber-100' },
-    { name: 'Revisión por la Dirección', icon: 'fas fa-users-cog', color: 'text-purple-600 bg-purple-50 border-purple-100' },
-    { name: 'Modelo Integrado de Planeación y Gestión 2025', icon: 'fas fa-sitemap', color: 'text-indigo-600 bg-indigo-50 border-indigo-100' },
-    { name: 'Seguimiento Planes Institucionales', icon: 'fas fa-list-check', color: 'text-cyan-600 bg-cyan-50 border-cyan-100' },
-    { name: 'SG-SST', icon: 'fas fa-heart-pulse', color: 'text-rose-600 bg-rose-50 border-rose-100' },
-    { name: 'Empalme', icon: 'fas fa-handshake', color: 'text-teal-600 bg-teal-50 border-teal-100' },
-  ];
+  interface Folder {
+    id: string;
+    nombre: string;
+    icono: string;
+    color: string;
+    activa: boolean;
+  }
+
+  let folders: Folder[] = [];
+  let loadingFolders = true;
 
   let username = '';
-  let selectedFolder: string | null = 'Riesgos y oportunidades';
+  let selectedFolder: string | null = null;
   let file: File | null = null;
   let fileInfo = '';
   let fileStatus: 'idle' | 'valid' | 'invalid' = 'idle';
@@ -24,6 +25,22 @@
   let uploadMsg = '';
   let uploadOk = false;
   let dragging = false;
+
+  onMount(async () => {
+    try {
+      const res = await fetch('/api/mesa-ayuda/evidencias/carpetas?activasOnly=true');
+      if (res.ok) {
+        folders = await res.json();
+        if (folders.length > 0) {
+          selectedFolder = folders[0].nombre;
+        }
+      }
+    } catch (e) {
+      console.error('Error al cargar carpetas en la página de inicio:', e);
+    } finally {
+      loadingFolders = false;
+    }
+  });
 
   function init() {
     if (typeof localStorage !== 'undefined') {
@@ -191,8 +208,8 @@
               bind:value={selectedFolder}
               class="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue/50 focus:border-brand-blue text-xs font-semibold bg-white text-slate-700"
             >
-              {#each FOLDERS as f}
-                <option value={f.name}>{f.name}</option>
+              {#each folders as f}
+                <option value={f.nombre}>{f.nombre}</option>
               {/each}
             </select>
           </div>
@@ -201,30 +218,40 @@
           <div class="desktop-list">
             <span class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">Carpeta de Destino</span>
             <div class="space-y-1.5 overflow-y-auto pr-1 flex-1 custom-scroll">
-              {#each FOLDERS as f}
-                <button
-                  on:click={() => selectFolder(f.name)}
-                  class="group w-full p-2.5 rounded-lg border text-left flex items-center gap-2.5 transition-all text-xs font-semibold
-                    {selectedFolder === f.name 
-                      ? 'border-brand-blue bg-blue-50/40 text-brand-blue shadow-sm font-bold' 
-                      : 'border-slate-100 bg-white hover:border-slate-350 hover:bg-slate-50 text-slate-700'
-                    }"
-                >
-                  <!-- Folder Icon with background -->
-                  <div class="w-7 h-7 rounded-md flex items-center justify-center shrink-0 border transition-all 
-                    {selectedFolder === f.name 
-                      ? 'bg-brand-blue text-white border-brand-blue' 
-                      : f.color
-                    } group-hover:scale-105"
+              {#if loadingFolders}
+                <div class="flex items-center justify-center p-8 text-slate-400 text-xs">
+                  <i class="fas fa-spinner fa-spin mr-2"></i> Cargando carpetas...
+                </div>
+              {:else if folders.length === 0}
+                <div class="p-4 text-center text-xs text-slate-450 italic">
+                  No hay carpetas activas disponibles.
+                </div>
+              {:else}
+                {#each folders as f}
+                  <button
+                    on:click={() => selectFolder(f.nombre)}
+                    class="group w-full p-2.5 rounded-lg border text-left flex items-center gap-2.5 transition-all text-xs font-semibold
+                      {selectedFolder === f.nombre 
+                        ? 'border-brand-blue bg-blue-50/40 text-brand-blue shadow-sm font-bold' 
+                        : 'border-slate-100 bg-white hover:border-slate-350 hover:bg-slate-50 text-slate-700'
+                      }"
                   >
-                    <i class="{f.icon} text-xs"></i>
-                  </div>
-                  <span class="truncate flex-1 leading-snug">{f.name}</span>
-                  {#if selectedFolder === f.name}
-                    <i class="fas fa-chevron-right text-[10px] text-brand-blue/70 shrink-0"></i>
-                  {/if}
-                </button>
-              {/each}
+                    <!-- Folder Icon with background -->
+                    <div class="w-7 h-7 rounded-md flex items-center justify-center shrink-0 border transition-all 
+                      {selectedFolder === f.nombre 
+                        ? 'bg-brand-blue text-white border-brand-blue' 
+                        : f.color
+                      } group-hover:scale-105"
+                    >
+                      <i class="{f.icono} text-xs"></i>
+                    </div>
+                    <span class="truncate flex-1 leading-snug">{f.nombre}</span>
+                    {#if selectedFolder === f.nombre}
+                      <i class="fas fa-chevron-right text-[10px] text-brand-blue/70 shrink-0"></i>
+                    {/if}
+                  </button>
+                {/each}
+              {/if}
             </div>
           </div>
         </div>

@@ -5,7 +5,16 @@ import { getSession } from '../../lib/auth';
 import { supabase } from '../../lib/supabase';
 
 const session = await getSession(Astro.cookies);
-if (!session || session.rol !== 'admin') return Astro.redirect('/mesa-ayuda');
+if (!session) return Astro.redirect('/mesa-ayuda/login');
+
+const { data: dbUser } = await supabase
+  .from('usuarios')
+  .select('acceso_evidencias')
+  .eq('id', session.id)
+  .single();
+
+const tieneAccesoConsola = dbUser?.acceso_evidencias || ['admin', 'auditor'].includes(session.rol);
+if (!tieneAccesoConsola) return Astro.redirect('/mesa-ayuda');
 
 const { data: evidencias } = await supabase
   .from('trazabilidad_evidencias')
@@ -13,7 +22,7 @@ const { data: evidencias } = await supabase
   .order('fecha', { ascending: false });
 ---
 
-<MesaAyudaLayout title="Control de Evidencias" rolRequerido="admin">
+<MesaAyudaLayout title="Control de Evidencias" rolRequerido={undefined}>
   <div class="flex items-center justify-between mb-6">
     <div>
       <h1 class="text-xl font-bold text-gray-900" style="font-family: 'Montserrat', sans-serif;">

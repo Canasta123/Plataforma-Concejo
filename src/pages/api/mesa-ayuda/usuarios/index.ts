@@ -12,7 +12,7 @@ export const GET: APIRoute = async ({ cookies }) => {
 
   const { data, error } = await supabase
     .from('usuarios')
-    .select('id, nombre, correo, rol, cargo, activo, correo_notificacion, created_at')
+    .select('id, nombre, correo, rol, cargo, activo, correo_notificacion, created_at, acceso_evidencias')
     .order('created_at', { ascending: false });
 
   if (error) return new Response(JSON.stringify({ error: error.message }), { status: 500 });
@@ -26,7 +26,7 @@ export const POST: APIRoute = async ({ request, cookies }) => {
   }
 
   const body = await request.json();
-  const { nombre, correo, password, rol, cargo, correo_notificacion } = body;
+  const { nombre, correo, password, rol, cargo, correo_notificacion, acceso_evidencias } = body;
 
   if (!nombre || !correo || !password || !rol || !cargo) {
     return new Response(JSON.stringify({ error: 'Faltan campos obligatorios' }), { status: 400 });
@@ -36,8 +36,8 @@ export const POST: APIRoute = async ({ request, cookies }) => {
 
   const { data, error } = await supabase
     .from('usuarios')
-    .insert({ nombre, correo, password_hash, rol, cargo, correo_notificacion: correo_notificacion || null, activo: true })
-    .select('id, nombre, correo, rol, cargo, activo, correo_notificacion, created_at')
+    .insert({ nombre, correo, password_hash, rol, cargo, correo_notificacion: correo_notificacion || null, activo: true, acceso_evidencias: acceso_evidencias !== undefined ? acceso_evidencias : true })
+    .select('id, nombre, correo, rol, cargo, activo, correo_notificacion, created_at, acceso_evidencias')
     .single();
 
   if (error) {

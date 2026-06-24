@@ -10,7 +10,7 @@ if (!session || session.rol !== 'admin') return Astro.redirect('/mesa-ayuda');
 
 const { data: usuarios } = await supabase
   .from('usuarios')
-  .select('id, nombre, correo, rol, cargo, activo, correo_notificacion, created_at, induccion_completada, induccion_habilitada, induccion_valoracion_sgc, induccion_valoracion_mesa')
+  .select('id, nombre, correo, rol, cargo, activo, correo_notificacion, created_at, induccion_completada, induccion_habilitada, induccion_valoracion_sgc, induccion_valoracion_mesa, acceso_evidencias')
   .order('created_at', { ascending: false });
 
 const { data: agentes } = await supabase

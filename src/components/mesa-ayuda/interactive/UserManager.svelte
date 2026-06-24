@@ -14,6 +14,7 @@
     induccion_habilitada?: boolean;
     induccion_valoracion_sgc?: number | null;
     induccion_valoracion_mesa?: number | null;
+    acceso_evidencias?: boolean;
   }
 
   export let usuarios: Usuario[] = [];
@@ -37,7 +38,7 @@
   let editando: Usuario | null = null;
   let mostrarPassword = false;
 
-  let form = { nombre: '', correo: '', password: '', rol: 'solicitante' as Rol, cargo: '', correo_notificacion: '' };
+  let form = { nombre: '', correo: '', password: '', rol: 'solicitante' as Rol, cargo: '', correo_notificacion: '', acceso_evidencias: true };
 
   $: filtrados = lista.filter(u => {
     if (filtroRol !== 'todos' && u.rol !== filtroRol) return false;
@@ -48,7 +49,7 @@
 
   function abrirCrear() {
     editando = null;
-    form = { nombre: '', correo: '', password: '', rol: 'solicitante', cargo: '', correo_notificacion: '' };
+    form = { nombre: '', correo: '', password: '', rol: 'solicitante', cargo: '', correo_notificacion: '', acceso_evidencias: true };
     mostrarPassword = false;
     error = '';
     modalAbierto = true;
@@ -56,7 +57,7 @@
 
   function abrirEditar(u: Usuario) {
     editando = u;
-    form = { nombre: u.nombre, correo: u.correo, password: '', rol: u.rol, cargo: u.cargo, correo_notificacion: u.correo_notificacion ?? '' };
+    form = { nombre: u.nombre, correo: u.correo, password: '', rol: u.rol, cargo: u.cargo, correo_notificacion: u.correo_notificacion ?? '', acceso_evidencias: u.acceso_evidencias ?? false };
     mostrarPassword = false;
     error = '';
     modalAbierto = true;
@@ -79,6 +80,7 @@
           nombre: form.nombre,
           cargo: form.cargo,
           correo_notificacion: form.correo_notificacion || null,
+          acceso_evidencias: form.acceso_evidencias,
         };
         if (form.password) body.password = form.password;
         if (editando.id !== adminId) body.rol = form.rol;
@@ -136,6 +138,22 @@
     } else {
       const d = await res.json();
       error = d.error ?? 'Error al actualizar estado de inducción';
+    }
+  }
+
+  async function toggleAccesoEvidencias(u: Usuario) {
+    const res = await fetch(`/api/mesa-ayuda/usuarios/${u.id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ acceso_evidencias: !u.acceso_evidencias }),
+    });
+    if (res.ok) {
+      const actualizado = await res.json();
+      lista = lista.map(x => x.id === actualizado.id ? actualizado : x);
+      mostrarExito(`Acceso a evidencias ${actualizado.acceso_evidencias ? 'habilitado' : 'deshabilitado'} para ${u.nombre}.`);
+    } else {
+      const d = await res.json();
+      error = d.error ?? 'Error al actualizar acceso a evidencias';
     }
   }
 
@@ -209,6 +227,7 @@
           <th class="text-left px-4 py-3 font-semibold">Rol</th>
           <th class="text-left px-4 py-3 font-semibold">Estado</th>
           <th class="text-left px-4 py-3 font-semibold">Inducción</th>
+          <th class="text-left px-4 py-3 font-semibold">Evidencias</th>
           <th class="text-left px-4 py-3 font-semibold">Notificaciones</th>
           <th class="text-right px-4 py-3 font-semibold">Acciones</th>
         </tr>
@@ -268,6 +287,23 @@
                   </button>
                 </div>
               {/if}
+            </td>
+            <td class="px-4 py-3">
+              <div class="flex items-center gap-2">
+                <span class={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold ${u.acceso_evidencias ? 'bg-blue-100 text-blue-700' : 'bg-slate-100 text-slate-500'}`}>
+                  <i class="fas {u.acceso_evidencias ? 'fa-folder-open' : 'fa-folder'}"></i>
+                  {u.acceso_evidencias ? 'Sí' : 'No'}
+                </span>
+                {#if u.rol !== 'admin'}
+                  <button
+                    on:click={() => toggleAccesoEvidencias(u)}
+                    title={u.acceso_evidencias ? 'Revocar acceso a evidencias' : 'Permitir acceso a evidencias'}
+                    class={`focus:outline-none transition-colors text-lg ${u.acceso_evidencias ? 'text-blue-600 hover:text-blue-700' : 'text-gray-300 hover:text-gray-400'}`}
+                  >
+                    <i class={`fas ${u.acceso_evidencias ? 'fa-toggle-on' : 'fa-toggle-off'}`}></i>
+                  </button>
+                {/if}
+              </div>
             </td>
             <td class="px-4 py-3 text-xs text-gray-400">
               {#if u.correo_notificacion}
@@ -405,6 +441,11 @@
             <label class="block text-xs font-bold text-gray-600 uppercase tracking-wide mb-1">Correo de notificaciones <span class="font-normal text-gray-400">(opcional)</span></label>
             <input bind:value={form.correo_notificacion} type="email" placeholder="Si difiere del correo de login" class="w-full px-3 py-2 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-300" />
             <p class="text-[10px] text-gray-400 mt-0.5">Si se deja vacío, las notificaciones llegan al correo de login.</p>
+          </div>
+
+          <div class="col-span-2 flex items-center gap-2 py-1">
+            <input type="checkbox" id="form-acceso-evidencias" bind:checked={form.acceso_evidencias} class="rounded text-blue-600 focus:ring-blue-500 h-4 w-4" />
+            <label for="form-acceso-evidencias" class="text-xs font-bold text-gray-700 cursor-pointer select-none">Permitir acceso al Buzón de Evidencias</label>
           </div>
         </div>
 
