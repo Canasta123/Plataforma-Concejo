@@ -132,7 +132,11 @@ export const POST: APIRoute = async ({ request }) => {
 
   // Registrar en Supabase y notificar a los administradores/auditores
   try {
-    const { error: dbError } = await supabase
+    let success = false;
+    let dbError = null;
+
+    // Primer intento: incluir carpeta_id
+    const resInsert = await supabase
       .from('trazabilidad_evidencias')
       .insert({
         ip,
@@ -141,10 +145,37 @@ export const POST: APIRoute = async ({ request }) => {
         nombre_archivo: fileName,
         carpeta_id: dbFolder.id
       });
+    
+    dbError = resInsert.error;
 
-    if (dbError) {
-      console.error('Error al insertar trazabilidad de evidencia en Supabase:', dbError);
+    if (!dbError) {
+      success = true;
     } else {
+      console.warn('Fallo al insertar con carpeta_id, reintentando sin él (probablemente no existe la columna):', dbError.message);
+      // Fallback: reintentar sin carpeta_id
+      const resFallback = await supabase
+        .from('trazabilidad_evidencias')
+        .insert({
+          ip,
+          usuario: username,
+          carpeta_destino: folder,
+          nombre_archivo: fileName
+        });
+      
+      if (!resFallback.error) {
+        success = true;
+      } else {
+        dbError = resFallback.error;
+      }
+    }
+
+    if (!success && dbError) {
+      console.error('Error definitivo al insertar trazabilidad de evidencia en Supabase:', dbError);
+      return new Response(JSON.stringify({ error: 'Error al registrar la trazabilidad de la evidencia en la base de datos: ' + dbError.message }), { status: 500 });
+    }
+
+    // Notificar a los administradores/auditores si se registró con éxito
+    if (success) {
       const { data: destUsers } = await supabase
         .from('usuarios')
         .select('id')
@@ -160,8 +191,9 @@ export const POST: APIRoute = async ({ request }) => {
         }).catch(() => {});
       }
     }
-  } catch (dbErr) {
+  } catch (dbErr: any) {
     console.error('Excepción al registrar trazabilidad en Supabase:', dbErr);
+    return new Response(JSON.stringify({ error: 'Error interno en el servidor al registrar la evidencia: ' + dbErr.message }), { status: 500 });
   }
 
   return new Response(JSON.stringify({ message: 'Subida exitosa', file: fileName }), { status: 200 });

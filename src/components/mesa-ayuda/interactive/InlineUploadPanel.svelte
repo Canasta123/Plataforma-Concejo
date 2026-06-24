@@ -6,6 +6,19 @@
   const VALID_EXT = ['.pdf', '.doc', '.docx', '.xls', '.xlsx', '.ppt', '.pptx'];
   const MAX_SIZE = 10 * 1024 * 1024;
 
+  // Safelist classes to ensure Tailwind compiles them for dynamic folders
+  const COLOR_CLASSES_SAFELIST = [
+    'text-blue-600 bg-blue-50 border-blue-100',
+    'text-emerald-600 bg-emerald-50 border-emerald-100',
+    'text-amber-600 bg-amber-50 border-amber-100',
+    'text-purple-600 bg-purple-50 border-purple-100',
+    'text-indigo-600 bg-indigo-50 border-indigo-100',
+    'text-cyan-600 bg-cyan-50 border-cyan-100',
+    'text-rose-600 bg-rose-50 border-rose-100',
+    'text-teal-600 bg-teal-50 border-teal-100',
+    'text-orange-600 bg-orange-50 border-orange-100'
+  ];
+
   interface Folder {
     id: string;
     nombre: string;
