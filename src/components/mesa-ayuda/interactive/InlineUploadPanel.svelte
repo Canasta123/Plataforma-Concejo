@@ -136,10 +136,10 @@
 </script>
 
 <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col min-h-[500px]">
-  <div class="split-layout">
+  <div class="flex flex-col md:flex-row flex-1 overflow-hidden min-h-0">
     
     <!-- Left Panel: Responsable y Carpetas -->
-    <div class="left-panel">
+    <div class="w-full md:w-[40%] border-r border-slate-100 flex flex-col min-h-0 bg-slate-50/30 p-5 gap-4 shrink-0">
       <!-- Responsable input -->
       <div>
         <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1.5" for="inline-upload-username">
@@ -216,7 +216,7 @@
     </div>
 
     <!-- Right Panel: Carga y Confirmación -->
-    <div class="right-panel custom-scroll">
+    <div class="w-full md:w-[60%] flex flex-col min-h-0 bg-white p-5 gap-4 overflow-y-auto custom-scroll">
       <!-- Dynamic Header -->
       <div class="flex items-center gap-2 text-xs font-bold text-slate-800 border-b border-slate-100 pb-3">
         <i class="fas fa-folder-open text-brand-blue text-sm"></i>
@@ -307,37 +307,6 @@
 </div>
 
 <style>
-  .split-layout {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    overflow: hidden;
-    min-height: 500px;
-  }
-
-  .left-panel {
-    width: 100%;
-    border-right: 1px solid #f1f5f9;
-    display: flex;
-    flex-direction: column;
-    min-height: 0;
-    background-color: rgba(248, 250, 252, 0.3);
-    padding: 1.25rem;
-    gap: 1rem;
-    flex-shrink: 0;
-  }
-
-  .right-panel {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    min-height: 0;
-    background-color: #ffffff;
-    padding: 1.25rem;
-    gap: 1rem;
-    overflow-y: auto;
-  }
-
   .mobile-select {
     display: block;
   }
@@ -347,15 +316,6 @@
   }
 
   @media (min-width: 768px) {
-    .split-layout {
-      flex-direction: row;
-    }
-    .left-panel {
-      width: 40%;
-    }
-    .right-panel {
-      width: 60%;
-    }
     .mobile-select {
       display: none;
     }
