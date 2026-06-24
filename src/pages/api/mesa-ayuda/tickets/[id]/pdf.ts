@@ -5,7 +5,7 @@ import { supabase } from '../../../../../lib/supabase';
 export const GET: APIRoute = async ({ cookies, params }) => {
   const session = await getSession(cookies);
   if (!session) return new Response('No autenticado', { status: 401 });
-  if (session.rol !== 'auditor' && session.rol !== 'agente') {
+  if (session.rol !== 'admin' && session.rol !== 'auditor' && session.rol !== 'agente') {
     return new Response('Sin permiso', { status: 403 });
   }
 

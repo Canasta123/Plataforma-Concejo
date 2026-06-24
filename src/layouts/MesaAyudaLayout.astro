@@ -30,7 +30,7 @@ const navItems: { label: string; href: string; rol: Rol[]; visible?: boolean }[]
   { label: 'Usuarios',         href: '/mesa-ayuda/admin',          rol: ['admin'] },
   { label: 'Panel auditoría',  href: '/mesa-ayuda/auditor',        rol: ['admin'] },
   { label: 'Evidencias (Consola)', href: '/mesa-ayuda/evidencias', rol: ['admin', 'auditor', 'solicitante', 'agente'], visible: tieneAccesoEvidencias || ['admin', 'auditor'].includes(session.rol) },
-  { label: 'Buzón Evidencias', href: '/mesa-ayuda/buzon-evidencias', rol: ['admin', 'solicitante', 'agente', 'auditor'] },
+  { label: 'Buzón Evidencias', href: '/mesa-ayuda/buzon-evidencias', rol: ['admin', 'solicitante', 'agente', 'auditor'], visible: false },
   { label: 'Reportes Excel',   href: '/mesa-ayuda/reportes',       rol: ['admin', 'auditor'] },
   { label: 'Mis Tickets',      href: '/mesa-ayuda/dashboard',      rol: ['solicitante'] },
   { label: 'Nueva Solicitud',  href: '/mesa-ayuda/nuevo-ticket',   rol: ['solicitante'] },

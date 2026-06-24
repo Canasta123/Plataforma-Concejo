@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
+  import { onMount, tick } from 'svelte';
 
   export let data: {
     total: number;
@@ -18,6 +18,7 @@
     const mod = await import('chart.js/auto');
     Chart = mod.default;
     mounted = true;
+    await tick();
     initCharts();
   });
 
