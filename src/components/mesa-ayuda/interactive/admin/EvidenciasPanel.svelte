@@ -123,6 +123,7 @@
     try {
       const date = new Date(dateStr);
       return date.toLocaleDateString('es-CO', {
+        timeZone: 'America/Bogota',
         year: 'numeric',
         month: 'short',
         day: 'numeric',

@@ -16,8 +16,19 @@ const UPLOAD_DIR = process.env.UPLOAD_DIR
 // Las carpetas se validan dinámicamente con la base de datos
 
 function formatDate(d: Date): string {
-  const p = (n: number) => n.toString().padStart(2, '0');
-  return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`;
+  const formatter = new Intl.DateTimeFormat('es-CO', {
+    timeZone: 'America/Bogota',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: false
+  });
+  const parts = formatter.formatToParts(d);
+  const getPart = (type: string) => parts.find(p => p.type === type)?.value ?? '00';
+  return `${getPart('year')}-${getPart('month')}-${getPart('day')} ${getPart('hour')}:${getPart('minute')}:${getPart('second')}`;
 }
 
 export const POST: APIRoute = async ({ request }) => {
