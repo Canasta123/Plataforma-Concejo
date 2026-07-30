@@ -267,7 +267,137 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </div>
     </div>
 
-    <!-- 4. Footer -->
+    <!-- 4. Política y Objetivos de Calidad Section -->
+    <div id="politica-calidad" class="w-full bg-slate-50 py-24 px-6 md:px-12 relative overflow-hidden">
+      <div class="absolute inset-0 pointer-events-none opacity-[0.03]" style="background-image: radial-gradient(#3359A4 1.5px, transparent 1.5px); background-size: 24px 24px;"></div>
+
+      <div class="max-w-6xl mx-auto relative z-10">
+        
+        <!-- Header -->
+        <div class="text-center mb-16 animate-on-scroll">
+          <h2 class="text-xs font-bold text-brand-blue uppercase tracking-[0.3em] mb-2">Marco Estratégico SGC</h2>
+          <h3 class="font-extrabold text-3xl md:text-5xl text-[#0f1e3d]" style="font-family: 'Montserrat', sans-serif;">
+            Política y Objetivos de Calidad
+          </h3>
+          <p class="text-sm text-slate-500 mt-2 max-w-xl mx-auto">
+            Compromisos institucionales e hitos de calidad orientados a la excelencia y satisfacción ciudadana
+          </p>
+          <div class="w-20 h-1 bg-brand-gold mx-auto mt-4 rounded-full"></div>
+        </div>
+
+        <!-- Política de Calidad Card -->
+        <div class="mb-16 animate-on-scroll">
+          <div class="bg-white rounded-3xl p-8 md:p-12 border border-slate-100 shadow-xl shadow-slate-200/50 relative overflow-hidden group hover:shadow-2xl hover:shadow-brand-blue/10 transition-all duration-300">
+            <div class="absolute top-0 right-0 w-48 h-48 bg-gradient-to-bl from-brand-blue/10 via-brand-gold/5 to-transparent rounded-bl-full pointer-events-none"></div>
+            
+            <div class="flex items-center gap-4 mb-6">
+              <div class="w-14 h-14 rounded-2xl bg-brand-blue text-white flex items-center justify-center text-2xl shadow-lg shadow-brand-blue/30 group-hover:scale-110 transition-transform duration-300">
+                <i class="fas fa-award"></i>
+              </div>
+              <div>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-brand-gold bg-[#0f1e3d] px-3 py-1 rounded-full inline-block mb-1">Declaración Institucional</span>
+                <h4 class="font-extrabold text-2xl md:text-3xl text-[#0f1e3d]" style="font-family: 'Montserrat', sans-serif;">
+                  POLÍTICA DE CALIDAD
+                </h4>
+              </div>
+            </div>
+
+            <p class="text-slate-700 text-base md:text-lg leading-relaxed text-justify relative z-10 border-l-4 border-brand-gold pl-6 py-2 my-2 bg-slate-50/60 rounded-r-2xl" style="font-family: 'Lato', sans-serif;">
+              El Concejo Municipal de Chía en cumplimiento de su misión institucional, se compromete a ejercer el Control Político a la Administración Municipal, estudiar y aprobar proyectos de acuerdo que promocionen el desarrollo económico, social y político del municipio y propiciar la participación ciudadana dentro del marco de la constitución y la ley. Así mismo, prestará un servicio contando con procesos de calidad, funcionarios comprometidos y capacitados y un proceso de evaluación, seguimiento y control de la gestión y la administración del riesgo, aplicando los principios de eficiencia, eficacia y efectividad en pro a la satisfacción de las necesidades de los Ciudadanos.
+            </p>
+          </div>
+        </div>
+
+        <!-- Objetivos de Calidad -->
+        <div class="animate-on-scroll">
+          <div class="text-center mb-10">
+            <h4 class="font-extrabold text-2xl md:text-3xl text-[#0f1e3d] uppercase tracking-wide" style="font-family: 'Montserrat', sans-serif;">
+              OBJETIVOS DE CALIDAD
+            </h4>
+            <p class="text-sm text-slate-400 mt-1">Estrategias operativas para la excelencia en el ejercicio normativo y administrativo</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            <!-- Obj 1 -->
+            <div class="bg-white rounded-3xl p-7 border border-slate-100 shadow-lg shadow-slate-100/60 flex flex-col justify-between hover:shadow-xl hover:border-brand-blue/30 transition-all duration-300 group transform hover:-translate-y-1">
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <div class="w-12 h-12 rounded-2xl bg-blue-50 text-brand-blue flex items-center justify-center text-xl group-hover:bg-brand-blue group-hover:text-white transition-colors duration-300 shadow-sm">
+                    <i class="fas fa-file-signature"></i>
+                  </div>
+                  <span class="text-xs font-extrabold text-slate-300 font-mono">OBJ-01</span>
+                </div>
+                <h5 class="font-extrabold text-base text-[#0f1e3d] mb-2 leading-snug" style="font-family: 'Montserrat', sans-serif;">
+                  Iniciativas y Políticas Públicas
+                </h5>
+                <p class="text-slate-600 text-sm leading-relaxed text-justify" style="font-family: 'Lato', sans-serif;">
+                  Gestionar las iniciativas presentadas por las diferentes instancias permitidas por la ley (proyectos de acuerdo) con el fin de establecer políticas públicas que busquen el beneficio de la comunidad del Municipio.
+                </p>
+              </div>
+            </div>
+
+            <!-- Obj 2 -->
+            <div class="bg-white rounded-3xl p-7 border border-slate-100 shadow-lg shadow-slate-100/60 flex flex-col justify-between hover:shadow-xl hover:border-brand-blue/30 transition-all duration-300 group transform hover:-translate-y-1">
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <div class="w-12 h-12 rounded-2xl bg-amber-50 text-brand-gold flex items-center justify-center text-xl group-hover:bg-brand-gold group-hover:text-slate-900 transition-colors duration-300 shadow-sm">
+                    <i class="fas fa-user-shield"></i>
+                  </div>
+                  <span class="text-xs font-extrabold text-slate-300 font-mono">OBJ-02</span>
+                </div>
+                <h5 class="font-extrabold text-base text-[#0f1e3d] mb-2 leading-snug" style="font-family: 'Montserrat', sans-serif;">
+                  Vigilancia y Control Político
+                </h5>
+                <p class="text-slate-600 text-sm leading-relaxed text-justify" style="font-family: 'Lato', sans-serif;">
+                  Ejercer vigilancia y Control Político de la administración municipal de las actuaciones y operaciones administrativas del ejecutivo sus secretarios de despacho y entes descentralizados de conformidad con la normatividad aplicable.
+                </p>
+              </div>
+            </div>
+
+            <!-- Obj 3 -->
+            <div class="bg-white rounded-3xl p-7 border border-slate-100 shadow-lg shadow-slate-100/60 flex flex-col justify-between hover:shadow-xl hover:border-brand-blue/30 transition-all duration-300 group transform hover:-translate-y-1">
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300 shadow-sm">
+                    <i class="fas fa-users"></i>
+                  </div>
+                  <span class="text-xs font-extrabold text-slate-300 font-mono">OBJ-03</span>
+                </div>
+                <h5 class="font-extrabold text-base text-[#0f1e3d] mb-2 leading-snug" style="font-family: 'Montserrat', sans-serif;">
+                  Participación Ciudadana
+                </h5>
+                <p class="text-slate-600 text-sm leading-relaxed text-justify" style="font-family: 'Lato', sans-serif;">
+                  Establecer estrategias de promoción de la participación ciudadana en el cumplimiento de las funciones misionales del Concejo.
+                </p>
+              </div>
+            </div>
+
+            <!-- Obj 4 -->
+            <div class="bg-white rounded-3xl p-7 border border-slate-100 shadow-lg shadow-slate-100/60 flex flex-col justify-between hover:shadow-xl hover:border-brand-blue/30 transition-all duration-300 group transform hover:-translate-y-1">
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <div class="w-12 h-12 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center text-xl group-hover:bg-purple-600 group-hover:text-white transition-colors duration-300 shadow-sm">
+                    <i class="fas fa-cubes-stacked"></i>
+                  </div>
+                  <span class="text-xs font-extrabold text-slate-300 font-mono">OBJ-04</span>
+                </div>
+                <h5 class="font-extrabold text-base text-[#0f1e3d] mb-2 leading-snug" style="font-family: 'Montserrat', sans-serif;">
+                  Disponibilidad de Recursos y Eficiencia
+                </h5>
+                <p class="text-slate-600 text-sm leading-relaxed text-justify" style="font-family: 'Lato', sans-serif;">
+                  Asegurar la disponibilidad de recursos humanos, físicos, tecnológicos, financieros e informativos necesarios para apoyar la ejecución de los procesos y la eficacia del Sistema de Gestión.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 5. Footer -->
     <footer class="w-full bg-[#0b1426] border-t border-white/5 py-8 px-6 text-center text-gray-500 text-xs">
       <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
         <p class="font-medium">© 2026 Concejo Municipal de Chía. Todos los derechos reservados.</p>
