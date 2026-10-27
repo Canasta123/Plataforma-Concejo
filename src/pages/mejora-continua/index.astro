@@ -1,0 +1,21 @@
+---
+import MesaAyudaLayout from '../../layouts/MesaAyudaLayout.astro';
+import { getSession } from '../../lib/auth';
+import { esGestorMejora } from '../../lib/mejora-auth';
+
+const session = await getSession(Astro.cookies);
+if (!session) return Astro.redirect('/mesa-ayuda/login');
+
+const isGestor = await esGestorMejora(session);
+
+if (isGestor) {
+  return Astro.redirect('/mejora-continua/dashboard');
+} else {
+  return Astro.redirect('/mejora-continua/mis-hallazgos');
+}
+---
+<MesaAyudaLayout title="Mejora Continua">
+  <div class="flex items-center justify-center h-64">
+    <p class="text-gray-500">Redirigiendo...</p>
+  </div>
+</MesaAyudaLayout>

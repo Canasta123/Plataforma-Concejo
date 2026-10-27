@@ -1,0 +1,153 @@
+---
+import MesaAyudaLayout from '../../layouts/MesaAyudaLayout.astro';
+import { getSession } from '../../lib/auth';
+import { supabase } from '../../lib/supabase';
+
+const session = await getSession(Astro.cookies);
+if (!session || session.rol !== 'admin') return Astro.redirect('/mejora-continua');
+
+const [{ data: configs }, { data: procesos }] = await Promise.all([
+  supabase.from('config_mejora').select('*'),
+  supabase.from('procesos_sgc').select('*').order('orden')
+]);
+
+const configMap: Record<string, string> = {};
+(configs || []).forEach(c => configMap[c.clave] = c.valor);
+---
+
+<MesaAyudaLayout title="Configuración — Mejora Continua" rolRequerido="admin">
+  <div class="max-w-4xl mx-auto px-4 py-8 font-['Lato']">
+    <div class="mb-8">
+      <h1 class="text-2xl font-bold text-gray-900 font-['Montserrat']">Configuración del Módulo de Mejora Continua</h1>
+      <p class="text-sm text-gray-500 mt-1">Parámetros de negocio, reglas de causa raíz y catálogo de procesos SGC</p>
+    </div>
+
+    <!-- Parámetros Globales Form -->
+    <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 md:p-8 mb-8">
+      <h2 class="text-lg font-bold text-gray-900 font-['Montserrat'] mb-6 flex items-center gap-2">
+        <i class="fas fa-sliders-h text-[#3359A4]"></i> Parámetros del Sistema
+      </h2>
+
+      <form id="config-form" class="space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">
+              Mínimo de Porqués en Metodología 5 Porqués
+            </label>
+            <input
+              type="number"
+              min="1"
+              max="7"
+              name="min_porques"
+              value={configMap.min_porques || '3'}
+              class="w-full rounded-xl border-gray-300 text-sm py-2 px-3 focus:ring-[#3359A4] border"
+            />
+            <p class="text-[11px] text-gray-400 mt-1">Número de porqués obligatorios antes de poder formular la causa raíz final.</p>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">
+              Límite Máximo de Reformulaciones
+            </label>
+            <input
+              type="number"
+              min="1"
+              max="10"
+              name="max_reformulaciones"
+              value={configMap.max_reformulaciones || '3'}
+              class="w-full rounded-xl border-gray-300 text-sm py-2 px-3 focus:ring-[#3359A4] border"
+            />
+            <p class="text-[11px] text-gray-400 mt-1">Intentos máximos si la acción resulta No Eficaz antes de elevar alerta crítica al admin.</p>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">
+              Días para Solicitar Evaluación de Eficacia
+            </label>
+            <input
+              type="number"
+              min="1"
+              name="dias_evaluacion_eficacia"
+              value={configMap.dias_evaluacion_eficacia || '30'}
+              class="w-full rounded-xl border-gray-300 text-sm py-2 px-3 focus:ring-[#3359A4] border"
+            />
+            <p class="text-[11px] text-gray-400 mt-1">Días de gracia posteriores al cierre del plan para calificar la eficacia.</p>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">
+              Días para Alerta Amarilla de Vencimiento
+            </label>
+            <input
+              type="number"
+              min="1"
+              name="dias_alerta_vencimiento"
+              value={configMap.dias_alerta_vencimiento || '3'}
+              class="w-full rounded-xl border-gray-300 text-sm py-2 px-3 focus:ring-[#3359A4] border"
+            />
+            <p class="text-[11px] text-gray-400 mt-1">Días hábiles de anticipación para marcar tareas y hallazgos en amarillo.</p>
+          </div>
+        </div>
+
+        <div id="cfg-msg" class="hidden text-xs p-3 rounded-lg font-bold"></div>
+
+        <div class="flex justify-end pt-4 border-t border-gray-100">
+          <button type="submit" class="px-5 py-2.5 bg-[#3359A4] text-white rounded-xl font-bold text-sm hover:bg-blue-800 transition-colors shadow">
+            Guardar Configuración
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Catálogo de Procesos SGC -->
+    <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 md:p-8">
+      <h2 class="text-lg font-bold text-gray-900 font-['Montserrat'] mb-4 flex items-center gap-2">
+        <i class="fas fa-sitemap text-[#3359A4]"></i> Catálogo de Procesos del SGC (Concejo de Chía)
+      </h2>
+      <p class="text-xs text-gray-500 mb-6">Procesos institucionales pre-cargados para asociar a los hallazgos</p>
+
+      <div class="divide-y divide-gray-100 border border-gray-100 rounded-xl overflow-hidden">
+        {procesos?.map((p) => (
+          <div class="p-4 bg-white flex items-center justify-between hover:bg-gray-50 transition-colors">
+            <div>
+              <span class="text-xs font-bold text-gray-900">{p.nombre}</span>
+              <p class="text-[11px] text-gray-400">Responsable: {p.responsable || 'No asignado'} · Tipo: <span class="capitalize">{p.tipo}</span></p>
+            </div>
+            <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-green-100 text-green-700">Activo</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('config-form') as HTMLFormElement;
+    const msg = document.getElementById('cfg-msg') as HTMLElement;
+
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const updates = Array.from(formData.entries()).map(([clave, valor]) => ({
+        clave,
+        valor: String(valor)
+      }));
+
+      try {
+        const res = await fetch('/api/mejora-continua/config', {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(updates)
+        });
+
+        if (!res.ok) throw new Error('Error al actualizar configuración');
+        msg.textContent = 'Configuración actualizada correctamente.';
+        msg.className = 'text-xs p-3 rounded-lg font-bold bg-green-50 text-green-700 border border-green-200';
+        msg.classList.remove('hidden');
+      } catch (err: any) {
+        msg.textContent = err.message;
+        msg.className = 'text-xs p-3 rounded-lg font-bold bg-red-50 text-red-700 border border-red-200';
+        msg.classList.remove('hidden');
+      }
+    });
+  </script>
+</MesaAyudaLayout>

@@ -1,5 +1,5 @@
 import { supabase } from './supabase';
-import { enviarRecordatorioReserva } from './mailer';
+import { enviarRecordatorioReserva, notificarTareaVencida, notificarHallazgoVencido } from './mailer';
 
 let started = false;
 
@@ -68,6 +68,59 @@ export function startScheduler() {
       }
     } catch (e) {
       console.error('[Scheduler] Error general:', e);
+    }
+    
+    // Mejora Continua Overdue Checks
+    try {
+      const ahoraIso = new Date().toISOString();
+      
+      // Tareas vencidas
+      const { data: tareasVencidas, error: errTareas } = await supabase
+        .from('plan_accion_tareas')
+        .select(`
+          id, descripcion, fecha_limite, recordatorio_enviado,
+          hallazgo:hallazgo_id(id, codigo),
+          responsable:responsable_id(id, nombre, correo, correo_notificacion)
+        `)
+        .neq('estado', 'completada')
+        .lt('fecha_limite', ahoraIso)
+        .eq('recordatorio_enviado', false);
+        
+      if (!errTareas && tareasVencidas) {
+        for (const t of tareasVencidas) {
+          const hallazgo = t.hallazgo as any;
+          const responsable = t.responsable as any;
+          if (hallazgo && responsable) {
+            await notificarTareaVencida(hallazgo, t, responsable);
+            await supabase.from('plan_accion_tareas').update({ recordatorio_enviado: true }).eq('id', t.id);
+            console.log(`[Scheduler] Notificación de tarea vencida enviada (Tarea: ${t.id})`);
+          }
+        }
+      }
+      
+      // Hallazgos vencidos
+      const { data: gestores } = await supabase
+        .from('usuarios')
+        .select('id, nombre, correo, correo_notificacion')
+        .eq('es_gestor_mejora', true)
+        .eq('activo', true);
+        
+      const { data: hallazgosVencidos, error: errHallazgos } = await supabase
+        .from('hallazgos')
+        .select('id, codigo, descripcion, fecha_limite, recordatorio_enviado')
+        .not('estado', 'in', '("cerrado_eficaz","cerrado_no_eficaz")')
+        .lt('fecha_limite', ahoraIso)
+        .eq('recordatorio_enviado', false);
+        
+      if (!errHallazgos && hallazgosVencidos && gestores) {
+        for (const h of hallazgosVencidos) {
+          await notificarHallazgoVencido(h, gestores);
+          await supabase.from('hallazgos').update({ recordatorio_enviado: true }).eq('id', h.id);
+          console.log(`[Scheduler] Notificación de hallazgo vencido enviada (Hallazgo: ${h.codigo})`);
+        }
+      }
+    } catch (e) {
+      console.error('[Scheduler] Error en Mejora Continua:', e);
     }
   }
 

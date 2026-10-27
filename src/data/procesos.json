@@ -71,7 +71,8 @@
     "rutaPdf": "/C-Procesos/CPolitico.pdf",
     "subpaginas": [
       { "label": "Caracterización", "ruta": "/misionales/control-politico" },
-      { "label": "Procedimientos", "ruta": "/misionales/control-politico-procedimientos" },
+      { "label": "Proc. Control Político", "ruta": "/misionales/control-politico-procedimientos" },
+      { "label": "Proc. Producto No Conforme", "ruta": "/misionales/control-politico-producto-no-conforme" },
       { "label": "Formatos", "ruta": "/misionales/control-politico-formatos" }
     ]
   },

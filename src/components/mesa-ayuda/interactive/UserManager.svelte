@@ -15,6 +15,7 @@
     induccion_valoracion_sgc?: number | null;
     induccion_valoracion_mesa?: number | null;
     acceso_evidencias?: boolean;
+    es_gestor_mejora?: boolean;
   }
 
   export let usuarios: Usuario[] = [];
@@ -157,6 +158,22 @@
     }
   }
 
+  async function toggleGestorMejora(u: Usuario) {
+    const res = await fetch(`/api/mesa-ayuda/usuarios/${u.id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ es_gestor_mejora: !u.es_gestor_mejora }),
+    });
+    if (res.ok) {
+      const actualizado = await res.json();
+      lista = lista.map(x => x.id === actualizado.id ? actualizado : x);
+      mostrarExito(`Permiso de Gestor de Mejora ${actualizado.es_gestor_mejora ? 'habilitado' : 'deshabilitado'} para ${u.nombre}.`);
+    } else {
+      const d = await res.json();
+      error = d.error ?? 'Error al actualizar permiso de Gestor de Mejora';
+    }
+  }
+
   async function resetPassword(u: Usuario) {
     if (!confirm(`¿Resetear la contraseña de ${u.nombre}? Se enviará una contraseña temporal a su correo.`)) return;
     const res = await fetch(`/api/mesa-ayuda/usuarios/${u.id}/reset-password`, { method: 'POST' });
@@ -228,6 +245,7 @@
           <th class="text-left px-4 py-3 font-semibold">Estado</th>
           <th class="text-left px-4 py-3 font-semibold">Inducción</th>
           <th class="text-left px-4 py-3 font-semibold">Evidencias</th>
+          <th class="text-left px-4 py-3 font-semibold">Gestor Mejora</th>
           <th class="text-left px-4 py-3 font-semibold">Notificaciones</th>
           <th class="text-right px-4 py-3 font-semibold">Acciones</th>
         </tr>
@@ -301,6 +319,23 @@
                     class={`focus:outline-none transition-colors text-lg ${u.acceso_evidencias ? 'text-blue-600 hover:text-blue-700' : 'text-gray-300 hover:text-gray-400'}`}
                   >
                     <i class={`fas ${u.acceso_evidencias ? 'fa-toggle-on' : 'fa-toggle-off'}`}></i>
+                  </button>
+                {/if}
+              </div>
+            </td>
+            <td class="px-4 py-3">
+              <div class="flex items-center gap-2">
+                <span class={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold ${u.es_gestor_mejora || u.rol === 'admin' ? 'bg-purple-100 text-purple-700' : 'bg-slate-100 text-slate-500'}`}>
+                  <i class="fas fa-chart-line"></i>
+                  {u.es_gestor_mejora || u.rol === 'admin' ? 'Gestor' : 'No'}
+                </span>
+                {#if u.rol !== 'admin'}
+                  <button
+                    on:click={() => toggleGestorMejora(u)}
+                    title={u.es_gestor_mejora ? 'Revocar permiso de gestor de mejora' : 'Asignar permiso de gestor de mejora'}
+                    class={`focus:outline-none transition-colors text-lg ${u.es_gestor_mejora ? 'text-purple-600 hover:text-purple-700' : 'text-gray-300 hover:text-gray-400'}`}
+                  >
+                    <i class={`fas ${u.es_gestor_mejora ? 'fa-toggle-on' : 'fa-toggle-off'}`}></i>
                   </button>
                 {/if}
               </div>

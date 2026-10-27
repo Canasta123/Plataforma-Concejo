@@ -1,0 +1,143 @@
+---
+import MesaAyudaLayout from '../../layouts/MesaAyudaLayout.astro';
+import { getSession } from '../../lib/auth';
+import { supabase } from '../../lib/supabase';
+
+const session = await getSession(Astro.cookies);
+if (!session) return Astro.redirect('/mesa-ayuda/login');
+
+// Asumimos tabla mc_hallazgos. Hacemos consulta por creador_id o responsable_id.
+// Idealmente también buscar tareas asignadas, pero por simplicidad inicial traemos donde es creador o responsable.
+const { data: hallazgos } = await supabase
+  .from('hallazgos')
+  .select('*, proceso:procesos_sgc(nombre)')
+  .or(`creador_id.eq.${session.id},responsable_id.eq.${session.id}`)
+  .order('created_at', { ascending: false });
+
+const getTipoBadge = (tipo: string) => {
+  switch (tipo) {
+    case 'no_conformidad_mayor':
+    case 'correctiva':
+      return 'bg-red-100 text-red-700';
+    case 'no_conformidad_menor':
+      return 'bg-amber-100 text-amber-800';
+    case 'oportunidad_mejora':
+    case 'mejora':
+      return 'bg-blue-100 text-blue-700';
+    case 'producto_no_conforme':
+      return 'bg-purple-100 text-purple-700';
+    case 'riesgo':
+      return 'bg-amber-100 text-amber-700';
+    default:
+      return 'bg-gray-100 text-gray-700';
+  }
+};
+
+const getTipoLabel = (tipo: string) => {
+  switch (tipo) {
+    case 'no_conformidad_mayor':
+    case 'correctiva':
+      return 'No conformidad Mayor';
+    case 'no_conformidad_menor':
+      return 'No conformidad Menor';
+    case 'oportunidad_mejora':
+    case 'mejora':
+      return 'Oportunidad de Mejora';
+    case 'producto_no_conforme':
+      return 'Producto no Conforme';
+    case 'riesgo':
+      return 'Acción sobre Riesgo';
+    default:
+      return tipo;
+  }
+};
+
+const getEstadoBadge = (estado: string) => {
+  switch (estado) {
+    case 'abierto': return 'bg-blue-100 text-blue-700';
+    case 'en_tratamiento': return 'bg-amber-100 text-amber-700';
+    case 'en_analisis': return 'bg-indigo-100 text-indigo-700';
+    case 'en_plan_accion': return 'bg-cyan-100 text-cyan-700';
+    case 'en_evaluacion': return 'bg-purple-100 text-purple-700';
+    case 'cerrado_eficaz': return 'bg-green-100 text-green-700';
+    case 'cerrado_no_eficaz': return 'bg-red-100 text-red-700';
+    case 'reformulado': return 'bg-orange-100 text-orange-700';
+    default: return 'bg-gray-100 text-gray-700';
+  }
+};
+
+const getEstadoLabel = (estado: string) => {
+  return estado ? estado.split('_').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ') : '';
+};
+---
+<MesaAyudaLayout title="Mis Hallazgos - Mejora Continua">
+  <div class="max-w-6xl mx-auto px-4 py-8">
+    <div class="flex items-center justify-between mb-8">
+      <div>
+        <h1 class="text-2xl font-bold text-gray-900 font-['Montserrat']">Mis Hallazgos</h1>
+        <p class="text-sm text-gray-500 mt-0.5 font-['Lato']">Listado de hallazgos donde participas</p>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="/api/mejora-continua/hallazgos/exportar-excel" class="px-4 py-2 bg-green-600 text-white rounded-lg text-sm font-medium hover:bg-green-700 transition-colors shadow-sm">
+          <i class="fas fa-file-excel mr-2"></i> Exportar Excel
+        </a>
+        <a href="/mejora-continua/nuevo" class="px-4 py-2 bg-[#3359A4] text-white rounded-lg text-sm font-medium hover:bg-blue-800 transition-colors shadow-sm">
+          <i class="fas fa-plus mr-2"></i> Nuevo Hallazgo
+        </a>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-sm font-['Lato']">
+          <thead class="bg-gray-50 border-b border-gray-100 text-gray-600">
+            <tr>
+              <th class="px-6 py-4 font-medium">Código</th>
+              <th class="px-6 py-4 font-medium">Título</th>
+              <th class="px-6 py-4 font-medium">Tipo</th>
+              <th class="px-6 py-4 font-medium">Estado</th>
+              <th class="px-6 py-4 font-medium">Etapa</th>
+              <th class="px-6 py-4 font-medium">Fecha</th>
+              <th class="px-6 py-4 font-medium text-center">Acciones</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100">
+            {hallazgos && hallazgos.length > 0 ? (
+              hallazgos.map((h) => (
+                <tr class="hover:bg-gray-50 transition-colors">
+                  <td class="px-6 py-4 font-medium text-gray-900">{h.codigo || `ID-${h.id}`}</td>
+                  <td class="px-6 py-4 text-gray-800">{h.titulo}</td>
+                  <td class="px-6 py-4">
+                    <span class={`px-2.5 py-1 rounded-full text-xs font-semibold ${getTipoBadge(h.tipo)}`}>
+                      {getTipoLabel(h.tipo)}
+                    </span>
+                  </td>
+                  <td class="px-6 py-4">
+                    <span class={`px-2.5 py-1 rounded-full text-xs font-semibold ${getEstadoBadge(h.estado)}`}>
+                      {getEstadoLabel(h.estado)}
+                    </span>
+                  </td>
+                  <td class="px-6 py-4 text-gray-600 font-medium">Etapa {h.etapa_actual || 1}</td>
+                  <td class="px-6 py-4 text-gray-600 whitespace-nowrap">
+                    {h.created_at ? new Date(h.created_at).toLocaleDateString() : ''}
+                  </td>
+                  <td class="px-6 py-4 text-center">
+                    <a href={`/mejora-continua/hallazgo/${h.id}`} class="text-[#3359A4] hover:text-blue-800 hover:underline text-sm font-medium">
+                      Ver detalle
+                    </a>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colspan="7" class="px-6 py-8 text-center text-gray-500">
+                  No tienes hallazgos registrados.
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</MesaAyudaLayout>

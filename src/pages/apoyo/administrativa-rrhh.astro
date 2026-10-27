@@ -8,11 +8,11 @@ import ProcesoLayout from '../../layouts/ProcesoLayout.astro';
   tituloHeader="Procedimientos: Talento Humano"
   subtituloHeader="Gestión Administrativa, Financiera y Talento Humano"
   tipo="apoyo"
-  badge="7 Procedimientos"
+  badge="8 Procedimientos"
   badgeIcon="fas fa-users"
   rutaActual="/apoyo/administrativa-rrhh"
 >
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 h-full">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pb-8">
 
     <!-- Card 1 -->
     <div class="bg-white rounded-xl card-shadow flex flex-col relative pt-4 px-6 pb-6 border-t-4 border-brand-gold animate-on-scroll">
@@ -177,5 +177,111 @@ import ProcesoLayout from '../../layouts/ProcesoLayout.astro';
       </div>
     </div>
 
+    <!-- Card 8: SG-SST · Gestión del Cambio (Full width) -->
+    <div class="bg-white rounded-xl card-shadow relative overflow-hidden border-t-4 border-brand-gold col-span-1 md:col-span-2 lg:col-span-4 animate-on-scroll" style="animation-delay: 0.7s;">
+      <!-- Icono de fondo -->
+      <div class="absolute right-0 top-0 p-6 opacity-5 pointer-events-none">
+        <i class="fas fa-hard-hat text-9xl text-brand-gold"></i>
+      </div>
+
+      <!-- Encabezado -->
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 px-6 pt-5 pb-4 border-b border-gray-100 relative z-10">
+        <div class="flex items-center gap-4">
+          <a href="/C-Procedimientos/Procedimiento gestion del cambio.pdf" download target="_blank" class="w-16 h-16 rounded-full bg-yellow-50 flex items-center justify-center text-brand-gold shadow-sm border border-yellow-100 hover:bg-brand-gold hover:text-white transition-colors duration-300 group shrink-0" title="Descargar procedimiento">
+            <i class="fas fa-exchange-alt text-2xl group-hover:hidden"></i>
+            <i class="fas fa-download text-2xl hidden group-hover:block"></i>
+          </a>
+          <div>
+            <div class="flex flex-wrap items-center gap-2 mb-1">
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-yellow-50 text-yellow-800 border border-yellow-200 text-[10px] font-bold uppercase tracking-wider">
+                <i class="fas fa-hard-hat"></i> SG-SST
+              </span>
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-green-50 text-green-700 border border-green-200 text-[10px] font-bold uppercase tracking-wider">
+                <i class="fas fa-star"></i> Nuevo · Versión 01
+              </span>
+            </div>
+            <h3 class="font-bold text-brand-blue text-xl leading-tight">Gestión del Cambio</h3>
+            <p class="text-xs text-gray-500 mt-0.5">Seguridad y Salud en el Trabajo · Vigente desde 25/09/2026</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+          <a href="/C-Procedimientos/Procedimiento gestion del cambio.pdf" download target="_blank" class="btn-descargar apoyo">
+            <i class="fas fa-download"></i> Descargar
+          </a>
+          <button class="btn-ver-pdf apoyo" data-pdf-url="/C-Procedimientos/Procedimiento gestion del cambio.pdf" title="Ver PDF" aria-label="Ver PDF en línea">
+            <i class="fas fa-eye"></i> Ver PDF
+          </button>
+        </div>
+      </div>
+
+      <!-- Cuerpo -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 p-6 relative z-10">
+        <!-- Objetivo, alcance y responsables -->
+        <div class="lg:col-span-5 flex flex-col gap-4">
+          <div class="bg-gray-50 p-4 rounded-lg border border-gray-100">
+            <p class="text-[10px] text-gray-500 uppercase font-bold mb-1 tracking-wider"><i class="fas fa-bullseye text-brand-gold mr-1"></i> Objetivo</p>
+            <p class="text-xs text-gray-700 leading-relaxed text-justify">
+              Identificar, evaluar y controlar los riesgos de SST que surjan por cambios internos (procesos, infraestructura, personal, herramientas) o externos (normatividad, tecnologías), para prevenir incidentes, accidentes y enfermedades laborales.
+            </p>
+          </div>
+          <div class="border-l-2 border-brand-gold pl-3 py-1">
+            <p class="text-[10px] text-gray-500 uppercase font-bold mb-1 tracking-wider"><i class="fas fa-route text-brand-blue mr-1"></i> Alcance</p>
+            <p class="text-xs text-gray-600 leading-snug">Todos los procesos, servidores, contratistas y partes interesadas: desde la planeación del cambio hasta su seguimiento posterior.</p>
+          </div>
+          <div>
+            <p class="text-[10px] text-gray-500 uppercase font-bold mb-2 tracking-wider"><i class="fas fa-users text-brand-gold mr-1"></i> Responsables</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-2.5 py-1 rounded-full bg-blue-50 text-brand-blue border border-blue-100 text-[11px] font-semibold"><i class="fas fa-user-tie mr-1"></i>Alta Dirección / Jefes de Área</span>
+              <span class="px-2.5 py-1 rounded-full bg-yellow-50 text-yellow-800 border border-yellow-200 text-[11px] font-semibold"><i class="fas fa-hard-hat mr-1"></i>Responsable SG-SST</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-50 text-gray-700 border border-gray-200 text-[11px] font-semibold"><i class="fas fa-people-group mr-1"></i>COPASST</span>
+            </div>
+          </div>
+          <div class="flex items-start gap-2 p-3 rounded-lg bg-yellow-50/60 border border-yellow-100">
+            <i class="fas fa-gavel text-brand-gold mt-0.5 text-xs"></i>
+            <p class="text-[11px] text-gray-600 leading-snug">
+              <span class="font-bold text-gray-800">Normatividad:</span> Decreto 1072 de 2015 (Art. 2.2.4.6.26) · Resolución 0312 de 2019 (Estándares Mínimos SG-SST).
+            </p>
+          </div>
+        </div>
+
+        <!-- Flujo de 5 etapas -->
+        <div class="lg:col-span-7">
+          <p class="text-[10px] text-gray-500 uppercase font-bold mb-3 tracking-wider"><i class="fas fa-diagram-project text-brand-blue mr-1"></i> Flujo del Procedimiento</p>
+          <div class="grid grid-cols-1 sm:grid-cols-5 gap-2">
+            {[
+              { n: 1, icon: 'fas fa-file-pen', title: 'Solicitud', desc: 'Describir propósito, justificación y áreas involucradas.', who: 'Jefes de Área' },
+              { n: 2, icon: 'fas fa-triangle-exclamation', title: 'Análisis de riesgos', desc: 'Peligros, exposición y requisitos legales aplicables.', who: 'SG-SST' },
+              { n: 3, icon: 'fas fa-clipboard-check', title: 'Viabilidad', desc: 'Recomendaciones de SST e impacto en el sistema.', who: 'SG-SST' },
+              { n: 4, icon: 'fas fa-calendar-days', title: 'Planeación', desc: 'Programar, asignar responsables y comunicar.', who: 'Dirección + SST' },
+              { n: 5, icon: 'fas fa-flag-checkered', title: 'Cierre', desc: 'Ejecutar, hacer seguimiento y firmar aprobación.', who: 'Dirección + SST' },
+            ].map((s) => (
+              <div class="relative bg-gray-50 rounded-lg border border-gray-100 p-3 hover:border-brand-gold hover:bg-yellow-50 transition-colors group flex flex-col">
+                <div class="flex items-center gap-2 mb-2">
+                  <span class="w-6 h-6 rounded-full bg-brand-gold text-white text-[11px] font-bold flex items-center justify-center shrink-0">{s.n}</span>
+                  <i class={`${s.icon} text-brand-blue text-sm`}></i>
+                </div>
+                <h4 class="font-bold text-gray-800 text-xs leading-tight mb-1">{s.title}</h4>
+                <p class="text-[11px] text-gray-600 leading-snug flex-1">{s.desc}</p>
+                <p class="text-[10px] font-semibold text-yellow-800 mt-2 pt-2 border-t border-gray-200"><i class="fas fa-user mr-1"></i>{s.who}</p>
+              </div>
+            ))}
+          </div>
+          <p class="text-[11px] text-gray-500 mt-3"><i class="fas fa-paperclip mr-1 text-brand-gold"></i>Registro asociado: <span class="font-semibold text-gray-700">Formato Gestión del Cambio</span></p>
+        </div>
+      </div>
+    </div>
+
   </div>
 </ProcesoLayout>
+
+<script>
+  if (!(window as any).__pdfViewerListenerAdded) {
+    (window as any).__pdfViewerListenerAdded = true;
+    document.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement)?.closest<HTMLButtonElement>('.btn-ver-pdf[data-pdf-url]');
+      if (btn?.dataset.pdfUrl) {
+        window.dispatchEvent(new CustomEvent('open-pdf-viewer', { detail: { url: btn.dataset.pdfUrl } }));
+      }
+    });
+  }
+</script>

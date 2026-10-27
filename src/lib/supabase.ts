@@ -89,3 +89,48 @@ export interface PlantillaExport {
   filtros: Record<string, unknown>;
   created_at: string;
 }
+
+export type TipoHallazgo = 
+  | 'no_conformidad_mayor'
+  | 'no_conformidad_menor'
+  | 'oportunidad_mejora'
+  | 'producto_no_conforme'
+  | 'correctiva'
+  | 'mejora'
+  | 'riesgo';
+export type OrigenHallazgo = 'autocontrol' | 'auditoria' | 'indicador' | 'dofa' | 'pqrs' | 'otro';
+export type EstadoHallazgo = 'abierto' | 'en_tratamiento' | 'en_analisis' | 'en_plan_accion' | 'en_evaluacion' | 'cerrado_eficaz' | 'cerrado_no_eficaz' | 'reformulado';
+export type EstadoTareaPlan = 'pendiente' | 'en_progreso' | 'completada' | 'vencida';
+
+export interface Hallazgo {
+  id: string;
+  codigo: string;
+  titulo: string;
+  descripcion: string;
+  tipo: TipoHallazgo;
+  origen: OrigenHallazgo;
+  origen_referencia?: string | null;
+  proceso_id?: string | null;
+  responsable_id: string;
+  creador_id: string;
+  requisito_incumplido?: string | null;
+  etapa_actual: number;
+  estado: EstadoHallazgo;
+  intentos_reformulacion: number;
+  fecha_deteccion: string;
+  fecha_limite?: string | null;
+  fecha_cierre?: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface ProcesoSGC {
+  id: string;
+  nombre: string;
+  tipo: string;
+  responsable?: string | null;
+  descripcion?: string | null;
+  activo: boolean;
+  orden: number;
+  created_at: string;
+}

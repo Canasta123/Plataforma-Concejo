@@ -2,6 +2,7 @@
 import FormatosLayout from '../../layouts/FormatosLayout.astro';
 import ExplorerCard from '../../components/ExplorerCard.astro';
 import InfoModal from '../../components/InfoModal.astro';
+import FileExplorer from '../../components/interactive/FileExplorer.svelte';
 ---
 
 <FormatosLayout
@@ -78,72 +79,9 @@ import InfoModal from '../../components/InfoModal.astro';
         </div>
       </div>
       
-      <div class="flex flex-col gap-2 flex-1">
-        <a href="/Formatos DEC/Formato_backup.docx" download class="flex items-center justify-between p-2 rounded-lg bg-blue-50 border border-blue-100 hover:border-brand-blue transition-colors group">
-          <div class="flex items-center gap-3">
-            <i class="fas fa-file-word text-blue-600"></i>
-            <div>
-              <p class="text-[11px] font-bold text-gray-700 group-hover:text-brand-blue truncate max-w-[200px] sm:max-w-[300px]">Formato backup.docx</p>
-              <p class="text-[10px] text-gray-500">54.02 KB</p>
-            </div>
-          </div>
-          <i class="fas fa-download text-gray-400 group-hover:text-brand-blue"></i>
-        </a>
-        
-        <a href="/Formatos DEC/INVENTARIO_ACTIVOS.xlsx" download class="flex items-center justify-between p-2 rounded-lg bg-green-50 border border-green-200 hover:border-green-500 transition-colors group">
-          <div class="flex items-center gap-3">
-            <i class="fas fa-file-excel text-green-600"></i>
-            <div>
-              <p class="text-[11px] font-bold text-gray-700 group-hover:text-green-700 truncate max-w-[200px] sm:max-w-[300px]">FORMATO INVENTARIO DE ACTIVOS DE INFORMACIÓN DATOS.xlsx</p>
-              <p class="text-[10px] text-gray-500">31.29 KB</p>
-            </div>
-          </div>
-          <i class="fas fa-download text-gray-400 group-hover:text-green-600"></i>
-        </a>
-
-        <a href="/Formatos DEC/formato_mantenimientos.docx" download class="flex items-center justify-between p-2 rounded-lg bg-blue-50 border border-blue-100 hover:border-brand-blue transition-colors group">
-          <div class="flex items-center gap-3">
-            <i class="fas fa-file-word text-blue-600"></i>
-            <div>
-              <p class="text-[11px] font-bold text-gray-700 group-hover:text-brand-blue truncate max-w-[200px] sm:max-w-[300px]">formato mantenimientos PC.docx</p>
-              <p class="text-[10px] text-gray-500">55.53 KB</p>
-            </div>
-          </div>
-          <i class="fas fa-download text-gray-400 group-hover:text-brand-blue"></i>
-        </a>
-
-        <a href="/Formatos DEC/PLANILLA_SESIONES.xlsx" download class="flex items-center justify-between p-2 rounded-lg bg-green-50 border border-green-200 hover:border-green-500 transition-colors group">
-          <div class="flex items-center gap-3">
-            <i class="fas fa-file-excel text-green-600"></i>
-            <div>
-              <p class="text-[11px] font-bold text-gray-700 group-hover:text-green-700 truncate max-w-[200px] sm:max-w-[300px]">PLANILLA APOYO SESIONES.xlsx</p>
-              <p class="text-[10px] text-gray-500">28.05 KB</p>
-            </div>
-          </div>
-          <i class="fas fa-download text-gray-400 group-hover:text-green-600"></i>
-        </a>
-
-        <a href="/Formatos DEC/PLANILLA_APOYOS.xlsx" download class="flex items-center justify-between p-2 rounded-lg bg-green-50 border border-green-200 hover:border-green-500 transition-colors group">
-          <div class="flex items-center gap-3">
-            <i class="fas fa-file-excel text-green-600"></i>
-            <div>
-              <p class="text-[11px] font-bold text-gray-700 group-hover:text-green-700 truncate max-w-[200px] sm:max-w-[300px]">PLANILLA APOYOS TECNOLOGICOS.xlsx</p>
-              <p class="text-[10px] text-gray-500">27.89 KB</p>
-            </div>
-          </div>
-          <i class="fas fa-download text-gray-400 group-hover:text-green-600"></i>
-        </a>
-
-        <a href="/Formatos DEC/solicitud_usuarios.docx" download class="flex items-center justify-between p-2 rounded-lg bg-blue-50 border border-blue-100 hover:border-brand-blue transition-colors group">
-          <div class="flex items-center gap-3">
-            <i class="fas fa-file-word text-blue-600"></i>
-            <div>
-              <p class="text-[11px] font-bold text-gray-700 group-hover:text-brand-blue truncate max-w-[200px] sm:max-w-[300px]">solicitud de usuarios.docx</p>
-              <p class="text-[10px] text-gray-500">386.05 KB</p>
-            </div>
-          </div>
-          <i class="fas fa-download text-gray-400 group-hover:text-brand-blue"></i>
-        </a>
+      <p class="text-xs text-gray-500 mb-3">Plantillas oficiales del proceso de TI. Haz clic en el ícono de descarga para obtener cada formato.</p>
+      <div class="flex-1 min-h-[260px] max-h-[360px] overflow-y-auto custom-scroll pr-1">
+        <FileExplorer client:load rutaBase="Formatos/7. Gestión Documental y Tecnologías de la Información/Tecnologías de la Información" />
       </div>
     </div>
 

@@ -359,3 +359,92 @@ export async function enviarCorreoSoporte({
     html: html,
   });
 }
+
+// ─── Mejora Continua ──────────────────────────────────────────────────────────
+
+export async function notificarHallazgoAsignado(hallazgo: any, responsable: Usuario, creador: Usuario) {
+  const transport = createTransport();
+  const html = htmlTemplate(
+    `<p>Hola <strong>${responsable.nombre}</strong>,</p>
+     <p>Se te ha asignado como responsable del siguiente hallazgo de mejora continua:</p>
+     ${infoTable(
+       infoRow('Código', hallazgo.codigo) +
+       infoRow('Descripción', hallazgo.descripcion) +
+       infoRow('Creador', creador.nombre)
+     )}
+     <p style="font-size:13px;color:#6b7280;">Por favor ingresa al sistema para formular el plan de acción correspondiente.</p>`,
+    { label: 'Ver Hallazgo', url: `${BASE_URL}/mejora-continua/hallazgos/${hallazgo.id}` }
+  );
+  await transport.sendMail({ from: getFrom(), to: destinatario(responsable), subject: `[${hallazgo.codigo}] Hallazgo Asignado`, html });
+}
+
+export async function notificarTareaPlanAsignada(hallazgo: any, tarea: any, responsable: Usuario) {
+  const transport = createTransport();
+  const html = htmlTemplate(
+    `<p>Hola <strong>${responsable.nombre}</strong>,</p>
+     <p>Se te ha asignado una tarea en el plan de acción del hallazgo <strong>${hallazgo.codigo}</strong>:</p>
+     ${infoTable(
+       infoRow('Tarea', tarea.descripcion) +
+       infoRow('Fecha Límite', formatFecha(tarea.fecha_limite))
+     )}`,
+    { label: 'Ver Hallazgo', url: `${BASE_URL}/mejora-continua/hallazgos/${hallazgo.id}` }
+  );
+  await transport.sendMail({ from: getFrom(), to: destinatario(responsable), subject: `[${hallazgo.codigo}] Nueva Tarea Asignada`, html });
+}
+
+export async function notificarEvaluacionRequerida(hallazgo: any, gestores: Usuario[]) {
+  const transport = createTransport();
+  const html = htmlTemplate(
+    `<p>El plan de acción para el hallazgo <strong>${hallazgo.codigo}</strong> ha alcanzado el 100% de cumplimiento.</p>
+     <p>Se requiere su revisión para evaluar la eficacia de las acciones tomadas.</p>`,
+    { label: 'Evaluar Eficacia', url: `${BASE_URL}/mejora-continua/hallazgos/${hallazgo.id}` }
+  );
+  const destinos = gestores.map(g => destinatario(g)).filter(Boolean);
+  if (destinos.length) {
+    await transport.sendMail({ from: getFrom(), to: destinos.join(','), subject: `[${hallazgo.codigo}] Evaluación de Eficacia Requerida`, html });
+  }
+}
+
+export async function notificarAlertaReformulacionCritica(hallazgo: any, admins: Usuario[]) {
+  const transport = createTransport();
+  const html = htmlTemplate(
+    `<p>⚠️ <strong>Alerta Crítica</strong></p>
+     <p>El hallazgo <strong>${hallazgo.codigo}</strong> ha superado el límite de reformulaciones permitidas del plan de acción.</p>`,
+    { label: 'Revisar Hallazgo', url: `${BASE_URL}/mejora-continua/hallazgos/${hallazgo.id}` }
+  );
+  const destinos = admins.map(a => destinatario(a)).filter(Boolean);
+  if (destinos.length) {
+    await transport.sendMail({ from: getFrom(), to: destinos.join(','), subject: `⚠️ Alerta: Límite de reformulaciones — ${hallazgo.codigo}`, html });
+  }
+}
+
+export async function notificarTareaVencida(hallazgo: any, tarea: any, responsable: Usuario) {
+  const transport = createTransport();
+  const html = htmlTemplate(
+    `<p>Hola <strong>${responsable.nombre}</strong>,</p>
+     <p>⚠️ La siguiente tarea del plan de acción se encuentra <strong>vencida</strong>:</p>
+     ${infoTable(
+       infoRow('Hallazgo', hallazgo.codigo) +
+       infoRow('Tarea', tarea.descripcion) +
+       infoRow('Fecha Límite', formatFecha(tarea.fecha_limite))
+     )}`,
+    { label: 'Ver Hallazgo', url: `${BASE_URL}/mejora-continua/hallazgos/${hallazgo.id}` }
+  );
+  await transport.sendMail({ from: getFrom(), to: destinatario(responsable), subject: `⚠️ Tarea Vencida — ${hallazgo.codigo}`, html });
+}
+
+export async function notificarHallazgoVencido(hallazgo: any, gestores: Usuario[]) {
+  const transport = createTransport();
+  const html = htmlTemplate(
+    `<p>⚠️ El hallazgo <strong>${hallazgo.codigo}</strong> ha superado su fecha límite general y no ha sido cerrado.</p>
+     ${infoTable(
+       infoRow('Descripción', hallazgo.descripcion) +
+       infoRow('Fecha Límite', formatFecha(hallazgo.fecha_limite))
+     )}`,
+    { label: 'Ver Hallazgo', url: `${BASE_URL}/mejora-continua/hallazgos/${hallazgo.id}` }
+  );
+  const destinos = gestores.map(g => destinatario(g)).filter(Boolean);
+  if (destinos.length) {
+    await transport.sendMail({ from: getFrom(), to: destinos.join(','), subject: `⚠️ Hallazgo Vencido — ${hallazgo.codigo}`, html });
+  }
+}
