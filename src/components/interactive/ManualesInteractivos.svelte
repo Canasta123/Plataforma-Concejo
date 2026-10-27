@@ -235,8 +235,8 @@
           </div>
         </div>
         <a 
-          href="/archivos/MANUAL DE VENTANILLA UNICA VUAR 2026.pdf"
-          download
+          href="/C-Procedimientos/MANUAL VENTANILLA ÚNICA VUAR.pdf"
+          download="MANUAL VENTANILLA ÚNICA VUAR.pdf"
           class="bg-brand-blue hover:bg-blue-700 text-white text-xs font-bold py-2 px-4 rounded shadow-md transition-all flex items-center gap-2 self-stretch sm:self-auto justify-center"
         >
           <i class="fas fa-download"></i>
